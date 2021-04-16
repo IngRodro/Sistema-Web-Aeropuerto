@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<H1>Bienvenido Usuario</H1>
-	</table>
+<h1>Bienvenido User</h1>
 </body>
 </html>
