@@ -10,8 +10,28 @@
   	<description></description>
   	<servlet-class>com.Laboratorio.Controladores.ControllerAcceso</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerMostarVuelos</servlet-name>
+  	<display-name>ControllerMostarVuelos</display-name>
+  	<description></description>
+  	<servlet-class>com.Laboratorio.Controladores.ControllerMostarVuelos</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerAeropuertos</servlet-name>
+  	<display-name>ControllerAeropuertos</display-name>
+  	<description></description>
+  	<servlet-class>com.Laboratorio.Controladores.ControllerAeropuertos</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerMostarVuelos</servlet-name>
+  	<url-pattern>/ControllerMostarVuelos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerAeropuertos</servlet-name>
+  	<url-pattern>/ControllerAeropuertos</url-pattern>
   </servlet-mapping>
 </web-app>
