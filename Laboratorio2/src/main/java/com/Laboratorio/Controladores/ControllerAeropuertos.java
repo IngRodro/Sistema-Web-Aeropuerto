@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.Laboratorio.DAO.ClsVuelo;
+import com.Laboratorio.DAO.Clsaeropuerto;
 import com.google.gson.Gson;
 
 /**
@@ -36,12 +37,12 @@ public class ControllerAeropuertos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 		
 		Gson json = new Gson();
 
-		ClsVuelo clsVuelo = new ClsVuelo();
-		response.getWriter().append(json.toJson(clsVuelo.MostrarVuelos()));
+		Clsaeropuerto clsAerpuerto = new Clsaeropuerto();
+		response.getWriter().append(json.toJson(clsAerpuerto.MostrAeropuerto()));
 	}
 
 }

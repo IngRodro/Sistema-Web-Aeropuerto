@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>com.Laboratorio.Controladores.ControllerAeropuertos</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerCompany</servlet-name>
+  	<display-name>ControllerCompany</display-name>
+  	<description></description>
+  	<servlet-class>com.Laboratorio.Controladores.ControllerCompany</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -33,5 +39,9 @@
   <servlet-mapping>
   	<servlet-name>ControllerAeropuertos</servlet-name>
   	<url-pattern>/ControllerAeropuertos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerCompany</servlet-name>
+  	<url-pattern>/ControllerCompany</url-pattern>
   </servlet-mapping>
 </web-app>

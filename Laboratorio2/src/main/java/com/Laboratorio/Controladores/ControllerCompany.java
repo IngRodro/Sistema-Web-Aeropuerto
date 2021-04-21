@@ -6,19 +6,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Laboratorio.Negocio.clsLoguin;
-import com.Laboratorio.Entidades.Usuario;
+import com.Laboratorio.DAO.ClsCompany;
+import com.Laboratorio.DAO.Clsaeropuerto;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class ControllerAcceso
+ * Servlet implementation class ControllerCompany
  */
-public class ControllerAcceso extends HttpServlet {
+public class ControllerCompany extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerAcceso() {
+    public ControllerCompany() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,29 +39,11 @@ public class ControllerAcceso extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String user = request.getParameter("user");
-		String pass = request.getParameter("pass");
-		Usuario usuario = new Usuario();
+		Gson json = new Gson();
+
+		ClsCompany clsComp = new ClsCompany();
+		response.getWriter().append(json.toJson(clsComp.MostrarCompany()));
 		
-		usuario.setNombreUsuario(user);
-		usuario.setPassword(pass);
-		
-		clsLoguin clsL = new clsLoguin();
-		
-		int valoracceso = clsL.acceso(usuario);
-		
-		if(valoracceso==1) {
-			if(clsL.tipoacceso(usuario)==1) {
-				response.sendRedirect("Aeropuertos.jsp");
-			}else {
-				response.sendRedirect("Accesouser.jsp");
-			}
-			
-			
-		}else {
-			response.sendRedirect("Error.jsp");
-		
-	}
 	}
 
 }

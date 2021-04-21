@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link
@@ -13,9 +13,9 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot; integrity="
 	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-</head>
 <body>
-<script type="text/javascript">
+	<div class="contenedor">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$.post('ControllerAeropuertos', {
 			}, function(response) {
@@ -23,7 +23,7 @@
 				
 				console.log(datos);
 				
-				var tabla = document.getElementById('tablaDatos');
+				var tabla = document.getElementById('tablaAeropuertos');
 				for(let item of datos){
 					tabla.innerHTML += `
 					<tr>
@@ -36,20 +36,20 @@
 						</td>
 					</tr>
 					`
-					console.log(item.Pass);
 				}
 			});
 		});
 		</script>
-	<h1>Bienvenido</h1>
-	<a href="add.jsp" type="button" class="btn btn-primary">Agregar</a>
-	<table class="table table-dark table-striped" id="tablaDatos">
+	<h1 align="center">Aeropuertos</h1>
+	<table class="table table-dark table-striped" id="tablaAeropuertos">
 		<thead>
 			<th>ID</th>
 			<th>Nombre</th>
 			<th>Pais</th>
 			<th>Ciudad</th>
+			<th>Acciones</th>
 		</thead>
 	</table>
+	</div>
 </body>
 </html>

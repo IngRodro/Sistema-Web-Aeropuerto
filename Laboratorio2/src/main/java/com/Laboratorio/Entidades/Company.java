@@ -11,6 +11,7 @@ package com.Laboratorio.Entidades;
 public class Company {
     private int idCompany;
     private String nombre;
+    
 	public int getIdCompany() {
 		return idCompany;
 	}
