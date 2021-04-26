@@ -6,19 +6,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Laboratorio.Entidades.Usuario;
 import com.Laboratorio.Negocio.clsLoguin;
+import com.Laboratorio.Entidades.Usuario;
 
 /**
- * Servlet implementation class ControllerAccesoBD
+ * Servlet implementation class ControllerAcceso
  */
-public class ControllerAccesoBD extends HttpServlet {
+public class ControllerAcceso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerAccesoBD() {
+    public ControllerAcceso() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,7 +60,7 @@ public class ControllerAccesoBD extends HttpServlet {
 		}else {
 			response.sendRedirect("Error.jsp");
 		
-		}
+	}
 	}
 
 }
