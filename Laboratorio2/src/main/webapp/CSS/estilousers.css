@@ -1,3 +1,5 @@
+@charset "ISO-8859-1";
+
 body{
     margin: 0;
     padding: 0;
@@ -6,9 +8,9 @@ body{
     height: 100vh;
 }
 
-.loginbox{
-    width: 320px;
-    height: 450px;
+.userbox{
+    width: 500px;
+    height: 650px;
     background: black;
     color: #fff;
     top: 50%;
@@ -52,7 +54,7 @@ input{
 
 }
 
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="tel"], input[type="number"]{
     border: none;
     border-bottom: 1px solid white;
     background: transparent;
@@ -62,23 +64,12 @@ input[type="text"], input[type="password"]{
     font-size: 16px;
 }
 
-button{
-    margin: 10px;
+input[type="submit"]{
     border: none;
     outline: none;
+    width: 200px;
     height: 40px;
     background: rgb(90, 214, 245);
     font-size: 18px;
-    border-radius: 20px;
-}
-
-a{
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 20px;
-    color: darkgray;
-}
-
-a:hover{
-    color:white;
+    border-radius: 10px;
 }
