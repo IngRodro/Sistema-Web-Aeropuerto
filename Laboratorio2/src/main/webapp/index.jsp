@@ -11,7 +11,7 @@
 	</head>
 
 	<body>
-		<form action="ControllerAccesoBD" method="post">
+		<form action="ControllerAcces" method="post">
 			<div class="loginbox">
 				<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
 				<h1>Inicia Sesion</h1>

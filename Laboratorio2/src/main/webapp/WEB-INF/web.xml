@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.Laboratorio.Controladores.ControllerAccesoBD</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerAcces</servlet-name>
+  	<display-name>ControllerAcces</display-name>
+  	<description></description>
+  	<servlet-class>com.Laboratorio.Controladores.ControllerAcces</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>ControllerAccesoBD</servlet-name>
   	<url-pattern>/ControllerAccesoBD</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerAcces</servlet-name>
+  	<url-pattern>/ControllerAcces</url-pattern>
   </servlet-mapping>
 </web-app>
