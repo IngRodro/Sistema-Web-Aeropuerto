@@ -15,9 +15,11 @@
                     <li class="barra">|</li>
                     <li><a href="company.jsp">Compañias</a></li>
                     <li class="barra">|</li>
-                    <li><a href="#">Vuelos</a></li>
+                    <li><a href="#">Aviones</a></li>
                     <li class="barra">|</li>
-                    <li><a href="#">Usuarios</a></li>
+                    <li><a href="#">Tipos de Vuelo</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Vuelos</a></li>
                 </ul>
             </div>
         </nav>

@@ -49,13 +49,15 @@
 	<nav class="menu">
 		<div class="container">
 			<ul>
-				<li><a href="aeropuerto.jsp" >Aeropuertos</a></li>
-				<li class="barra">|</li>
-				<li><a href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
-				<li><a href="#">Vuelos</a></li>
-				<li class="barra">|</li>
-				<li><a href="#">Usuarios</a></li>
+				  <li><a href="aeropuerto.jsp">Aeropuertos</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="company.jsp">Compañias</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Aviones</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Tipos de Vuelo</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Vuelos</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -73,6 +75,9 @@
 				<th>Acciones</th>
 			</thead>
 		</table>
+		<div align="center">
+			<a href="addaeropuerto.jsp" type="button" class="btn btn-primary">Agregar</a>
+		</div>
 	</div>
 </body>
 

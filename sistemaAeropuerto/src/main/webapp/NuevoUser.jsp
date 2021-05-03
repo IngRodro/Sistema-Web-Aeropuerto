@@ -3,13 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="CSS/estilousers.css">
+<link rel="stylesheet" href="CSS/estiloadd.css">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="userbox">
-	
 	<form action="ControllerUser" method = "get">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
 			<h1>Registrate Ya!!!</h1>

@@ -33,10 +33,10 @@ public class ControllerAeropuertos extends HttpServlet {
 		
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
-		String IdUsuario = request.getParameter("IdAeropuerto");
-		String Nombre = request.getParameter("Nombre");
-		String Ciudad = request.getParameter("Ciudad");
-		String Pais = request.getParameter("Pais");
+		String IdAeropuerto = request.getParameter("idAeropuerto");
+		String Nombre = request.getParameter("nombre");
+		String Ciudad = request.getParameter("ciudad");
+		String Pais = request.getParameter("pais");
 	
 
 		ClsAeropuerto clsusu = new ClsAeropuerto();
@@ -52,16 +52,15 @@ public class ControllerAeropuertos extends HttpServlet {
 			aeropuerto.setNombre(Nombre);
 			aeropuerto.setCiudad(Ciudad);
 			aeropuerto.setPais(Pais);
-			System.out.println(IdUsuario);
 			
-			if(IdUsuario==null||IdUsuario=="") {
+			if(IdAeropuerto==null||IdAeropuerto=="") {
 				
 				clsusu.AgregarAeropuerto(aeropuerto);
-				response.sendRedirect("Saludo.jsp");
+				response.sendRedirect("aeropuerto.jsp");
 			}else {
-				aeropuerto.setIdAeropuerto(Integer.parseInt(IdUsuario));
+				aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
 				clsusu.ActualizarAeropuerto(aeropuerto);
-				response.sendRedirect("Saludo.jsp");
+				response.sendRedirect("aeropuerto.jsp");
 			}
 		}
 	}

@@ -33,8 +33,8 @@
 					<tr>
 						<td>${item.idCompany}</td>
 						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerMostrarInformacion?usu=${item.idUsuario}&Eliminar=btne">Eliminar</a>
-						<a href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.Password}" class="btn btn-warning"> Actualizar</a>
+						<td><a class="btn btn-danger" href="ControllerCompany?idCompany=${item.idCompany}&Eliminar=btne">Eliminar</a>
+						<a href="addcompany.jsp?Id=${item.idCompany}&Nombre=${item.nombre}" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
@@ -45,13 +45,15 @@
 	<nav class="menu">
 		<div class="container">
 			<ul>
-				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li class="barra">|</li>
-				<li><a class="actual" href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
-				<li><a href="#">Vuelos</a></li>
-				<li class="barra">|</li>
-				<li><a href="#">Usuarios</a></li>
+				  <li><a href="aeropuerto.jsp">Aeropuertos</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="company.jsp">Compañias</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Aviones</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Tipos de Vuelo</a></li>
+                    <li class="barra">|</li>
+                    <li><a href="#">Vuelos</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -66,6 +68,9 @@
 				<th>Acciones</th>
 			</thead>
 		</table>
+		<div align="center">
+			<a href="addcompany.jsp" type="button" class="btn btn-primary">Agregar</a>
+		</div>
 	</div>
 </body>
 </html>
