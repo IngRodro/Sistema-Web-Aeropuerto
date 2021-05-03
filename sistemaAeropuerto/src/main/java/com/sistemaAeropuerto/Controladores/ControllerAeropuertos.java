@@ -76,6 +76,7 @@ public class ControllerAeropuertos extends HttpServlet {
 		Gson json = new Gson();
 
 		ClsAeropuerto clsAerpuerto = new ClsAeropuerto();
+		response.setCharacterEncoding("UTF8");
 		response.getWriter().append(json.toJson(clsAerpuerto.MostrAeropuerto()));
 	}
 

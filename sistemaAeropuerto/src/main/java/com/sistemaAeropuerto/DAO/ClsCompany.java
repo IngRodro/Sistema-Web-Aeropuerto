@@ -12,10 +12,11 @@ import com.sistemaAeropuerto.Entidades.Company;
 
 public class ClsCompany {
 
-	ConexionBd cn = new ConexionBd();
-    Connection conexion = cn.RetornarConexion();
 
     public ArrayList<Company> MostrarCompany() {
+    	
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         ArrayList<Company> companies = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
@@ -34,6 +35,8 @@ public class ClsCompany {
     }
 
     public void AgregarCompany(Company Com) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             if (ComprobarExistenciaCom(Com) == true) {
                 if (ComprobarEstadoCom(Com) == true) {
@@ -57,6 +60,8 @@ public class ClsCompany {
     }
 
     public void BorrarCompany(Company Com) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Company(?)");
             Statement.setInt("PidCompany", Com.getIdCompany());
@@ -68,6 +73,8 @@ public class ClsCompany {
     }
 
     public void ActualizarCompany(Company Com) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Company(?,?)");
             Statement.setInt("PidCompany", Com.getIdCompany());
@@ -80,6 +87,9 @@ public class ClsCompany {
     }
 
     public boolean ComprobarExistenciaCom(Company Com) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
         boolean Existencia = false;
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
@@ -97,6 +107,9 @@ public class ClsCompany {
     }
 
     public boolean ComprobarEstadoCom(Company Com) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
         boolean Estado = true;
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
