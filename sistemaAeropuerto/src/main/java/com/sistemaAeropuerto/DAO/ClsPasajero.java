@@ -32,7 +32,7 @@ public class ClsPasajero {
                 pasajeros.add(psjr);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return pasajeros;
     }
@@ -47,10 +47,10 @@ public class ClsPasajero {
             Statement.setString("PDocumentoIdentidad", Pasa.getDocumentoIdentidad());
             Statement.setString("PPasaporte", Pasa.getPasaporte());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -59,9 +59,9 @@ public class ClsPasajero {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Pasajero(?)");
             Statement.setInt("PidPasajero", Pasa.getIdPasajero());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
+            System.out.println("Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -76,9 +76,9 @@ public class ClsPasajero {
             Statement.setString("PDocumentoIdentidad", Pasa.getDocumentoIdentidad());
             Statement.setString("PPasaporte", Pasa.getPasaporte());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            System.out.println("Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -105,7 +105,7 @@ public class ClsPasajero {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return existencia;
     }
@@ -133,7 +133,7 @@ public class ClsPasajero {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return idP;
     }

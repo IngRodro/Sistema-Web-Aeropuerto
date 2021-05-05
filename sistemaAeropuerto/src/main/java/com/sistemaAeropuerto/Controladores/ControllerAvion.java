@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.sistemaAeropuerto.DAO.ClsCompany;
-import com.sistemaAeropuerto.DAO.ClsTiposVuelo;
-import com.sistemaAeropuerto.Entidades.Company;
-import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
+import com.sistemaAeropuerto.DAO.ClsAvion;
+import com.sistemaAeropuerto.Entidades.Avion;
 
 /**
- * Servlet implementation class ControllerTipos
+ * Servlet implementation class ControllerAvion
  */
-public class ControllerTipos extends HttpServlet {
+public class ControllerAvion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerTipos() {
+    public ControllerAvion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +33,32 @@ public class ControllerTipos extends HttpServlet {
 		
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
-		String IdTipo = request.getParameter("idTipo");
-		String Tipo = request.getParameter("tipo");
-		String Descuento = request.getParameter("descuento");
+		String IdAeropuerto = request.getParameter("idAvion");
+		String Modelo = request.getParameter("modelo");
+		String Capacidad = request.getParameter("capacidad");
 	
 
-		ClsTiposVuelo clstipo = new ClsTiposVuelo();
-		Tipos_vuelo tipo = new Tipos_vuelo();
+		ClsAvion clsavion = new ClsAvion();
+		Avion aeropuerto = new Avion();
 
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
-				tipo.setIdTipos_vuelo(Integer.parseInt(request.getParameter("idTipos")));
-				clstipo.BorrarTipo(tipo);
-				response.sendRedirect("tipos.jsp");
+				aeropuerto.setIdAvion(Integer.parseInt(request.getParameter("IdAvion")));
+				clsavion.BorrarAvion(aeropuerto);
+				response.sendRedirect("aeropuerto.jsp");
 			}
 		}else if(agregando.equals("btna")) {
-			tipo.setTipo(Tipo);
-			tipo.setPorcentajeDesc(Double.parseDouble(Descuento));
-			if(IdTipo==null||IdTipo=="") {
-				clstipo.AgregarTipo(tipo);
-				response.sendRedirect("tipos.jsp");
+			aeropuerto.setModeloAvion(Modelo);
+			aeropuerto.setCapacidad(Integer.parseInt(Capacidad));
+			
+			if(IdAeropuerto==null||IdAeropuerto=="") {
+				
+				clsavion.AgregarAvion(aeropuerto);
+				response.sendRedirect("aeropuerto.jsp");
 			}else {
-				tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
-				clstipo.ActualizarTipo(tipo);
-				response.sendRedirect("tipos.jsp");
+				aeropuerto.setIdAvion(Integer.parseInt(IdAeropuerto));
+				clsavion.ActualizarAvion(aeropuerto);
+				response.sendRedirect("aeropuerto.jsp");
 			}
 		}
 	}
@@ -72,9 +72,9 @@ public class ControllerTipos extends HttpServlet {
 		
 		Gson json = new Gson();
 
-		ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+		ClsAvion clsAvion = new ClsAvion();
 		response.setCharacterEncoding("UTF8");
-		response.getWriter().append(json.toJson(clsTipos.MostrarTipos()));
+		response.getWriter().append(json.toJson(clsAvion.MostrarAvion()));
 	}
 
 }

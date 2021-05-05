@@ -48,9 +48,13 @@ public class ControllerUser extends HttpServlet {
 		usu.setTelefono(Telefono);
 		usu.setTipoUser(1);
 		
-		clsusu.AgregarUsuario(usu);
-		
-		response.sendRedirect("index.jsp");
+		if(clsusu.ComprobarExistencia(User)==false) {
+			clsusu.AgregarUsuario(usu);
+			response.sendRedirect("index.jsp");
+			
+		}else {
+			response.sendRedirect("usuarioexistente.jsp");
+		}
 		
 	}
 

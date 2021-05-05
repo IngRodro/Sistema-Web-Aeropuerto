@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
@@ -29,7 +28,7 @@ public class ClsTiposVuelo {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return companies;
     }
@@ -40,34 +39,34 @@ public class ClsTiposVuelo {
             Statement.setString("PTipo", Tipo.getTipo());
             Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
     public void BorrarTipo(Tipos_vuelo Tipo) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_D_Avion(?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_D_Tipos(?)");
             Statement.setInt("PidTipos_vuelo", Tipo.getIdTipos_vuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
+            System.out.println("Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
     public void ActualizarTipo(Tipos_vuelo Tipo) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Avion(?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Tipos(?,?,?)");
             Statement.setInt("PidTipos_vuelo", Tipo.getIdTipos_vuelo());
             Statement.setString("PTipo", Tipo.getTipo());
             Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            System.out.println("Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -84,7 +83,7 @@ public class ClsTiposVuelo {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return tipo;
     }

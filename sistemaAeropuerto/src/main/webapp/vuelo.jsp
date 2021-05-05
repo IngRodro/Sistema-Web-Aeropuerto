@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+</head>
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link
@@ -17,40 +18,49 @@
 	; integrity="
 	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
 	crossorigin="anonymous"></script>
-</head>
 <body>
-<%
+	<%
 	HttpSession sesion = (HttpSession) request.getSession();
 	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
-	
+
 	if (usuSession.equals(null) || usuSession.equals("null")) {
 
 		response.sendRedirect("index.jsp");
 	}
 	%>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$.post('ControllerCompany', {
-			}, function(response) {
-				let datos = JSON.parse(response);
-				
-				console.log(response);
-				
-				var tabla = document.getElementById('tablaCompany');
-				for(let item of datos){
-					tabla.innerHTML += `
+				$(document).ready(function () {
+					$.post('ControllerVuelo', {
+					}, function (response) {
+						let datos = JSON.parse(response);
+
+						console.log(datos);
+
+						var tabla = document.getElementById('tablaAeropuertos');
+						for (let item of datos) {
+							tabla.innerHTML += `
+							
 					<tr>
-						<td>${item.idCompany}</td>
-						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerCompany?idCompany=${item.idCompany}&Eliminar=btne">Eliminar</a>
-						<a href="addcompany.jsp?Id=${item.idCompany}&Nombre=${item.nombre}" class="btn btn-warning"> Actualizar</a>
+						<td>${item.Vuelo}</td>
+						<td>${item.Company}</td>
+						<td>${item.AeropuertoO}</td>
+						<td>${item.AeropuertoD}</td>
+						<td>${item.Modelo}</td>
+						<td>${item.Tipo}</td>
+						<td>${item.Fecha}</td>
+						<td>${item.hora}:${item.minutos}</td>
+						<td>${item.Descuento}%</td>
+						<td>${item.estado}</td>
+						<td>
+						<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.Fecha}" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
-				}
-			});
-		});
-		</script>
+						}
+					});
+				});
+			</script>
+
 	<nav class="menu">
 		<div class="container">
 			<ul>
@@ -70,19 +80,28 @@
 			</ul>
 		</div>
 	</nav>
+
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Compañias</h1>
-		<table class="table table-light table-striped" id="tablaCompany">
+		<h1 align="center">Aeropuertos</h1>
+		<table class="table table-light table-striped" id="tablaAeropuertos">
 			<thead class="table-info">
-				<th>ID</th>
-				<th>Nombre</th>
+				<th>Vuelo</th>
+				<th>Compañia</th>
+				<th>Aeropuerto Origen</th>
+				<th>Aeropuerto Destino</th>
+				<th>Modelo</th>
+				<th>Tipo de Vuelo</th>
+				<th>Fecha</th>
+				<th>Hora</th>
+				<th>Descuento</th>
+				<th>Estado</th>
 				<th>Acciones</th>
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addcompany.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addvuelo.jsp" type="button" class="btn btn-primary">Agregar</a>
 		</div>
 	</div>
 </body>

@@ -22,7 +22,7 @@
 <%
 	HttpSession sesion = (HttpSession) request.getSession();
 	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
-	
+
 	if (usuSession.equals(null) || usuSession.equals("null")) {
 
 		response.sendRedirect("index.jsp");
@@ -30,20 +30,21 @@
 	%>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.post('ControllerCompany', {
+			$.post('ControllerTipos', {
 			}, function(response) {
 				let datos = JSON.parse(response);
 				
-				console.log(response);
+				console.log(datos);
 				
-				var tabla = document.getElementById('tablaCompany');
+				var tabla = document.getElementById('tablaTipos');
 				for(let item of datos){
 					tabla.innerHTML += `
 					<tr>
-						<td>${item.idCompany}</td>
-						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerCompany?idCompany=${item.idCompany}&Eliminar=btne">Eliminar</a>
-						<a href="addcompany.jsp?Id=${item.idCompany}&Nombre=${item.nombre}" class="btn btn-warning"> Actualizar</a>
+						<td>${item.idTipos_vuelo}</td>
+						<td>${item.Tipo}</td>
+						<td>${item.PorcentajeDesc}%</td>
+						<td><a class="btn btn-danger" href="ControllerTipos?idTipos=${item.idTipos_vuelo}&Eliminar=btne">Eliminar</a>
+						<a href="addtipo.jsp?Id=${item.idTipos_vuelo}&Tipo=${item.Tipo}&Porcentaje=${item.PorcentajeDesc}" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
@@ -74,15 +75,16 @@
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h1 align="center">Compañias</h1>
-		<table class="table table-light table-striped" id="tablaCompany">
+		<table class="table table-light table-striped" id="tablaTipos">
 			<thead class="table-info">
 				<th>ID</th>
 				<th>Nombre</th>
+				<th>Descuento</th>
 				<th>Acciones</th>
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addcompany.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addtipo.jsp" type="button" class="btn btn-primary">Agregar</a>
 		</div>
 	</div>
 </body>

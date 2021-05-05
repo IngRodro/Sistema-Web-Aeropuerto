@@ -29,7 +29,7 @@ public class ClsCompany {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return companies;
     }
@@ -40,22 +40,22 @@ public class ClsCompany {
         try {
             if (ComprobarExistenciaCom(Com) == true) {
                 if (ComprobarEstadoCom(Com) == true) {
-                    JOptionPane.showMessageDialog(null, "La Compañia ya se encuentra registrada");
+                    System.out.println("La Compañia ya se encuentra registrada");
                 } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_A_Company(?)");
                     Statement.setString("PNombre", Com.getNombre());
                     Statement.execute();
-                    JOptionPane.showMessageDialog(null, "Guardado");
+                    System.out.println("Guardado");
                 }
             } else {
                 CallableStatement Statement = conexion.prepareCall("call SP_I_Company(?)");
                 Statement.setString("PNombre", Com.getNombre());
                 Statement.execute();
-                JOptionPane.showMessageDialog(null, "Guardado");
+                System.out.println("Guardado");
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -66,9 +66,9 @@ public class ClsCompany {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Company(?)");
             Statement.setInt("PidCompany", Com.getIdCompany());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
+            System.out.println("Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -80,9 +80,9 @@ public class ClsCompany {
             Statement.setInt("PidCompany", Com.getIdCompany());
             Statement.setString("PNombre", Com.getNombre());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            System.out.println("Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -101,7 +101,7 @@ public class ClsCompany {
                 };
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return Existencia;
     }
@@ -122,7 +122,7 @@ public class ClsCompany {
                 };
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return Estado;
     }

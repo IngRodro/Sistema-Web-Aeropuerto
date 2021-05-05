@@ -30,10 +30,10 @@ public class ClsPromocion {
                 Statement.execute();
             }
 
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -46,7 +46,7 @@ public class ClsPromocion {
             Statement.setDouble("PDescuento", Promo.getDescuento());
             Statement.execute();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -63,7 +63,7 @@ public class ClsPromocion {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return promo;
     }

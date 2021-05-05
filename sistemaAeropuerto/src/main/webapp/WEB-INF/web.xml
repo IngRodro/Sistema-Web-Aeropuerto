@@ -34,6 +34,18 @@
   	<description></description>
   	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerTipos</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerAvion</servlet-name>
+  	<display-name>ControllerAvion</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerAvion</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerVuelo</servlet-name>
+  	<display-name>ControllerVuelo</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerVuelo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -53,5 +65,13 @@
   <servlet-mapping>
   	<servlet-name>ControllerTipos</servlet-name>
   	<url-pattern>/ControllerTipos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerAvion</servlet-name>
+  	<url-pattern>/ControllerAvion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerVuelo</servlet-name>
+  	<url-pattern>/ControllerVuelo</url-pattern>
   </servlet-mapping>
 </web-app>

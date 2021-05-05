@@ -32,7 +32,7 @@ public class ClsEscala {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return escalas;
     }
@@ -45,10 +45,10 @@ public class ClsEscala {
             Statement.setInt("PidiIterinario", idIti);
             Statement.setDouble("PPrecio", Esc.getPrecio());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -57,9 +57,9 @@ public class ClsEscala {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Escala(?)");
             Statement.setInt("PidEscala", Esc.getIdEscala());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
+            System.out.println("Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -70,9 +70,9 @@ public class ClsEscala {
             Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
             Statement.setDouble("PPrecio", Esc.getPrecio());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            System.out.println("Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -90,7 +90,7 @@ public class ClsEscala {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return esc;
     }
@@ -114,7 +114,7 @@ public class ClsEscala {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return escalas;
     }
@@ -127,7 +127,7 @@ public class ClsEscala {
             Statement.setInt("PNEscala", NEscala);
             Statement.execute();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -151,7 +151,7 @@ public class ClsEscala {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return Existencia;
     }

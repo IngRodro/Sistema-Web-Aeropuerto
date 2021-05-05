@@ -26,7 +26,7 @@ public class ClsItinerario {
             Statement.execute();
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -45,7 +45,7 @@ public class ClsItinerario {
             Statement.setString("Pminutos", Iti.getMinutos());
             Statement.execute();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class ClsItinerario {
 
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return itinerario;
     }

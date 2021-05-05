@@ -41,7 +41,7 @@ public class ClsVuelo {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return Vuelos;
     }
@@ -56,10 +56,10 @@ public class ClsVuelo {
             Statement.setInt("PidAvion", vuelo.getIdAvion());
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -81,7 +81,7 @@ public class ClsVuelo {
 
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return vuelo;
     }
@@ -120,10 +120,10 @@ public class ClsVuelo {
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.setInt("PidVuelo", vuelo.getIdVuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Vuelo Actualizado");
+            System.out.println("Vuelo Actualizado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -154,7 +154,7 @@ public class ClsVuelo {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return Vuelos;
     }
@@ -164,10 +164,10 @@ public class ClsVuelo {
             CallableStatement Statement = conexion.prepareCall("call SP_U_VueloFinalizado(?)");
             Statement.setInt("PidVuelo", vuelo.getIdVuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Vuelo Marcado como Finalizado");
+            System.out.println("Vuelo Marcado como Finalizado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -180,7 +180,7 @@ public class ClsVuelo {
             Statement.execute();
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
     
@@ -203,7 +203,7 @@ public class ClsVuelo {
 
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return vuelo;
     }

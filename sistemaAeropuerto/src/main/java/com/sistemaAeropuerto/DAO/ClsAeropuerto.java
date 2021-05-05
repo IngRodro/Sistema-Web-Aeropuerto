@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Aeropuerto;
@@ -30,7 +29,7 @@ public class ClsAeropuerto {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
         return aeropuertos;
     }
@@ -39,12 +38,10 @@ public class ClsAeropuerto {
         try {
             if (ComprobarExistenciaAeroP(Aero) == true) {
                 if (ComprobarEstadoAeroP(Aero) == true) {
-                    JOptionPane.showMessageDialog(null, "La Compañia ya se encuentra registrada");
                 } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
                     Statement.setString("PNombre", Aero.getNombre());
                     Statement.execute();
-                    JOptionPane.showMessageDialog(null, "Aeropuerto Registrado");
                 }
             } else {
                 CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?)");
@@ -52,11 +49,10 @@ public class ClsAeropuerto {
                 Statement.setString("Ppais", Aero.getPais());
                 Statement.setString("Pciudad", Aero.getCiudad());
                 Statement.execute();
-                JOptionPane.showMessageDialog(null, "Aeropuerto Registrado");
                 conexion.close();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -68,10 +64,9 @@ public class ClsAeropuerto {
             Statement.setString("Ppais", Aero.getPais());
             Statement.setString("Pciudad", Aero.getCiudad());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -80,9 +75,8 @@ public class ClsAeropuerto {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Aeropuerto(?)");
             Statement.setInt("PidAeropuerto", Aero.getIdAeropuerto());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -98,7 +92,7 @@ public class ClsAeropuerto {
                 };
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
         return Existencia;
     }
@@ -116,7 +110,7 @@ public class ClsAeropuerto {
                 };
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
         return Estado;
     }

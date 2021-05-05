@@ -9,7 +9,17 @@
 </head>
 <body>
 	<%
-	String IdAeropuerto = request.getParameter("Id");
+	HttpSession sesion = (HttpSession) request.getSession();
+	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
+
+	if (usuSession.equals(null) || usuSession.equals("null")) {
+
+		response.sendRedirect("index.jsp");
+	}
+	%>
+
+	<%
+	String IdAeropuerto = request.getParameter("Vuelo");
 	String Nombre = request.getParameter("Nombre");
 	String Ciudad = request.getParameter("Ciudad");
 	String Pais = request.getParameter("Pais");
@@ -28,10 +38,12 @@
 				alt="Logo avion">
 			<h1>Registro Aeropuerto</h1>
 			<input type="hidden" name="idAeropuerto" value=<%=IdAeropuerto%>>
-			<label>Nombre</label> <input type="text" name="nombre"
-				value="<%=Nombre%>"> <label>Pais</label> <input type="text"
-				name="pais" value="<%=Pais%>"> <label>Ciudad</label> <input
-				type="text" name="ciudad" value="<%=Ciudad%>">
+			<label>Nombre</label> 
+			<input type="text" name="nombre" value="<%=Nombre%>"> 
+			<label>Pais</label> 
+			<input type="text" name="pais" value="<%=Pais%>"> 
+			<label>Ciudad</label> 
+			<input type="text" name="ciudad" value="<%=Ciudad%>">
 				<div align="center">
 			<button name="Guardar" value="btna">Guardar/Actualizar</button>
 				</div>

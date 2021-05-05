@@ -8,13 +8,9 @@ body{
     height: 100vh;
 }
 
-input{
-	padding: 20px;
-}
-
 .containertabla{
-    width: 620px;
-    height: 240px;
+    width: 1080px;
+    height: 600px;
     background: black;
     color: #fff;
     top: 50%;
@@ -29,17 +25,6 @@ input{
     border-radius: 20px;
 }
 
-.btn-success{
-	padding-left: 25px;
-    padding-right: 25px;
-	margin:20px 5px;
-}
-
-.btn-danger{
-	padding-left: 25px;
-    padding-right: 25px;
-	margin:20px 5px;
-}
 .icono{
     width: 100px;
     height: 100px;
@@ -89,9 +74,10 @@ input{
     width: 100vmax;
     display: flex;
     justify-content: center;
-    
 }
 
-
-
-
+.actual{
+	color: rgb(90, 214, 245);
+    padding: 22px;
+    font-size: 24px;
+}

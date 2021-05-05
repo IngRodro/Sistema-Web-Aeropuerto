@@ -34,7 +34,7 @@ public class ClsPasaje {
                 pasajes.add(psj);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return pasajes;
     }
@@ -58,7 +58,7 @@ public class ClsPasaje {
                 pasajes.add(psj);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return pasajes;
     }
@@ -74,10 +74,10 @@ public class ClsPasaje {
             Statement.setInt("PNEscala", pasa.getNEscala());
             Statement.setString("PnombreUsuario", "RodroUser");
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
     
@@ -99,7 +99,7 @@ public class ClsPasaje {
                 pasajes.add(psj);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return pasajes;
     }

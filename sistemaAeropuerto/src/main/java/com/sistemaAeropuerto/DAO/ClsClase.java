@@ -32,7 +32,7 @@ public class ClsClase {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return clases;
     }
@@ -45,10 +45,10 @@ public class ClsClase {
             Statement.setInt("PidAvion", clase.getIdAvion());
             Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            System.out.println("Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -57,9 +57,9 @@ public class ClsClase {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Clase(?)");
             Statement.setInt("PidClase", clase.getIdClase());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
+            System.out.println("Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
 
         }
     }
@@ -73,9 +73,9 @@ public class ClsClase {
             Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.setDouble("PidClase", clase.getIdClase());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            System.out.println("Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
     
@@ -94,7 +94,7 @@ public class ClsClase {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return clase;
     }

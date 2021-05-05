@@ -30,7 +30,7 @@ public class ClsAvion {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
         return companies;
     }
@@ -41,10 +41,9 @@ public class ClsAvion {
             Statement.setString("PModelo", Avi.getModeloAvion());
             Statement.setInt("PCapacidad", Avi.getCapacidad());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -53,9 +52,8 @@ public class ClsAvion {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Avion(?)");
             Statement.setInt("PidAvion", Avi.getIdAvion());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -66,9 +64,8 @@ public class ClsAvion {
             Statement.setString("PModelo", Avi.getModeloAvion());
             Statement.setInt("PCapacidad", Avi.getCapacidad());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 
@@ -86,7 +83,7 @@ public class ClsAvion {
             }
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
         return avion;
     }
@@ -98,7 +95,7 @@ public class ClsAvion {
             Statement.setString("PEstado", Estado);
             Statement.execute();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        	System.out.println(e);
         }
     }
 

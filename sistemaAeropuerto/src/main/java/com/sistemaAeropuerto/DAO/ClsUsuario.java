@@ -65,7 +65,7 @@ public class ClsUsuario {
             conexion.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
         return false;
     }
@@ -81,10 +81,10 @@ public class ClsUsuario {
             Statement.setString("pPassword", user.getPassword());
             Statement.setInt("pTipoUser", user.getTipoUser());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Usuario Registrado con Exito");
+            System.out.println("Usuario Registrado con Exito");
             conexion.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
 
     }
