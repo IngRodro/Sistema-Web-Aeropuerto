@@ -65,13 +65,22 @@ input[type="text"], input[type="password"]{
 }
 
 button{
-    margin: 10px;
-    border: none;
-    outline: none;
-    height: 40px;
-    background: rgb(90, 214, 245);
-    font-size: 18px;
-    border-radius: 20px;
+text-decoration:none;
+font-weight: 600;
+font-size: 20px;
+color:#ffffff;
+padding-top:15px;
+padding-bottom:15px;
+padding-left:40px;
+padding-right:40px;
+background-color:#1883ba;
+border-color: #0016b0;
+border-width: 3px;
+border-style: solid;
+  }
+  .boton_personalizado:hover{
+    color: #1883ba;
+    background-color: #ffffff;
 }
 
 a{
