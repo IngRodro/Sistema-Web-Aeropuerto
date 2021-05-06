@@ -101,7 +101,7 @@
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addvuelo.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addvuelo.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>

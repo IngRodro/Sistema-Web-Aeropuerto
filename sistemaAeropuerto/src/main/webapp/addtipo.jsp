@@ -41,7 +41,7 @@
 				<label>Descuento</label> 
 			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Descuento%>"> 
 				<div align="center">
-			<button name="Guardar" value="btna">Guardar/Actualizar</button>
+			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

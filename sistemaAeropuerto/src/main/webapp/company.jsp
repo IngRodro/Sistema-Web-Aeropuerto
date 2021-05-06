@@ -82,7 +82,7 @@
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addcompany.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addcompany.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>

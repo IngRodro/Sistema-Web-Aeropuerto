@@ -41,7 +41,7 @@
 				<label>Capacidad</label> 
 			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>"> 
 				<div align="center">
-			<button name="Guardar" value="btna">Guardar/Actualizar</button>
+			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

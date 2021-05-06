@@ -86,7 +86,7 @@
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addavion.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addavion.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>

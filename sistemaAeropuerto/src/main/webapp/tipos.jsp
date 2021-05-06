@@ -84,7 +84,7 @@
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addtipo.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addtipo.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>

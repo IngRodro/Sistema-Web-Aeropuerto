@@ -36,7 +36,7 @@
 			<label>Nombre</label> <input type="text" name="nombre"
 				value="<%=Nombre%>"> 
 				<div align="center">
-			<button name="Guardar" value="btna">Guardar/Actualizar</button>
+			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

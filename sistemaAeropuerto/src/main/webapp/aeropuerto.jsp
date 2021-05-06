@@ -89,7 +89,7 @@
 			</thead>
 		</table>
 		<div align="center">
-			<a href="addaeropuerto.jsp" type="button" class="btn btn-primary">Agregar</a>
+			<a href="addaeropuerto.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>
