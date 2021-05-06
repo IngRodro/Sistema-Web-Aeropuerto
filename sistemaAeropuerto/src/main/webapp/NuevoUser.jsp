@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="CSS/estiloadd.css">
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,6 +25,8 @@
 		<br>
 		<label>Telefono</label>
 		<input type="tel" name="telefono">
+		<label>Contraseña de Administrador</label>
+		<input type="number" name="passadmin">
 		<div align="center">
 		<input type="submit" value="Registarme">
 		</div>

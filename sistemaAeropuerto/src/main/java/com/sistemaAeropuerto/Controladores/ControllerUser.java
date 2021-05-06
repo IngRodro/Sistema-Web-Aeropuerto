@@ -35,6 +35,7 @@ public class ControllerUser extends HttpServlet {
 		String Pass = request.getParameter("pass");
 		String Edad = request.getParameter("edad");
 		String Telefono = request.getParameter("telefono");
+		String passadmin = request.getParameter("passadmin");
 		String btnregresar = request.getParameter("btnregresar");
 		
 		
@@ -50,7 +51,11 @@ public class ControllerUser extends HttpServlet {
 			usu.setApellidos(Apellidos);
 			usu.setEdad(Integer.parseInt(Edad));
 			usu.setTelefono(Telefono);
-			usu.setTipoUser(1);
+			if(passadmin.equals("2310")) {
+				usu.setTipoUser(1);
+			}else {
+				usu.setTipoUser(0);
+			}
 			
 			if(clsusu.ComprobarExistencia(User)==false) {
 				clsusu.AgregarUsuario(usu);
