@@ -79,7 +79,8 @@ public class ControllerAcceso extends HttpServlet {
 						response.sendRedirect("menu.jsp");
 						session.setAttribute("usuario", user);
 					} else {
-						response.sendRedirect("Accesouser.jsp");
+						session.setAttribute("user", user);
+						response.sendRedirect("menuuser.jsp");
 					}
 				} else {
 					response.sendRedirect("Error.jsp");
