@@ -35,25 +35,30 @@ public class ControllerUser extends HttpServlet {
 		String Pass = request.getParameter("pass");
 		String Edad = request.getParameter("edad");
 		String Telefono = request.getParameter("telefono");
+		String btnregresar = request.getParameter("btnregresar");
 		
 		
-		ClsUsuario clsusu = new ClsUsuario();
-		Usuario usu = new Usuario();
-		
-		usu.setNombreUsuario(User);
-		usu.setPassword(Pass);
-		usu.setNombres(Nombres);
-		usu.setApellidos(Apellidos);
-		usu.setEdad(Integer.parseInt(Edad));
-		usu.setTelefono(Telefono);
-		usu.setTipoUser(1);
-		
-		if(clsusu.ComprobarExistencia(User)==false) {
-			clsusu.AgregarUsuario(usu);
-			response.sendRedirect("index.jsp");
-			
+		if(btnregresar != null) {
+			response.sendRedirect("NuevoUser.jsp");
 		}else {
-			response.sendRedirect("usuarioexistente.jsp");
+			ClsUsuario clsusu = new ClsUsuario();
+			Usuario usu = new Usuario();
+			
+			usu.setNombreUsuario(User);
+			usu.setPassword(Pass);
+			usu.setNombres(Nombres);
+			usu.setApellidos(Apellidos);
+			usu.setEdad(Integer.parseInt(Edad));
+			usu.setTelefono(Telefono);
+			usu.setTipoUser(1);
+			
+			if(clsusu.ComprobarExistencia(User)==false) {
+				clsusu.AgregarUsuario(usu);
+				response.sendRedirect("index.jsp");
+				
+			}else {
+				response.sendRedirect("usuarioexistente.jsp");
+			}
 		}
 		
 	}
