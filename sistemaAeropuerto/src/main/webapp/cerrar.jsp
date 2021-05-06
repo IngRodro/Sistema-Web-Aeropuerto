@@ -51,7 +51,7 @@
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h3 align="center">
-			¿Estas seguro que desea cerrar su sesion?
+			¿Estas seguro que deseas cerrar tu sesion?
 		</h3>
 		<div align="center">
 			<form action="ControllerAcceso" method="post">

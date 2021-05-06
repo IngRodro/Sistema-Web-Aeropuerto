@@ -6,6 +6,41 @@
 <link rel="stylesheet" href="CSS/estiloadd.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function SoloNumeros(evt){
+	if(window.event){
+		keynum = evt.keyCode;
+	}else{
+		keynum = evt.which;
+	}
+	
+	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
+		return true;
+	}else{
+		alert("No se permiten ingresar Letras...");
+		return false;
+	}
+}
+
+function SoloLetras(e){
+	key = e.keyCode || e.which;
+	tecla = String.fromCharCode(key).toString();
+	letras = "ABCDEFGHYJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü";
+	
+	especiales = [8,13];
+	tecla_especial = false
+	for(var i in especiales){
+		if(key == especiales[1]){
+			tecla_especial = true;
+			break;
+		}
+	}
+	if(letras.indexOf(tecla) == -1 && !tecla_especial){
+		alert("No se permiten ingresar Numeros o Caracteres Especiales...");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <div class="userbox">
@@ -13,18 +48,18 @@
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
 			<h1>Registrate Ya!!!</h1>
 		<label>Nombres</label>
-		<input type="text" name="nombres">
+		<input type="text" name="nombres" onkeypress="return SoloLetras(event);" required>
 		<label>Apellidos</label>
-		<input type="text" name="apellidos">
+		<input type="text" name="apellidos" onkeypress="return SoloLetras(event);" required>
 		<label>Nombre de Usuario</label>
-		<input type="text" name="usuario">
+		<input type="text" name="usuario" onkeypress="return SoloLetras(event);" required>
 		<label>Password</label>
-		<input type="text" name="pass">
+		<input type="password" name="pass" required>
 		<label>Edad</label>
-		<input type="number" name="edad">
+		<input type="number" name="edad" onkeypress="return SoloNumeros(event);" required>
 		<br>
 		<label>Telefono</label>
-		<input type="tel" name="telefono">
+		<input type="tel" name="telefono" onkeypress="return SoloNumeros(event);" required>
 		<label>Contraseña de Administrador</label>
 		<input type="number" name="passadmin">
 		<div align="center">

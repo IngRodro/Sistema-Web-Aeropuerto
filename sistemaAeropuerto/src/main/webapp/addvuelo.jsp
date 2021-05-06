@@ -17,6 +17,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script>
+function SoloNumeros(evt){
+	if(window.event){
+		keynum = evt.keyCode;
+	}else{
+		keynum = evt.which;
+	}
+	
+	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
+		return true;
+	}else{
+		alert("No se permiten ingresar Letras...");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <%
@@ -123,11 +139,11 @@
 			<h1>Registro Vuelo</h1>
 			<input type="hidden" name="vuelo" value=<%=Vuelo%>>
 			<label>Fecha Vuelo</label> 
-			<input type="date" name="fecha" value="<%=Fecha%>">
+			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
-			<input type="number"name="hora" value="<%=Hora%>">
+			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Minutos</label> 
-			<input type="number" name="minutos" value="<%=Minutos%>" required>
+			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" required>
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
 			<option value>Compañias</option>
 			</select>
@@ -144,11 +160,11 @@
 			<option value>Aeropuerto Destino</option>
 			</select>
 			<label>Fecha Inicio</label> 
-			<input type="date" name="fechaI" value="<%=FechaI%>">
+			<input type="date" name="fechaI" value="<%=FechaI%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Fecha Final</label> 
-			<input type="date" name="fechaF" value="<%=FechaF%>">
+			<input type="date" name="fechaF" value="<%=FechaF%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Descuento</label> 
-			<input type="number"name="descuento" value="<%=Descuento%>">
+			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" required>
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

@@ -6,6 +6,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script>
+function SoloNumeros(evt){
+	if(window.event){
+		keynum = evt.keyCode;
+	}else{
+		keynum = evt.which;
+	}
+	
+	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
+		return true;
+	}else{
+		alert("No se permiten ingresar Letras...");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <%
@@ -36,10 +52,10 @@
 			<h1>Registro Aviones</h1>
 			<input type="hidden" name="idAvion" value=<%=IdAvion%>>
 			<label>Modelo</label> 
-			<input type="text" name="modelo"value="<%=Modelo%>"> 
+			<input type="text" name="modelo"value="<%=Modelo%>" required> 
 				<div align="center">
 				<label>Capacidad</label> 
-			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>"> 
+			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>" onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

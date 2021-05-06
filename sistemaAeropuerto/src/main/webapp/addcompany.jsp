@@ -6,6 +6,26 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script>
+function SoloLetras(e){
+	key = e.keyCode || e.which;
+	tecla = String.fromCharCode(key).toString();
+	letras = "ABCDEFGHYJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü";
+	
+	especiales = [8,13];
+	tecla_especial = false
+	for(var i in especiales){
+		if(key == especiales[1]){
+			tecla_especial = true;
+			break;
+		}
+	}
+	if(letras.indexOf(tecla) == -1 && !tecla_especial){
+		alert("No se permiten ingresar Numeros...");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <%
@@ -34,7 +54,7 @@
 			<h1>Registro Compañias</h1>
 			<input type="hidden" name="idCompany" value=<%=IdCompany%>>
 			<label>Nombre</label> <input type="text" name="nombre"
-				value="<%=Nombre%>"> 
+				value="<%=Nombre%>" onkeypress="return SoloLetras(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
