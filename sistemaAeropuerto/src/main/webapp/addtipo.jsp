@@ -71,10 +71,10 @@ function SoloLetras(e){
 			<h1>Registro Tipos de Vuelo</h1>
 			<input type="hidden" name="idTipo" value=<%=IdTipo%>>
 			<label>Tipo de Vuelo</label> 
-			<input type="text" name="tipo"value="<%=Tipo%>" onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="tipo"value="<%=Tipo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 				<div align="center">
 				<label>Descuento</label> 
-			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Descuento%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

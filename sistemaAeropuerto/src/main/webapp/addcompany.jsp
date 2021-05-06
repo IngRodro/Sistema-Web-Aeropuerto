@@ -54,7 +54,7 @@ function SoloLetras(e){
 			<h1>Registro Compañias</h1>
 			<input type="hidden" name="idCompany" value=<%=IdCompany%>>
 			<label>Nombre</label> <input type="text" name="nombre"
-				value="<%=Nombre%>" onkeypress="return SoloLetras(event);" required> 
+				value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

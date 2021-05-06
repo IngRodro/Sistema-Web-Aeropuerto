@@ -59,11 +59,11 @@ function SoloLetras(e){
 			<h1>Registro Aeropuerto</h1>
 			<input type="hidden" name="idAeropuerto" value=<%=IdAeropuerto%>>
 			<label>Nombre</label> 
-			<input type="text" name="nombre" value="<%=Nombre%>" onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="nombre" value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Pais</label> 
-			<input type="text" name="pais" value="<%=Pais%>" onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="pais" value="<%=Pais%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Ciudad</label> 
-			<input type="text" name="ciudad" value="<%=Ciudad%>" onkeypress="return SoloLetras(event);" required>
+			<input type="text" name="ciudad" value="<%=Ciudad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

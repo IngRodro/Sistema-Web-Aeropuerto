@@ -33,11 +33,11 @@ function SoloLetras(e){
 				<h1>Inicia Sesion</h1>
 				<div class="input-group mt-5 mb-5">
 					<span class="input-group-text fa fa-user"></span>
-					<input class="form-control" type="text" name="user" placeholder="Ingrese su Usuario" onkeypress="return SoloLetras(event);" required>
+					<input class="form-control" type="text" name="user" placeholder="Ingrese su Usuario" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				</div>
 				<div class="input-group mt-5 mb-5">
 					<span class="input-group-text fa fa-key"></span>
-					<input class="form-control" type="password" name="pass" placeholder="Ingrese su Contraseña" required>
+					<input class="form-control" type="password" name="pass" placeholder="Ingrese su Contraseña" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 				</div>
 				<center>
 					<button class="mb-4"><b>Login</b><i class="fa fa-sign-in-alt btn-sm"></i></button>

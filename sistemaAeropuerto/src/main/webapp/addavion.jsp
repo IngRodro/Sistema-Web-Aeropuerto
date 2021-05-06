@@ -52,10 +52,10 @@ function SoloNumeros(evt){
 			<h1>Registro Aviones</h1>
 			<input type="hidden" name="idAvion" value=<%=IdAvion%>>
 			<label>Modelo</label> 
-			<input type="text" name="modelo"value="<%=Modelo%>" required> 
+			<input type="text" name="modelo"value="<%=Modelo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required> 
 				<div align="center">
 				<label>Capacidad</label> 
-			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>" onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

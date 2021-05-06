@@ -141,9 +141,9 @@ function SoloNumeros(evt){
 			<label>Fecha Vuelo</label> 
 			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
-			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 			<label>Minutos</label> 
-			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
 			<option value>Compañias</option>
 			</select>
@@ -164,7 +164,7 @@ function SoloNumeros(evt){
 			<label>Fecha Final</label> 
 			<input type="date" name="fechaF" value="<%=FechaF%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Descuento</label> 
-			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
