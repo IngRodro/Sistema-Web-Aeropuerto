@@ -129,6 +129,7 @@ function SoloNumeros(evt){
 		Fecha = "";
 		Hora = "";
 		Minutos = "";
+		Descuento = "0";
 	}
 	%>
 
@@ -141,9 +142,9 @@ function SoloNumeros(evt){
 			<label>Fecha Vuelo</label> 
 			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
-			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
+			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="23">
 			<label>Minutos</label> 
-			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
+			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="59">
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
 			<option value>Compañias</option>
 			</select>
@@ -160,11 +161,11 @@ function SoloNumeros(evt){
 			<option value>Aeropuerto Destino</option>
 			</select>
 			<label>Fecha Inicio</label> 
-			<input type="date" name="fechaI" value="<%=FechaI%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="date" name="fechaI" value="<%=FechaI%>" onkeypress="return SoloNumeros(event);" >
 			<label>Fecha Final</label> 
-			<input type="date" name="fechaF" value="<%=FechaF%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="date" name="fechaF" value="<%=FechaF%>" onkeypress="return SoloNumeros(event);" >
 			<label>Descuento</label> 
-			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
+			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="100">
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

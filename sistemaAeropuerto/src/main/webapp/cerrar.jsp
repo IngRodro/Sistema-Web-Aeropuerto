@@ -38,7 +38,7 @@
 				<li class="barra">|</li>
 				<li><a href="#">Aviones</a></li>
 				<li class="barra">|</li>
-				<li><a href="tipo.jsp">Tipos de Vuelo</a></li>
+				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
 				<li class="barra">|</li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>
 				<li class="barra">|</li>
