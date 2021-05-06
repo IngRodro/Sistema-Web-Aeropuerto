@@ -22,19 +22,19 @@
 	<nav class="menu">
 		<div class="container">
 			<ul>
-				<li><a href="menu.jsp"><b>Inicio</b></a></li>
+				<li><a href="menu.jsp">Inicio</a></li>
 				<li class="barra">|</li>
-				<li><a href="aeropuerto.jsp"><b>Aeropuertos</b></a></li>
+				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
 				<li class="barra">|</li>
-				<li><a href="company.jsp"><b>Compañias</b></a></li>
+				<li><a href="company.jsp">Compañias</a></li>
 				<li class="barra">|</li>
-				<li><a href="#"><b>Aviones</b></a></li>
+				<li><a href="#">Aviones</a></li>
 				<li class="barra">|</li>
-				<li><a href="tipo.jsp"><b>Tipos de Vuelo</b></a></li>
+				<li><a href="tipo.jsp">Tipos de Vuelo</a></li>
 				<li class="barra">|</li>
-				<li><a href="vuelo.jsp"><b>Vuelos</b></a></li>
+				<li><a href="vuelo.jsp">Vuelos</a></li>
 				<li class="barra">|</li>
-				<li><a href="cerrar.jsp"><b>Cerrar Sesion</b></a></li>
+				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
 			</ul>
 		</div>
 	</nav>

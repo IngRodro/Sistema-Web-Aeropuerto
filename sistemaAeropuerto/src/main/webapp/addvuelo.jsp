@@ -103,6 +103,9 @@
 	String Fecha = request.getParameter("Fecha");
 	String Hora = request.getParameter("Hora");
 	String Minutos = request.getParameter("Minutos");
+	String Descuento = request.getParameter("Descuento");
+	String FechaI = request.getParameter("FechaI");
+	String FechaF = request.getParameter("FechaF");
 	
 
 	if (Vuelo == null) {
@@ -114,17 +117,17 @@
 	%>
 
 	<div class="userbox">
-		<form action="ControllerAeropuertos" method="get">
+		<form action="ControllerVuelo" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
-			<h1>Registro Aeropuerto</h1>
+			<h1>Registro Vuelo</h1>
 			<input type="hidden" name="vuelo" value=<%=Vuelo%>>
-			<label>Fecha</label> 
+			<label>Fecha Vuelo</label> 
 			<input type="date" name="fecha" value="<%=Fecha%>">
 			<label>Hora</label> 
 			<input type="number"name="hora" value="<%=Hora%>">
 			<label>Minutos</label> 
-			<input type="number" name="minutos" value="<%=Minutos%>">
+			<input type="number" name="minutos" value="<%=Minutos%>" required>
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
 			<option value>Compañias</option>
 			</select>
@@ -140,6 +143,12 @@
 				<select class="form-select form-select-lg mb-3" name="selectAeropuertoD" id="cmbAeropuertoD" required>
 			<option value>Aeropuerto Destino</option>
 			</select>
+			<label>Fecha Inicio</label> 
+			<input type="date" name="fechaI" value="<%=FechaI%>">
+			<label>Fecha Final</label> 
+			<input type="date" name="fechaF" value="<%=FechaF%>">
+			<label>Descuento</label> 
+			<input type="number"name="descuento" value="<%=Descuento%>">
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

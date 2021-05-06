@@ -47,39 +47,44 @@ public class ControllerAcceso extends HttpServlet {
 
 		String btncerrar = request.getParameter("btncerrar");
 		String btnnocerrar = request.getParameter("btnnocerrar");
+		String btnregresar = request.getParameter("btnregresar");
 
-		if (btncerrar != null) {
+		if(btnregresar != null) {
 			response.sendRedirect("index.jsp");
-			session.invalidate();
+		}else {
+			if (btncerrar != null) {
+				response.sendRedirect("index.jsp");
+				session.invalidate();
 
-		} else if(btnnocerrar != null)
-		{
-			response.sendRedirect("menu.jsp");
-		}
-		
-		else{
+			} else if(btnnocerrar != null)
+			{
+				response.sendRedirect("menu.jsp");
+			}
+			
+			else{
 
-			String user = request.getParameter("user");
-			String pass = request.getParameter("pass");
-			Usuario usuario = new Usuario();
+				String user = request.getParameter("user");
+				String pass = request.getParameter("pass");
+				Usuario usuario = new Usuario();
 
-			usuario.setNombreUsuario(user);
-			usuario.setPassword(pass);
+				usuario.setNombreUsuario(user);
+				usuario.setPassword(pass);
 
-			ClsLoguin clsL = new ClsLoguin();
+				ClsLoguin clsL = new ClsLoguin();
 
-			int valoracceso = clsL.acceso(usuario);
+				int valoracceso = clsL.acceso(usuario);
 
-			if (valoracceso == 1) {
-				if (clsL.tipoacceso(usuario) == 1) {
-					response.sendRedirect("menu.jsp");
-					session.setAttribute("usuario", user);
+				if (valoracceso == 1) {
+					if (clsL.tipoacceso(usuario) == 1) {
+						response.sendRedirect("menu.jsp");
+						session.setAttribute("usuario", user);
+					} else {
+						response.sendRedirect("Accesouser.jsp");
+					}
 				} else {
-					response.sendRedirect("Accesouser.jsp");
-				}
-			} else {
-				response.sendRedirect("Error.jsp");
+					response.sendRedirect("Error.jsp");
 
+				}
 			}
 		}
 	}

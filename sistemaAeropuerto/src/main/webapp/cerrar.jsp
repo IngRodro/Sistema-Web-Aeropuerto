@@ -50,14 +50,15 @@
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h3 align="center"><b>
-		¿Esta seguro que desea cerrar su sesion?
-		</b>
+		<h3 align="center">
+			¿Estas seguro que desea cerrar su sesion?
+		</h3>
+		<div align="center">
 			<form action="ControllerAcceso" method="post">
 				<button class="btn btn-danger" name="btncerrar" value="Si"><b>Si</b></button>
 				<button class="btn btn-success" name="btnnocerrar" value="No"><b>No</b></button>
 			</form>
-		</h3>
+		</div>
 	</div>
 </body>
 </html>

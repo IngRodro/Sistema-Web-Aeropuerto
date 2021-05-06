@@ -10,7 +10,7 @@
 <form action="ControllerAcceso" method="post">
 			<div class="loginbox">
 				<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
-				<h1><b>Iniciar Sesion</b></h1>
+				<h1>Inicia Sesion</h1>
 				<div class="input-group mt-5 mb-5">
 					<span class="input-group-text fa fa-user"></span>
 					<input class="form-control" type="text" name="user" placeholder="Ingrese su Usuario">
@@ -20,10 +20,10 @@
 					<input class="form-control" type="password" name="pass" placeholder="Ingrese su Contraseña">
 				</div>
 				<center>
-					<button class="mb-4"><b>LOGIN</b><i class="fa fa-sign-in-alt"></i></button>
+					<button class="mb-4">Log in<i class="fa fa-sign-in-alt"></i></button>
 				</center>
 				<center>
-					<a href="NuevoUser.jsp"><b>¿Aun no eres Usuario? ¡Registrate!</b></a>
+					<a href="NuevoUser.jsp">¿Aun no eres Usuario? ¡Registrate!</a>
 				</center>
 			</div>
 		</form>
