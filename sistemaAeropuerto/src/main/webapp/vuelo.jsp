@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="CSS/estilostablas.css">
@@ -52,7 +52,7 @@
 						<td>${item.Descuento}%</td>
 						<td>${item.estado}</td>
 						<td>
-						<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.Fecha}" class="btn btn-warning"> Actualizar</a>
+						<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.Fecha}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
@@ -68,7 +68,7 @@
 				<li class="barra">|</li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
 				<li class="barra">|</li>
-				<li><a href="company.jsp">Compañias</a></li>
+				<li><a href="company.jsp">CompaÃ±ias</a></li>
 				<li class="barra">|</li>
 				<li><a href="avion.jsp">Aviones</a></li>
 				<li class="barra">|</li>
@@ -88,7 +88,7 @@
 		<table class="table table-light table-striped" id="tablaAeropuertos">
 			<thead class="table-info">
 				<th>Vuelo</th>
-				<th>Compañia</th>
+				<th>CompaÃ±ia</th>
 				<th>Aeropuerto Origen</th>
 				<th>Aeropuerto Destino</th>
 				<th>Modelo</th>

@@ -11,11 +11,10 @@ import com.sistemaAeropuerto.Entidades.Itinerario;
 import com.sistemaAeropuerto.Entidades.Vuelo;
 
 public class ClsItinerario {
-	
-	ConexionBd cn = new ConexionBd();
-    Connection conexion = cn.RetornarConexion();
 
     public void AgregarItinerario(Itinerario Iti) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?,?,?)");
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
@@ -31,6 +30,8 @@ public class ClsItinerario {
     }
 
     public void ActualizarItinerario(Itinerario Iti, Vuelo vuelo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         try {
             ClsVuelo clsVuelo = new ClsVuelo();
@@ -50,6 +51,8 @@ public class ClsItinerario {
     }
 
     public Itinerario SeleccionarIterinario(int idIterinario) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         Itinerario itinerario = new Itinerario();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Itinerario(?)");

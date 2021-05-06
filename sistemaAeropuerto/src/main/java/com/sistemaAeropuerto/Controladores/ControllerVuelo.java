@@ -52,19 +52,29 @@ public class ControllerVuelo extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		try {
-			FechaI = formatodeFecha.parse(FechaIString);
-			FechaF = formatodeFecha.parse(FechaFString);
-		} catch (Exception e) {
-			FechaI = null;
-			FechaF= null;
-		}
+		
+		
+		
 		String Hora = request.getParameter("hora");
 		String Minutos = request.getParameter("minutos");
 		String Company = request.getParameter("selectcompany");
 		String Tipos = request.getParameter("seletTipos");
 		String Avion = request.getParameter("selectAvion");
 		String Descuento = request.getParameter("descuento");
+		String estado = request.getParameter("estado");
+		
+		if(Descuento.equals("0")) {
+			FechaI = null;
+			FechaF= null;
+		}else {
+			try {
+				FechaI = formatodeFecha.parse(FechaIString);
+				FechaF = formatodeFecha.parse(FechaFString);
+			} catch (Exception e) {
+				FechaI = null;
+				FechaF= null;
+			}
+		}
 		
 		ClsVuelo clsVuelo = new ClsVuelo();
 		Vuelo vuelo = new Vuelo();
@@ -96,6 +106,7 @@ public class ControllerVuelo extends HttpServlet {
 				
 			}else {
 				vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
+				vuelo.setEstado(Integer.parseInt(estado));
 				clsVuelo.ActualizarVuelo(vuelo, itinerario, promo);
 				response.sendRedirect("vuelo.jsp");
 			}

@@ -13,14 +13,14 @@ import com.sistemaAeropuerto.Entidades.Promociones;
 import com.sistemaAeropuerto.Entidades.Vuelo;
 
 public class ClsVuelo {
-	ConexionBd cn = new ConexionBd();
-    Connection conexion = cn.RetornarConexion();
 
     public ArrayList<InnerJoinVuelo> MostrarVuelos() {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_S_Vuelos()");
+            CallableStatement Statement = conexion.prepareCall("call SP_S_VuelosId()");
             ResultSet resultadoDeConsulta = Statement.executeQuery();
             while (resultadoDeConsulta.next()) {
                 InnerJoinVuelo InJoin = new InnerJoinVuelo();
@@ -34,6 +34,11 @@ public class ClsVuelo {
                 InJoin.setHora(resultadoDeConsulta.getString("Hora"));
                 InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
                 InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
+                InJoin.setIdAeropuertO(resultadoDeConsulta.getInt("idAeropuertoO"));
+                InJoin.setIdAeropuertoD(resultadoDeConsulta.getInt("idAeropuertoD"));
+                InJoin.setIdCompany(resultadoDeConsulta.getInt("idCompany"));
+                InJoin.setIdAvion(resultadoDeConsulta.getInt("idAvion"));
+                InJoin.setIdTipo(resultadoDeConsulta.getInt("idTipos_vuelo"));
                 InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
                 if (InJoin.getEstado() > 0) {
                     Vuelos.add(InJoin);
@@ -47,7 +52,9 @@ public class ClsVuelo {
     }
 
     public void AgregarVuelo(Vuelo vuelo, Itinerario itine) {
-    	
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
             clsItinerario.AgregarItinerario(itine);
@@ -64,6 +71,8 @@ public class ClsVuelo {
     }
 
     public Vuelo SeleccionarVuelo(int idVuelo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         Vuelo vuelo = new Vuelo();
         try {
@@ -87,7 +96,9 @@ public class ClsVuelo {
     }
 
     public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti, Promociones promo) {
-
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
             Itinerario itiAnti = new Itinerario();
@@ -128,6 +139,9 @@ public class ClsVuelo {
     }
 
     public ArrayList<InnerJoinVuelo> MostrarVuelosOrigen(int idAeropuerto) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+    	
         ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_VuelosOrigen(?)");
@@ -160,6 +174,8 @@ public class ClsVuelo {
     }
 
     public void VueloFinalizado(Vuelo vuelo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_VueloFinalizado(?)");
             Statement.setInt("PidVuelo", vuelo.getIdVuelo());
@@ -172,6 +188,8 @@ public class ClsVuelo {
     }
 
     public void CambioEstado(Vuelo vuelo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_EstadoVuelo(?,?)");
@@ -186,6 +204,8 @@ public class ClsVuelo {
     
     
         public Vuelo SeleccionarVuelodeItinerario(int idItinerario) {
+        	ConexionBd cn = new ConexionBd();
+            Connection conexion = cn.RetornarConexion();
         	
         Vuelo vuelo = new Vuelo();
         try {

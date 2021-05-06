@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/estilovuelo.css">
@@ -15,7 +15,7 @@
 	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
 	crossorigin="anonymous"></script>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
 function SoloNumeros(evt){
@@ -120,16 +120,40 @@ function SoloNumeros(evt){
 	String Hora = request.getParameter("Hora");
 	String Minutos = request.getParameter("Minutos");
 	String Descuento = request.getParameter("Descuento");
+	String IdAeropuertoD = request.getParameter("IdAeropuertoD");
+	String IdAeropuertoO = request.getParameter("IdAeropuertO");
+	String IdAvion = request.getParameter("IdAvion");
+	String IdCompany = request.getParameter("IdCompany");
+	String IdTipo = request.getParameter("IdTipo");
+	String Modelo = request.getParameter("Modelo");
+	String Tipo = request.getParameter("Tipo");
+	String estado = request.getParameter("estado");
+	String AeropuertoD = request.getParameter("AeropuertoD");
+	String AeropuertoO = request.getParameter("AeropuertoO");
+	String Company = request.getParameter("Company");
+	
 	String FechaI = request.getParameter("FechaI");
 	String FechaF = request.getParameter("FechaF");
+	
 	
 
 	if (Vuelo == null) {
 		Vuelo = "";
 		Fecha = "";
-		Hora = "";
-		Minutos = "";
+		Hora = "00";
+		Minutos = "00";
 		Descuento = "0";
+		IdAeropuertoD =  "";
+		IdAeropuertoO =  "";
+		IdAvion =  "";
+		IdCompany =  "";;
+		IdTipo =  "";
+		Modelo =  "Modelos de Avion";
+		Tipo =  "Tipos de Vuelos";
+		estado = "";
+		AeropuertoD =  "Aeropuerto Destino";
+		AeropuertoO =  "Aeropuerto Origen";
+		Company =  "CompaÃ±ias";
 	}
 	%>
 
@@ -139,6 +163,7 @@ function SoloNumeros(evt){
 				alt="Logo avion">
 			<h1>Registro Vuelo</h1>
 			<input type="hidden" name="vuelo" value=<%=Vuelo%>>
+			<input type="hidden" name="estado" value=<%=estado%>>
 			<label>Fecha Vuelo</label> 
 			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
@@ -146,19 +171,19 @@ function SoloNumeros(evt){
 			<label>Minutos</label> 
 			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="59">
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
-			<option value>Compañias</option>
+			<option value="<%=IdCompany %>"><%=Company %></option>
 			</select>
 			<select class="form-select form-select-lg mb-3" name="selectAvion" id="cmbavion" required>
-			<option value>Aviones</option>
+			<option value="<%=IdAvion %>"><%=Modelo %></option>
 			</select>
-				<select class="form-select form-select-lg mb-3" name="seletTipos" id="cmbTipo" required>
-			<option value>Tipos de Vuelo</option>
+			<select class="form-select form-select-lg mb-3" name="seletTipos" id="cmbTipo" required>
+			<option value="<%=IdTipo %>"><%=Tipo %></option>
 			</select>
-				<select class="form-select form-select-lg mb-3" name="selectAeropuertoO" id="cmbAeropuertoO" required>
-			<option value>Aeropuerto Origen</option>
+			<select class="form-select form-select-lg mb-3" name="selectAeropuertoO" id="cmbAeropuertoO" required>
+			<option value="<%=IdAeropuertoO %>"><%=AeropuertoO %></option>
 			</select>
-				<select class="form-select form-select-lg mb-3" name="selectAeropuertoD" id="cmbAeropuertoD" required>
-			<option value>Aeropuerto Destino</option>
+			<select class="form-select form-select-lg mb-3" name="selectAeropuertoD" id="cmbAeropuertoD" required>
+			<option value="<%=IdAeropuertoD %>"><%=AeropuertoD %></option>
 			</select>
 			<label>Fecha Inicio</label> 
 			<input type="date" name="fechaI" value="<%=FechaI%>" onkeypress="return SoloNumeros(event);" >

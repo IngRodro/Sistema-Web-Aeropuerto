@@ -17,6 +17,11 @@ public class InnerJoinVuelo {
     int estado;
     Date FechaFinalDesc;
     Date FechaInicioDesc;
+    int IdCompany;
+    int IdAeropuertO;
+    int IdAeropuertoD;
+    int IdAvion;
+    int IdTipo;
     
 	public int getVuelo() {
 		return Vuelo;
@@ -96,5 +101,37 @@ public class InnerJoinVuelo {
 	public void setFechaInicioDesc(Date fechaInicioDesc) {
 		FechaInicioDesc = fechaInicioDesc;
 	}
+	public int getIdCompany() {
+		return IdCompany;
+	}
+	public void setIdCompany(int idCompany) {
+		IdCompany = idCompany;
+	}
+	public int getIdAeropuertO() {
+		return IdAeropuertO;
+	}
+	public void setIdAeropuertO(int idAeropuertO) {
+		IdAeropuertO = idAeropuertO;
+	}
+	public int getIdAeropuertoD() {
+		return IdAeropuertoD;
+	}
+	public void setIdAeropuertoD(int idAeropuertoD) {
+		IdAeropuertoD = idAeropuertoD;
+	}
+	public int getIdAvion() {
+		return IdAvion;
+	}
+	public void setIdAvion(int idAvion) {
+		IdAvion = idAvion;
+	}
+	public int getIdTipo() {
+		return IdTipo;
+	}
+	public void setIdTipo(int idTipo) {
+		IdTipo = idTipo;
+	}
+	
+	
 	
 }
