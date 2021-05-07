@@ -39,13 +39,13 @@ public class ControllerAeropuertos extends HttpServlet {
 		String Pais = request.getParameter("pais");
 	
 
-		ClsAeropuerto clsusu = new ClsAeropuerto();
+		ClsAeropuerto clsaeropuerto = new ClsAeropuerto();
 		Aeropuerto aeropuerto = new Aeropuerto();
 
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
 				aeropuerto.setIdAeropuerto(Integer.parseInt(request.getParameter("IdAeropuerto")));
-				clsusu.BorrarAeropuerto(aeropuerto);
+				clsaeropuerto.BorrarAeropuerto(aeropuerto);
 				response.sendRedirect("aeropuerto.jsp");
 			}
 		}else if(agregando.equals("btna")) {
@@ -55,11 +55,11 @@ public class ControllerAeropuertos extends HttpServlet {
 			
 			if(IdAeropuerto==null||IdAeropuerto=="") {
 				
-				clsusu.AgregarAeropuerto(aeropuerto);
+				clsaeropuerto.AgregarAeropuerto(aeropuerto);
 				response.sendRedirect("aeropuerto.jsp");
 			}else {
 				aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
-				clsusu.ActualizarAeropuerto(aeropuerto);
+				clsaeropuerto.ActualizarAeropuerto(aeropuerto);
 				response.sendRedirect("aeropuerto.jsp");
 			}
 		}

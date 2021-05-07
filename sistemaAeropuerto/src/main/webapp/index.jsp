@@ -6,7 +6,28 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<script>
+	
+<%
+HttpSession sesion = (HttpSession) request.getSession();
+String adminSession = String.valueOf(sesion.getAttribute("usuario"));
+String usuSession	= String.valueOf(sesion.getAttribute("user"));
+
+if (usuSession.equals(null) || usuSession.equals("null")) {
+
+	if (adminSession.equals(null) || adminSession.equals("null")) {
+
+		
+		
+	}else{
+		response.sendRedirect("cerrar.jsp");
+	}
+	
+}else{
+	
+	response.sendRedirect("cerraruser.jsp");
+}
+%>
+<script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;
 	tecla = String.fromCharCode(key).toString();
@@ -27,6 +48,9 @@ function SoloLetras(e){
 }
 </script>
 <body>
+
+
+
 <form action="ControllerAcceso" method="post">
 			<div class="loginbox">
 				<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
