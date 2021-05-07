@@ -25,7 +25,7 @@ function SoloNumeros(evt){
 		keynum = evt.which;
 	}
 	
-	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
+	if((keynum > 47 && keynum < 58) || keynum == 46 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
 		alert("No se permiten ingresar Letras...");
