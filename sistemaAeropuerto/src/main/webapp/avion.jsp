@@ -76,7 +76,7 @@
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Aeropuertos</h1>
+		<h1 align="center">Aviones</h1>
 		<table class="table table-light table-striped" id="tablaAeropuertos">
 			<thead class="table-info">
 				<th>ID</th>
