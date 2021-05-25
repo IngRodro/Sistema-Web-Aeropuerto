@@ -36,7 +36,7 @@
 
 						console.log(datos);
 
-						var tabla = document.getElementById('tablaAeropuertos');
+						var tabla = document.getElementById('tablaVuelos');
 						for (let item of datos) {
 							tabla.innerHTML += `
 							
@@ -53,6 +53,7 @@
 						<td>${item.estado}</td>
 						<td>
 						<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.Fecha}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+						<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
 						</td>
 					</tr>
 					`
@@ -61,32 +62,29 @@
 				});
 			</script>
 
-	<nav class="menu">
-		<div class="container">
+	<header>
+	<input type="checkbox" id="btn-menu">
+	<label for="btn-menu"><img alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+		
+		<nav class="menu">
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
-				<li class="barra">|</li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li class="barra">|</li>
 				<li><a href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
 				<li><a href="avion.jsp">Aviones</a></li>
-				<li class="barra">|</li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
-				<li class="barra">|</li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
 				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
 			</ul>
-		</div>
 	</nav>
+	</header>
 
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h1 align="center">Vuelos</h1>
-		<table class="table table-light table-striped" id="tablaAeropuertos">
-			<thead class="table-info">
+		<table>
+			<thead>
 				<th>Vuelo</th>
 				<th>Compañia</th>
 				<th>Aeropuerto Origen</th>
@@ -99,6 +97,9 @@
 				<th>Estado</th>
 				<th>Acciones</th>
 			</thead>
+			<tbody  id="tablaVuelos">
+				
+			</tbody>
 		</table>
 		<div align="center">
 			<a href="addvuelo.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>

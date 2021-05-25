@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="CSS/estilostablas.css">
@@ -14,39 +13,42 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot"
-	; integrity="
-	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
+
 <body>
-	<%
-	HttpSession sesion = (HttpSession) request.getSession();
-	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
+<%
+HttpSession sesion = (HttpSession) request.getSession();
+String usuSession = String.valueOf(sesion.getAttribute("usuario"));
 
-	if (usuSession.equals(null) || usuSession.equals("null")) {
+if (usuSession.equals(null) || usuSession.equals("null")) {
 
-		response.sendRedirect("index.jsp");
-	}
-	%>
-	<script type="text/javascript">
+	response.sendRedirect("index.jsp");
+}
+%>
+	
+<%
+String IdVuelo = request.getParameter("IdVuelo");
+%>
+<script type="text/javascript">
 				$(document).ready(function () {
-					$.post('ControllerAeropuertos', {
+					
+					var IdVuelo = <%=IdVuelo%>
+					$.post('ControllerEscala', {
+						IdVuelo
 					}, function (response) {
 						let datos = JSON.parse(response);
 
 						console.log(datos);
 
-						var tabla = document.getElementById('tablaAeropuertos');
+						var tabla = document.getElementById('tablaAviones');
 						for (let item of datos) {
 							tabla.innerHTML += `
 					<tr>
-						<td>${item.idAeropuerto}</td>
+						<td>${item.idEscala}</td>
+						<td>${item.numeroEscala}</td>
+						<td>$${item.Precio}</td>
 						<td>${item.nombre}</td>
-						<td>${item.pais}</td>
-						<td>${item.ciudad}</td>
-						<td><a class="btn btn-danger" href="ControllerAeropuertos?IdAeropuerto=${item.idAeropuerto}&Eliminar=btne">Eliminar</a>
-						<a href="addaeropuerto.jsp?Id=${item.idAeropuerto}&Nombre=${item.nombre}&Pais=${item.pais}&Ciudad=${item.ciudad}" class="btn btn-warning"> Actualizar</a>
+						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
+						<a href="addavion.jsp?Id=${item.idAvion}&Modelo=${item.modeloAvion}&Capacidad=${item.capacidad}" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
@@ -75,23 +77,22 @@
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Aeropuertos</h1>
+		<h1 align="center">Aviones</h1>
 		<table>
 			<thead>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Pais</th>
-				<th>Ciudad</th>
+				<th>Id Escala</th>
+				<th>N Escala</th>
+				<th>Precio</th>
+				<th>Aeropuerto</th>
 				<th>Acciones</th>
 			</thead>
-			<tbody id="tablaAeropuertos">
+			<tbody id="tablaAviones">
 
 			</tbody>
 		</table>
 		<div align="center">
-			<a href="addaeropuerto.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
+			<a href="addavion.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>
-
 </html>

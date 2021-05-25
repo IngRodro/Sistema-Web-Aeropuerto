@@ -10,7 +10,7 @@
 function SoloLetras(e){
 	key = e.keyCode || e.which;
 	tecla = String.fromCharCode(key).toString();
-	letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
+	letras = "ABCDEFGHYJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
 	
 	especiales = [8,13];
 	tecla_especial = false
@@ -39,7 +39,7 @@ function SoloLetras(e){
 	%>
 
 	<%
-	String IdAeropuerto = request.getParameter("Vuelo");
+	String IdAeropuerto = request.getParameter("Id");
 	String Nombre = request.getParameter("Nombre");
 	String Ciudad = request.getParameter("Ciudad");
 	String Pais = request.getParameter("Pais");

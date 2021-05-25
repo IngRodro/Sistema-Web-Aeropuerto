@@ -52,36 +52,36 @@
 			});
 		});
 		</script>
-	<nav class="menu">
-		<div class="container">
+<header>
+	<input type="checkbox" id="btn-menu">
+	<label for="btn-menu"><img alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+		
+		<nav class="menu">
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
-				<li class="barra">|</li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li class="barra">|</li>
 				<li><a href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
 				<li><a href="avion.jsp">Aviones</a></li>
-				<li class="barra">|</li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
-				<li class="barra">|</li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
 				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
 			</ul>
-		</div>
 	</nav>
+</header>
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h1 align="center">Tipos de Vuelo</h1>
-		<table class="table table-light table-striped" id="tablaTipos">
-			<thead class="table-info">
+		<table>
+			<thead>
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Descuento</th>
 				<th>Acciones</th>
 			</thead>
+			<tbody  id="tablaTipos">
+
+			</tbody>
 		</table>
 		<div align="center">
 			<a href="addtipo.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>

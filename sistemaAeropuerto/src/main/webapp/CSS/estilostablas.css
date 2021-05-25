@@ -11,9 +11,9 @@ body{
 
 .containertabla{
     width: 1080px;
-    height: 600px;
+    height: 720px;
     background: black;
-    color: #fff;
+    color: black;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -24,6 +24,59 @@ body{
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 20px;
+}
+
+header{
+    width: 100%;
+    background: #1883ba;
+}
+
+#btn-menu{
+    display: none;
+}
+
+header label{
+    display: none;
+    padding: 10px;
+}
+header label:hover{
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+table{
+    background: white;
+    text-align: left;
+    width: 100%;
+    margin: 30px 0;
+}
+
+th, td{
+    padding: 10px;
+}
+
+h1{
+    color: white;
+}
+
+thead{
+    background-color: rgb(0, 60, 255);
+    border-bottom: solid 5px rgb(0, 32, 139);
+    color: white;
+}
+
+tr:nth-child(2n){
+    background-color: #ddd;
+}
+
+tr:hover td{
+    background-color: rgb(69, 112, 255);
+    color: white;
+}
+
+tbody{
+    max-height: 480px;
+    overflow-y: scroll;
 }
 
 .icono{
@@ -39,47 +92,61 @@ body{
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .menu ul li{
     float: left;
 }
 
+.menu li{
+    flex-grow: 1;
+    border-right: 1px solid white;
+    text-align: center;
+}
+
 .menu ul li a{
     color: white;
     text-decoration: none;
     display: block;
-    padding: 24px 40px;
+    padding: 20px 0;
     font-size: 20px;
 }
 
-.menu{
-    background: black;
-    width: 100vmax;
-    height:72px;
-}
-
-.barra{
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-    color: white;
-    padding: 12px 0 0 0;
-    font-size: 36px;
-}
-
 .menu ul li a:hover{
-    color: rgb(90, 214, 245);
-    padding: 22px;
+    color: rgb(216, 216, 216);
+    padding: 16 px;
     font-size: 24px;
 }
 
-.container{
-    width: 100vmax;
-    display: flex;
-    justify-content: center;
+@media screen and (max-width: 1280px) {
+    header label{
+        display: block;
+    }
+
+    .menu{
+        position: absolute;
+        background: #1883ba;
+        width: 20%;
+        margin-left: -20%;
+        transition: all 0.5s;
+    }
+
+    .menu ul{
+        flex-direction: column;
+    }
+
+    .menu li{
+        border-top: 1px solid white;
+    }
+
+    #btn-menu:checked ~ .menu{
+        margin: 0;
+    }
+    
+    .containertabla{
+    width: 60%;
+    
 }
 
-.actual{
-	color: rgb(90, 214, 245);
-    padding: 22px;
-    font-size: 24px;
 }

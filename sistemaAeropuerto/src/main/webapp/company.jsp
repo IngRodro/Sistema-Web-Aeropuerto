@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -51,35 +51,35 @@
 			});
 		});
 		</script>
-	<nav class="menu">
-		<div class="container">
-			<ul>
-				<li><a href="menu.jsp">Inicio</a></li>
-				<li class="barra">|</li>
-				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li class="barra">|</li>
-				<li><a href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
-				<li><a href="avion.jsp">Aviones</a></li>
-				<li class="barra">|</li>
-				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
-				<li class="barra">|</li>
-				<li><a href="vuelo.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
-				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
-			</ul>
-		</div>
-	</nav>
+	<header>
+		<input type="checkbox" id="btn-menu">
+		<label for="btn-menu"><img alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+			
+			<nav class="menu">
+				<ul>
+					<li><a href="menu.jsp">Inicio</a></li>
+					<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
+					<li><a href="company.jsp">CompaÃ±ias</a></li>
+					<li><a href="avion.jsp">Aviones</a></li>
+					<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
+					<li><a href="vuelo.jsp">Vuelos</a></li>
+					<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
+				</ul>
+		</nav>
+	</header>
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Compañias</h1>
-		<table class="table table-light table-striped" id="tablaCompany">
-			<thead class="table-info">
+		<h1 align="center">CompaÃ±ias</h1>
+		<table>
+			<thead>
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Acciones</th>
 			</thead>
+			<tbody id="tablaCompany">
+				
+			</tbody>
 		</table>
 		<div align="center">
 			<a href="addcompany.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>

@@ -36,7 +36,7 @@
 
 						console.log(datos);
 
-						var tabla = document.getElementById('tablaAeropuertos');
+						var tabla = document.getElementById('tablaAviones');
 						for (let item of datos) {
 							tabla.innerHTML += `
 					<tr>
@@ -45,6 +45,7 @@
 						<td>${item.capacidad}</td>
 						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
 						<a href="addavion.jsp?Id=${item.idAvion}&Modelo=${item.modeloAvion}&Capacidad=${item.capacidad}" class="btn btn-warning"> Actualizar</a>
+						<a class="btn btn-success" href="clases.jsp?IdAvion=${item.idAvion}&Ver=btne">Ver Clases</a>
 						</td>
 					</tr>
 					`
@@ -53,37 +54,37 @@
 				});
 			</script>
 
-	<nav class="menu">
-		<div class="container">
+<header>
+	<input type="checkbox" id="btn-menu">
+	<label for="btn-menu"><img alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+		
+		<nav class="menu">
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
-				<li class="barra">|</li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li class="barra">|</li>
-				<li><a href="company.jsp">Compañias</a></li>
-				<li class="barra">|</li>
+				<li><a href="company.jsp">CompaÃ±ias</a></li>
 				<li><a href="avion.jsp">Aviones</a></li>
-				<li class="barra">|</li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
-				<li class="barra">|</li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
 				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
 			</ul>
-		</div>
 	</nav>
+	</header>
 
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h1 align="center">Aviones</h1>
-		<table class="table table-light table-striped" id="tablaAeropuertos">
-			<thead class="table-info">
+		<table>
+			<thead>
 				<th>ID</th>
 				<th>Modelo</th>
 				<th>Capacidad</th>
 				<th>Acciones</th>
 			</thead>
+			<tbody id="tablaAviones">
+
+			</tbody>
 		</table>
 		<div align="center">
 			<a href="addavion.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
