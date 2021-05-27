@@ -3,7 +3,9 @@ package com.sistemaAeropuerto.DAO;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -30,7 +32,8 @@ public class ClsVuelo {
                 InJoin.setAeropuertoD(resultadoDeConsulta.getString("Aeropuerto_Destino"));
                 InJoin.setModelo(resultadoDeConsulta.getString("Modelo_Avion"));
                 InJoin.setTipo(resultadoDeConsulta.getString("Tipo_de_Vuelo"));
-                InJoin.setFecha(resultadoDeConsulta.getDate("Fecha"));
+                String Fecha = resultadoDeConsulta.getString("Fecha");
+                InJoin.setFechaString(Fecha);
                 InJoin.setHora(resultadoDeConsulta.getString("Hora"));
                 InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
                 InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));

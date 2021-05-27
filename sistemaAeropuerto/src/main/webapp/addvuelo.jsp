@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -135,8 +137,18 @@ function SoloNumeros(evt){
 	String FechaI = request.getParameter("FechaI");
 	String FechaF = request.getParameter("FechaF");
 	
+	SimpleDateFormat formatodeFecha = new SimpleDateFormat("yyyy-MM-dd");
 	
-
+	Date FechaDate = null;
+	Date FechaIDate = null;
+	Date FechaFDate = null;
+	try {
+		FechaDate = formatodeFecha.parse(Fecha);
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	//String FechaString = formatodeFecha.format(FechaDate);
+	
 	if (Vuelo == null) {
 		Vuelo = "";
 		Fecha = "";
@@ -162,8 +174,8 @@ function SoloNumeros(evt){
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 			<h1>Registro Vuelo</h1>
-			<input type="hidden" name="vuelo" value=<%=Vuelo%>>
-			<input type="hidden" name="estado" value=<%=estado%>>
+			<input type="hidden" name="vuelo" value="<%=Vuelo%>">
+			<input type="hidden" name="estado" value="<%=estado%>">
 			<label>Fecha Vuelo</label> 
 			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 

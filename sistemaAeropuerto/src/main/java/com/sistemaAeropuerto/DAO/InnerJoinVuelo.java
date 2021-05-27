@@ -11,7 +11,14 @@ public class InnerJoinVuelo {
     String Modelo;
     String Tipo;
     Date Fecha;
-    String hora;
+    String FechaString;
+    public String getFechaString() {
+		return FechaString;
+	}
+	public void setFechaString(String fechaString) {
+		FechaString = fechaString;
+	}
+	String hora;
     String minutos;
     Double Descuento;
     int estado;
