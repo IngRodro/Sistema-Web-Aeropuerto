@@ -47,7 +47,7 @@ String IdAvion = request.getParameter("IdAvion");
 						<td>${item.nombreClase}</td>
 						<td>${item.nAsientos}</td>
 						<td>${item.porcentajeEPrecio}%</td>
-						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
+						<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&Eliminar=btne">Eliminar</a>
 						<a href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
@@ -65,7 +65,7 @@ String IdAvion = request.getParameter("IdAvion");
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li><a href="company.jsp">CompaÃ±ias</a></li>
+				<li><a href="company.jsp">Compañias</a></li>
 				<li><a href="avion.jsp">Aviones</a></li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>

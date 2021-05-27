@@ -13,7 +13,6 @@ public class ConexionBd {
 	    try{
 	    	Class.forName("com.mysql.jdbc.Driver");
 	        coonec = DriverManager.getConnection("jdbc:mysql://localhost/sistemaaeropuerto","root","root");
-	        System.out.println("CONECTADO A LA BD");
 	        
 	    }catch (Exception e)
 	    {

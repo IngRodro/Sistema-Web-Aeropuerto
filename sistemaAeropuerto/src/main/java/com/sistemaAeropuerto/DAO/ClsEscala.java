@@ -28,6 +28,8 @@ public class ClsEscala {
                 esc.setNumeroEscala(rs.getInt("numeroEscala"));
                 esc.setNombre(rs.getString("nombre"));
                 esc.setPrecio(rs.getDouble("Precio"));
+                esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
+                esc.setIdItinerario(rs.getInt("idItinerario"));
                 escalas.add(esc);
             }
             conexion.close();

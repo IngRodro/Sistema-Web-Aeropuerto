@@ -13,8 +13,8 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-
 <body>
+
 <%
 HttpSession sesion = (HttpSession) request.getSession();
 String usuSession = String.valueOf(sesion.getAttribute("usuario"));
@@ -48,7 +48,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 						<td>$${item.Precio}</td>
 						<td>${item.nombre}</td>
 						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
-						<a href="addavion.jsp?Id=${item.idAvion}&Modelo=${item.modeloAvion}&Capacidad=${item.capacidad}" class="btn btn-warning"> Actualizar</a>
+						<a href="addescala.jsp?Id=${item.idEscala}&Precio=${item.Precio}&nombre=${item.nombre}&IdAeropuerto=${item.idAeropuerto}&numeroEscala=${item.numeroEscala}&IdVuelo=<%=IdVuelo %>" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>
 					`
@@ -65,7 +65,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li><a href="company.jsp">CompaÃ±ias</a></li>
+				<li><a href="company.jsp">Compañias</a></li>
 				<li><a href="avion.jsp">Aviones</a></li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>
@@ -91,7 +91,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 			</tbody>
 		</table>
 		<div align="center">
-			<a href="addavion.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
+			<a href="addescala.jsp?IdVuelo=<%=IdVuelo %>" type="button" class="btn btn-primary"><b>Agregar</b></a>
 		</div>
 	</div>
 </body>

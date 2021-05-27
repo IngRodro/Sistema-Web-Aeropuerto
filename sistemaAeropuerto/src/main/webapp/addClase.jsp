@@ -1,3 +1,4 @@
+<%@page import="com.sistemaAeropuerto.DAO.ClsClase"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -53,11 +54,18 @@ function SoloLetras(e){
 	}
 	%>
 	<%
+	ClsClase clsClase = new ClsClase();
 	String IdAvion = request.getParameter("idAvion");
 	String IdClase = request.getParameter("Id");
 	String nombreClase = request.getParameter("nombreClase");
 	String nAsientos = request.getParameter("nAsientos");
 	String Porcentaje = request.getParameter("Porcentaje");
+	String MaximoAsientos;
+	if(nAsientos == null){
+		MaximoAsientos = String.valueOf((clsClase.MaximoAsientosDisponibles(Integer.parseInt(IdAvion))));
+	}else{
+		MaximoAsientos = String.valueOf((clsClase.MaximoAsientosDisponibles(Integer.parseInt(IdAvion))) + Integer.parseInt(nAsientos));
+	}
 	
 	if (IdClase == null) {
 		IdClase = "";
@@ -79,9 +87,9 @@ function SoloLetras(e){
 			<input type="text" name="nombre"value="<%=nombreClase%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 				
 			<label>N Asientos</label> 
-			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=nAsientos%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="asientos" min="0" max="<%=MaximoAsientos%>"  step="any"  value="<%=nAsientos%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 			<label>Porcentaje Extra de Precio</label> 
-			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Porcentaje%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="porcentaje" min="0" max="100"  step="any"  value="<%=Porcentaje%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
 			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.sistemaAeropuerto.DAO.ClsAvion;
 import com.sistemaAeropuerto.DAO.ClsClase;
+import com.sistemaAeropuerto.DAO.ClsCompany;
+import com.sistemaAeropuerto.Entidades.Clases;
+import com.sistemaAeropuerto.Entidades.Company;
 
 /**
  * Servlet implementation class ControllerClases
@@ -31,12 +34,43 @@ public class ControllerClases extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String IdAeropuerto = request.getParameter("idAvion");
-		String Evaluar = request.getParameter("Ver");
+		String Evaluar = request.getParameter("Eliminar");
+		String agregando = request.getParameter("Guardar");
+		String IdAvion = request.getParameter("idAvion");
+		String IdClase = request.getParameter("idClase");
+		String Nombre = request.getParameter("nombre");
+		String NAsientos = request.getParameter("asientos");
+		String Porcentaje = request.getParameter("porcentaje");
+	
+
+		ClsClase clsClase = new ClsClase();
+		Clases clases = new Clases();
+
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
-				request.setAttribute("IdAvion", IdAeropuerto);
-				response.sendRedirect("clases.jsp");
+				clases.setIdClase(Integer.parseInt(request.getParameter("IdClase")));
+				clsClase.BorrarClase(clases);
+				request.setAttribute("IdAvion", IdAvion);
+				response.sendRedirect("avion.jsp");
+			}
+		}else if(agregando.equals("btna")) {
+			clases.setNombreClase(Nombre);
+			clases.setnAsientos(Integer.parseInt(NAsientos));
+			clases.setPorcentajeEPrecio(Double.parseDouble(Porcentaje));
+			clases.setIdAvion(Integer.parseInt(IdAvion));
+			
+			
+			if(IdClase==null||IdClase=="") {
+				clsClase.AgregarClase(clases);
+				request.setAttribute("IdAvion", IdAvion);
+				response.sendRedirect("avion.jsp");
+			}else {
+				clases.setIdClase(Integer.parseInt(IdClase));
+				clases.setIdAvion(Integer.parseInt(IdAvion));
+				clsClase.ActualizarClase(clases);
+				request.setAttribute("IdAvion", IdAvion);
+				response.sendRedirect("avion.jsp");
+				
 			}
 		}
 	}

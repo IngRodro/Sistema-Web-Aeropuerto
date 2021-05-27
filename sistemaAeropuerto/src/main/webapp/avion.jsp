@@ -62,7 +62,7 @@
 			<ul>
 				<li><a href="menu.jsp">Inicio</a></li>
 				<li><a href="aeropuerto.jsp">Aeropuertos</a></li>
-				<li><a href="company.jsp">CompaÃ±ias</a></li>
+				<li><a href="company.jsp">Compañias</a></li>
 				<li><a href="avion.jsp">Aviones</a></li>
 				<li><a href="tipos.jsp">Tipos de Vuelo</a></li>
 				<li><a href="vuelo.jsp">Vuelos</a></li>

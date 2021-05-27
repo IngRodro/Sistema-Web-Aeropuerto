@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
+import com.sistemaAeropuerto.Entidades.Avion;
 import com.sistemaAeropuerto.Entidades.Clases;
 
 public class ClsClase {
@@ -99,4 +100,23 @@ public class ClsClase {
         return clase;
     }
 	
+    public int MaximoAsientosDisponibles(int idAvion) {
+    	ClsAvion clsAvion = new ClsAvion();
+    	Avion avion = new Avion();
+    	avion = clsAvion.SeleccionarAvion(idAvion);
+        int Asientos = avion.getCapacidad();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
+            Statement.setInt("PidAvion", idAvion);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+            	Asientos = Asientos -(rs.getInt("nAsientos"));
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Asientos;
+    }
+    
 }
