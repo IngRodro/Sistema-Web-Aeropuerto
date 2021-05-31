@@ -247,22 +247,25 @@ public class ClsVuelo {
 				InJoin.setTipo(resultadoDeConsulta.getString("Tipo_de_Vuelo"));
 				String Fecha = resultadoDeConsulta.getString("fecha");
 				InJoin.setFechaString(Fecha);
-				if(resultadoDeConsulta.getString("FechaIni") != null) {
-					InJoin.setFechaInicio(resultadoDeConsulta.getString("FechaIni"));
-				}else {
-					InJoin.setFechaInicio("N/A");
-				}
-				if(resultadoDeConsulta.getString("FechaMax") != null) {
-					InJoin.setFechaFinal(resultadoDeConsulta.getString("FechaMax"));
-				}else {
-					InJoin.setFechaFinal("N/A");
-				}
-				
+				//if(resultadoDeConsulta.getString("FechaIni") != null) {
+				InJoin.setFechaInicio(resultadoDeConsulta.getString("FechaIni"));
+				//}else {
+				//	InJoin.setFechaInicio("N/A");
+				//}
+				//if(resultadoDeConsulta.getString("FechaMax") != null) {
+				InJoin.setFechaFinal(resultadoDeConsulta.getString("FechaMax"));
+				//}else {
+				//	InJoin.setFechaFinal("N/A");
+				//}
+				InJoin.setFechaInicioDesc(resultadoDeConsulta.getDate("FechaIni"));
+				InJoin.setFechaFinalDesc(resultadoDeConsulta.getDate("FechaMax"));
 				InJoin.setHora(resultadoDeConsulta.getString("Hora"));
 				InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
 				InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
 				InJoin.setIdTipo(resultadoDeConsulta.getInt("idTipos_vuelo"));
 				InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
+				InJoin.setPrecio(resultadoDeConsulta.getDouble("precio"));
+				InJoin.setDescuentoTipo(resultadoDeConsulta.getDouble("PorcentajeDesc"));
 				if(InJoin.getEstado()>0) {
 				Vuelos.add(InJoin);
 				}

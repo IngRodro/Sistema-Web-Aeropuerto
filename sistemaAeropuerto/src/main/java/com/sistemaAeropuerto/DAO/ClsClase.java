@@ -13,10 +13,10 @@ import com.sistemaAeropuerto.Entidades.Clases;
 
 public class ClsClase {
 
-	ConexionBd cn = new ConexionBd();
-    Connection conexion = cn.RetornarConexion();
 
     public ArrayList<Clases> MostrarClase(int idAvion) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         ArrayList<Clases> clases = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
@@ -39,6 +39,8 @@ public class ClsClase {
     }
 
     public void AgregarClase(Clases clase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Clase(?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
@@ -54,6 +56,8 @@ public class ClsClase {
     }
 
     public void BorrarClase(Clases clase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Clase(?)");
             Statement.setInt("PidClase", clase.getIdClase());
@@ -66,6 +70,8 @@ public class ClsClase {
     }
 
     public void ActualizarClase(Clases clase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Clase(?,?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
@@ -80,7 +86,9 @@ public class ClsClase {
         }
     }
     
-    public Clases SeleccionarClas(int idClase) {
+    public Clases SeleccionarClase(int idClase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
        Clases clase = new Clases();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Clase(?)");
@@ -101,6 +109,8 @@ public class ClsClase {
     }
 	
     public int MaximoAsientosDisponibles(int idAvion) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	ClsAvion clsAvion = new ClsAvion();
     	Avion avion = new Avion();
     	avion = clsAvion.SeleccionarAvion(idAvion);

@@ -13,6 +13,7 @@ public class InnerJoinEscalas {
 	String hora;
     String minutos;
     Double Descuento;
+    Double DescuentoTipo;
     Double Precio;
     int estado;
     Date FechaFinalDesc;
@@ -137,6 +138,12 @@ public class InnerJoinEscalas {
 	}
 	public void setFechaInicio(String fechaInicio) {
 		FechaInicio = fechaInicio;
+	}
+	public Double getDescuentoTipo() {
+		return DescuentoTipo;
+	}
+	public void setDescuentoTipo(Double descuentoTipo) {
+		DescuentoTipo = descuentoTipo;
 	}
 	
 }

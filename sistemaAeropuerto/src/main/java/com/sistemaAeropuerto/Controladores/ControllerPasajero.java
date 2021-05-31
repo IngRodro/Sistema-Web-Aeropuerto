@@ -1,28 +1,24 @@
 package com.sistemaAeropuerto.Controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.sistemaAeropuerto.DAO.ClsVuelo;
-import com.sistemaAeropuerto.DAO.InnerJoinEscalas;
-import com.sistemaAeropuerto.Entidades.Escala;
+import com.sistemaAeropuerto.DAO.ClsPasajero;
 
 /**
- * Servlet implementation class ControllerVuelosEscalas
+ * Servlet implementation class ControllerPasajero
  */
-public class ControllerVuelosEscalas extends HttpServlet {
+public class ControllerPasajero extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerVuelosEscalas() {
+    public ControllerPasajero() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,17 +37,18 @@ public class ControllerVuelosEscalas extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		String DUI = request.getParameter("NumeroDUI");
+		ClsPasajero clsPasajero = new ClsPasajero();
+		if(clsPasajero.ExistenciaPasajero(DUI) == true){
+			Gson json = new Gson();
+			response.getWriter().append(json.toJson(DUI));
+		}else {
+			DUI = null;
+			Gson json = new Gson();
+			response.getWriter().append(json.toJson(DUI));
+		}
 		
-		Gson json = new Gson();
-
 		
-		
-		ClsVuelo clsVuelo = new ClsVuelo();
-		response.setCharacterEncoding("UTF8");
-		
-		ArrayList<InnerJoinEscalas> Vuelos = new ArrayList<>();
-		Vuelos = clsVuelo.MostrarVuelosEscala();
-		response.getWriter().append(json.toJson(clsVuelo.MostrarVuelosEscala()));
 	}
 
 }

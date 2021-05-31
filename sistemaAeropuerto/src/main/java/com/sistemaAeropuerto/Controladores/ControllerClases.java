@@ -81,15 +81,34 @@ public class ControllerClases extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
+		String comboID = request.getParameter("comboID");
 		String StringIdAvion = request.getParameter("IdAvion");
+		String Precio = request.getParameter("Precio");
+		String PorcentajeTotalDescuento = request.getParameter("PorcentajeTotalDescuento");
+		
+		
+		if(comboID != null) {
+			
+			Gson json = new Gson();
+			int idClase = Integer.parseInt(comboID);
+			Double PorcentajeDesc = Double.parseDouble(PorcentajeTotalDescuento);
+			Double PrecioDoule = Double.parseDouble(Precio);
+			ClsClase clsClase = new ClsClase();
+			Clases clase = new Clases();
+			clase = clsClase.SeleccionarClase(idClase);
+			response.setCharacterEncoding("UTF8");
+			Double Total = PrecioDoule - (PrecioDoule*(PorcentajeDesc - (clase.getPorcentajeEPrecio()/100)));
+			response.getWriter().append(json.toJson(Total));
+		}else {
+		
 		int IdAvion = Integer.parseInt(StringIdAvion);
 	
 		Gson json = new Gson();
 
-		ClsClase clsAvion = new ClsClase();
+		ClsClase clsClase = new ClsClase();
 		response.setCharacterEncoding("UTF8");
-		response.getWriter().append(json.toJson(clsAvion.MostrarClase(IdAvion)));
+		response.getWriter().append(json.toJson(clsClase.MostrarClase(IdAvion)));
+		}
 	}
 
 }

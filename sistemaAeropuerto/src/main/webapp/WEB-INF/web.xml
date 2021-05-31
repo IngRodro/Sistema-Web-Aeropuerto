@@ -64,6 +64,30 @@
   	<description></description>
   	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerVuelosEscalas</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerDescuentoClase</servlet-name>
+  	<display-name>ControllerDescuentoClase</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerDescuentoClase</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerPasajero</servlet-name>
+  	<display-name>ControllerPasajero</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerPasajero</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerAsientos</servlet-name>
+  	<display-name>ControllerAsientos</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerAsientos</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerPasaje</servlet-name>
+  	<display-name>ControllerPasaje</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerPasaje</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -103,5 +127,21 @@
   <servlet-mapping>
   	<servlet-name>ControllerVuelosEscalas</servlet-name>
   	<url-pattern>/ControllerVuelosEscalas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerDescuentoClase</servlet-name>
+  	<url-pattern>/ControllerDescuentoClase</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerPasajero</servlet-name>
+  	<url-pattern>/ControllerPasajero</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerAsientos</servlet-name>
+  	<url-pattern>/ControllerAsientos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerPasaje</servlet-name>
+  	<url-pattern>/ControllerPasaje</url-pattern>
   </servlet-mapping>
 </web-app>

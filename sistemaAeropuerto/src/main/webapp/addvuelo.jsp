@@ -45,7 +45,7 @@ function SoloNumeros(evt){
 
 		response.sendRedirect("index.jsp");
 	}
-	%>
+%>
 <script type="text/javascript">
 				$(document).ready(function () {
 					$.post('ControllerCompany', {
@@ -137,17 +137,6 @@ function SoloNumeros(evt){
 	String FechaI = request.getParameter("FechaI");
 	String FechaF = request.getParameter("FechaF");
 	
-	SimpleDateFormat formatodeFecha = new SimpleDateFormat("yyyy-MM-dd");
-	
-	Date FechaDate = null;
-	Date FechaIDate = null;
-	Date FechaFDate = null;
-	try {
-		FechaDate = formatodeFecha.parse(Fecha);
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	//String FechaString = formatodeFecha.format(FechaDate);
 	
 	if (Vuelo == null) {
 		Vuelo = "";

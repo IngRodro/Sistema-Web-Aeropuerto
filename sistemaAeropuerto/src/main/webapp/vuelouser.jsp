@@ -32,25 +32,53 @@
 						console.log(datos);
 						var tabla = document.getElementById("tablaVuelos");
 						for (let item of datos) {
-							tabla.innerHTML += `
+							if(item.FechaInicio == null){
+								item.FechaInicio = "N/A"
+							}
+							if(item.FechaFinal == null){
+								item.FechaFinal = "N/A"
+							}
 							
-					<tr>
-						<td>${item.Vuelo}</td>
-						<td>${item.AeropuertoEscala}</td>
-						<td>${item.Tipo}</td>
-						<td>${item.FechaString}</td>
-						<td>${item.hora}:${item.minutos}</td>
-						<td>${item.Descuento}%</td>
-						<td>${item.FechaInicio}</td>
-						<td>${item.FechaFinal}</td>
-					</tr>
-					`
+							if(item.Descuento == 0){
+							tabla.innerHTML += `
+								
+								<tr>
+									<td>${item.Vuelo}</td>
+									<td>${item.AeropuertoEscala}</td>
+									<td>${item.Tipo}</td>
+									<td>${item.Precio}</td>
+									<td>${item.FechaString}</td>
+									<td>${item.hora}:${item.minutos}</td>
+									<td>${item.Descuento}%</td>
+									<td>${item.FechaInicio}</td>
+									<td>${item.FechaFinal}</td>
+									<td><a class="btn btn-success" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></td>	
+								</tr>
+								`
+							}else{
+									tabla.innerHTML += `
+										
+										<tr>
+											<td>${item.Vuelo}</td>
+											<td>${item.AeropuertoEscala}</td>
+											<td>${item.Tipo}</td>
+											<td>${item.Precio}</td>
+											<td>${item.FechaString}</td>
+											<td>${item.hora}:${item.minutos}</td>
+											<td>${item.Descuento}%</td>
+											<td>${item.FechaInicio}</td>
+											<td>${item.FechaFinal}</td>
+											<td><a class="btn btn-success" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicioDesc}&FechaFinal=${item.FechaFinalDesc}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></td>	
+										</tr>
+										`
+										
+							}
 						}
 					});
 				});
 			</script>
 
-<header>
+	<header>
 		<input type="checkbox" id="btn-menu"> <label for="btn-menu"><img
 			alt="" src="IMG/menu.png" height="30px" width="30px"></label>
 
@@ -68,20 +96,21 @@
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Aeropuertos</h1>
+		<h1 align="center">Vuelos</h1>
 		<table>
-			<thead >
+			<thead>
 				<th>Vuelo</th>
 				<th>Aeropuerto</th>
 				<th>Tipo de Vuelo</th>
+				<th>Precio</th>
 				<th>Fecha</th>
 				<th>Hora</th>
 				<th>Descuento</th>
 				<th>Fecha Inicio</th>
 				<th>Fecha Finalizacion</th>
-				<th>Nuevo Pasaje</th>
+				<th>Acciones</th>
 			</thead>
-			<tbody  id="tablaVuelos">
+			<tbody id="tablaVuelos">
 			</tbody>
 		</table>
 	</div>

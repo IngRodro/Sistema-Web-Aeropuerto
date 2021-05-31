@@ -8,7 +8,7 @@ public class Pasaje {
     private int idClase;
     private int NAsiento;
     private String nombreUsuario;
-    private float precionTotal;
+    private double precionTotal;
     private int NEscala;
 	public int getIdPasaje() {
 		return idPasaje;
@@ -46,10 +46,10 @@ public class Pasaje {
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
-	public float getPrecionTotal() {
+	public double getPrecionTotal() {
 		return precionTotal;
 	}
-	public void setPrecionTotal(float precionTotal) {
+	public void setPrecionTotal(double precionTotal) {
 		this.precionTotal = precionTotal;
 	}
 	public int getNEscala() {
