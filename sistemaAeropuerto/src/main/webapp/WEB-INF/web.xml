@@ -58,6 +58,12 @@
   	<description></description>
   	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerEscala</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerVuelosEscalas</servlet-name>
+  	<display-name>ControllerVuelosEscalas</display-name>
+  	<description></description>
+  	<servlet-class>com.sistemaAeropuerto.Controladores.ControllerVuelosEscalas</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAcceso</servlet-name>
   	<url-pattern>/ControllerAcceso</url-pattern>
@@ -93,5 +99,9 @@
   <servlet-mapping>
   	<servlet-name>ControllerEscala</servlet-name>
   	<url-pattern>/ControllerEscala</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerVuelosEscalas</servlet-name>
+  	<url-pattern>/ControllerVuelosEscalas</url-pattern>
   </servlet-mapping>
 </web-app>

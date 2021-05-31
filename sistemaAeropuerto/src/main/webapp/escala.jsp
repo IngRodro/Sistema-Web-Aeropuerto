@@ -47,7 +47,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 						<td>${item.numeroEscala}</td>
 						<td>$${item.Precio}</td>
 						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
+						<td><a class="btn btn-danger" href="ControllerEscala?IdEscala=${item.idEscala}&numeroEscala=${item.numeroEscala}&idVuelo=<%=IdVuelo%>&Eliminar=btne">Eliminar</a>
 						<a href="addescala.jsp?Id=${item.idEscala}&Precio=${item.Precio}&nombre=${item.nombre}&IdAeropuerto=${item.idAeropuerto}&numeroEscala=${item.numeroEscala}&IdVuelo=<%=IdVuelo %>" class="btn btn-warning"> Actualizar</a>
 						</td>
 					</tr>

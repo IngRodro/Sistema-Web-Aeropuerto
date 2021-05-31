@@ -1,6 +1,8 @@
 package com.sistemaAeropuerto.Controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,13 +38,13 @@ public class ControllerEscala extends HttpServlet {
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
 		String IdVuelo = request.getParameter("idVuelo");
-		String IdEscala = request.getParameter("idEscala");
+		String IdEscala = request.getParameter("IdEscala");
 		String Precio = request.getParameter("precio");
 		String Aeropuerto =request.getParameter("selectAeropuerto");
+		String NumeroEscala = request.getParameter("numeroEscala");
 		
 		ClsVuelo clsvuelo = new ClsVuelo();
 		Vuelo vuelo = new Vuelo();
-		vuelo = clsvuelo.SeleccionarVuelo(Integer.parseInt(IdVuelo));
 		
 		ClsEscala clsEscala = new ClsEscala();
 		Escala escala = new Escala();
@@ -51,24 +53,33 @@ public class ControllerEscala extends HttpServlet {
 		
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
-				escala.setIdEscala(Integer.parseInt(request.getParameter("idEscala")));
+				escala.setIdEscala(Integer.parseInt(request.getParameter("IdEscala")));
 				clsEscala.BorrarEscala(escala);
-				response.sendRedirect("avion.jsp");
+				vuelo = clsvuelo.SeleccionarVuelo(Integer.parseInt(IdVuelo));
+				ArrayList<Escala> Escalas = clsEscala.EscalasSuperiores(vuelo.getIdIterinario(), Integer.parseInt(NumeroEscala));
+                for (var iterarescala : Escalas) {
+                	clsEscala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
+                }
+				response.sendRedirect("vuelo.jsp");
 			}
 		}else if(agregando.equals("btna")) {
+			
+			vuelo = clsvuelo.SeleccionarVuelo(Integer.parseInt(IdVuelo));
+			int NEscala = clsEscala.UltimaEscala(vuelo.getIdIterinario());
 			escala.setPrecio(Double.parseDouble(Precio));
 			escala.setIdAeropuerto(Integer.parseInt(Aeropuerto));
-			escala.setNumeroEscala(3);
 			escala.setIdItinerario((vuelo.getIdIterinario()));
 			
 			
 			if(IdEscala==null||IdEscala=="") {
+				escala.setNumeroEscala(NEscala + 1);
 				clsEscala.AgregarEscala(escala, vuelo.getIdIterinario());
-				response.sendRedirect("avion.jsp");
+				response.sendRedirect("vuelo.jsp");
 			}else {
+				escala.setNumeroEscala(Integer.parseInt(NumeroEscala));
 				escala.setIdEscala(Integer.parseInt(IdEscala));
 				clsEscala.ActualizarEscala(escala);
-				response.sendRedirect("avion.jsp");
+				response.sendRedirect("vuelo.jsp");
 				
 			}
 		}

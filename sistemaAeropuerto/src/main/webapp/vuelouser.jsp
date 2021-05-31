@@ -13,11 +13,6 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot"
-	; integrity="
-	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
 <body>
 	<%
 	HttpSession sesion = (HttpSession) request.getSession();
@@ -30,27 +25,24 @@
 	%>
 	<script type="text/javascript">
 				$(document).ready(function () {
-					$.post('ControllerVuelo', {
+					$.post('ControllerVuelosEscalas', {
 					}, function (response) {
 						let datos = JSON.parse(response);
 
 						console.log(datos);
-
-						var tabla = document.getElementById('tablaAeropuertos');
+						var tabla = document.getElementById("tablaVuelos");
 						for (let item of datos) {
 							tabla.innerHTML += `
 							
 					<tr>
 						<td>${item.Vuelo}</td>
-						<td>${item.Company}</td>
-						<td>${item.AeropuertoO}</td>
-						<td>${item.AeropuertoD}</td>
-						<td>${item.Modelo}</td>
+						<td>${item.AeropuertoEscala}</td>
 						<td>${item.Tipo}</td>
-						<td>${item.Fecha}</td>
+						<td>${item.FechaString}</td>
 						<td>${item.hora}:${item.minutos}</td>
 						<td>${item.Descuento}%</td>
-						<td>${item.estado}</td>
+						<td>${item.FechaInicio}</td>
+						<td>${item.FechaFinal}</td>
 					</tr>
 					`
 						}
@@ -58,35 +50,39 @@
 				});
 			</script>
 
-	<nav class="menu">
-		<div class="container">
-			<ul>
-				<li><a href="menuuser.jsp">Inicio</a></li>
-				<li class="barra">|</li>
-				<li><a href="vuelouser.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
-				<li><a href="cerraruser.jsp">Cerrar Sesion</a></li>
-			</ul>
-		</div>
-	</nav>
+<header>
+		<input type="checkbox" id="btn-menu"> <label for="btn-menu"><img
+			alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+
+		<nav class="menu">
+			<div class="container">
+				<ul>
+					<li><a href="menuuser.jsp">Inicio</a></li>
+					<li><a href="vuelouser.jsp">Vuelos</a></li>
+					<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
 		<h1 align="center">Aeropuertos</h1>
-		<table class="table table-light table-striped" id="tablaAeropuertos">
-			<thead class="table-info">
+		<table>
+			<thead >
 				<th>Vuelo</th>
-				<th>Compañia</th>
-				<th>Aeropuerto Origen</th>
-				<th>Aeropuerto Destino</th>
-				<th>Modelo</th>
+				<th>Aeropuerto</th>
 				<th>Tipo de Vuelo</th>
 				<th>Fecha</th>
 				<th>Hora</th>
 				<th>Descuento</th>
-				<th>Estado</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Finalizacion</th>
+				<th>Nuevo Pasaje</th>
 			</thead>
+			<tbody  id="tablaVuelos">
+			</tbody>
 		</table>
 	</div>
 </body>

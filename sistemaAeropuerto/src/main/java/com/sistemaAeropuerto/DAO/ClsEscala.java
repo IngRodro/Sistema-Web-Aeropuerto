@@ -12,10 +12,11 @@ import com.sistemaAeropuerto.Entidades.Escala;
 
 public class ClsEscala {
 
-	ConexionBd cn = new ConexionBd();
-    Connection conexion = cn.RetornarConexion();
 	
     public ArrayList<Escala> MostrarEscala(int idIti) {
+    	
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         ArrayList<Escala> escalas = new ArrayList<>();
         try {
@@ -40,6 +41,9 @@ public class ClsEscala {
     }
 
     public void AgregarEscala(Escala Esc, int idIti) {
+    	
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Escala(?,?,?,?)");
             Statement.setInt("PnumeroEscala", Esc.getNumeroEscala());
@@ -55,6 +59,8 @@ public class ClsEscala {
     }
 
     public void BorrarEscala(Escala Esc) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Escala(?)");
             Statement.setInt("PidEscala", Esc.getIdEscala());
@@ -66,6 +72,8 @@ public class ClsEscala {
     }
 
     public void ActualizarEscala(Escala Esc) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Escala(?,?,?)");
             Statement.setInt("PidEscala", Esc.getIdEscala());
@@ -79,6 +87,8 @@ public class ClsEscala {
     }
 
     public Escala SeleccionarEscala(int idEsc) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         Escala esc = new Escala();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Escala(?)");
@@ -98,6 +108,8 @@ public class ClsEscala {
     }
 
     public ArrayList<Escala> EscalasSuperiores(int idIti, int NEscala) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         ArrayList<Escala> escalas = new ArrayList<>();
         try {
@@ -122,6 +134,8 @@ public class ClsEscala {
     }
 
     public void ActualizarNEscala(int idItinerario, int NEscala) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
     	
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_NEscala(?,?)");
@@ -134,6 +148,8 @@ public class ClsEscala {
     }
 
     public Boolean ComprobarEscala(int idIti, int idAero) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
         Boolean Existencia = false;
         
         ArrayList<Escala> escalas = new ArrayList<>();
@@ -157,5 +173,26 @@ public class ClsEscala {
         }
         return Existencia;
     }
-	
+
+ public int UltimaEscala(int idIti) {
+	 
+	 ConexionBd cn = new ConexionBd();
+	    Connection conexion = cn.RetornarConexion();
+    	
+        int NEscala = 0;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Escala(?)");
+            Statement.setInt("PidIterinario", idIti);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                NEscala = NEscala + 1;
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return NEscala;
+    }
+
+    
 }

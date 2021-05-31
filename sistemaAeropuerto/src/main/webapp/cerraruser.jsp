@@ -27,17 +27,20 @@
 		response.sendRedirect("index.jsp");
 	}
 	%>
-	<nav class="menu">
-		<div class="container">
-			<ul>
-				<li><a href="menuuser.jsp">Inicio</a></li>
-				<li class="barra">|</li>
-				<li><a href="vuelouser.jsp">Vuelos</a></li>
-				<li class="barra">|</li>
-				<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
-			</ul>
-		</div>
-	</nav>
+	<header>
+		<input type="checkbox" id="btn-menu"> <label for="btn-menu"><img
+			alt="" src="IMG/menu.png" height="30px" width="30px"></label>
+
+		<nav class="menu">
+			<div class="container">
+				<ul>
+					<li><a href="menuuser.jsp">Inicio</a></li>
+					<li><a href="vuelouser.jsp">Vuelos</a></li>
+					<li><a href="cerrar.jsp">Cerrar Sesion</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
