@@ -14,6 +14,21 @@ function SoloNumeros(evt){
 		keynum = evt.which;
 	}
 	
+	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
+		return true;
+	}else{
+		alert("No se permiten ingresar Letras...");
+		return false;
+	}
+}
+
+function SoloNumerosGuion(evt){
+	if(window.event){
+		keynum = evt.keyCode;
+	}else{
+		keynum = evt.which;
+	}
+	
 	if((keynum > 47 && keynum < 58) || keynum == 45 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
@@ -59,7 +74,7 @@ function SoloLetras(e){
 		<input type="number" name="edad" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required>
 		<br>
 		<label>Telefono</label>
-		<input type="tel" name="telefono" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required>
+		<input type="tel" name="telefono" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumerosGuion(event);" required>
 		<label>Contraseña de Administrador</label>
 		<input type="number" name="passadmin" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off>
 		<div align="center">
