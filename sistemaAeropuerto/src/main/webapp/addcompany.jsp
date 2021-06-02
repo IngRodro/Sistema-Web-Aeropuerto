@@ -79,6 +79,8 @@ $(document).ready(function () {
 					  title: 'Compañia Actualizada...',
 					  showConfirmButton: false,
 					  timer: 1500
+					}).then(() => {
+						location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 					})
 				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 			}else if(datos == "Agregado"){
@@ -87,13 +89,27 @@ $(document).ready(function () {
 					  title: 'Compañia Registrada...',
 					  showConfirmButton: false,
 					  timer: 1500
+					}).then(() => {
+						location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 					})
 				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+			}else if(datos == "Existente"){
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'La compañia ya esta registrada...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
+					}).then(() => {
+						var company = document.getElementById('Nombre');
+						company.value = "";
+					})
 			}
 
 			
-});
-});
+		});
+	});
 });
 
 </script>

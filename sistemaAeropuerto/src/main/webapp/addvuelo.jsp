@@ -68,9 +68,11 @@ function SoloNumeros(evt){
 
 						var combo = document.getElementById('cmbavion');
 						for (let item of datos) {
-							combo.innerHTML += `
-								<option value="${item.idAvion}">${item.modeloAvion}</option>
-					`
+							if(item.estado == "Activo"){
+								combo.innerHTML += `
+									<option value="${item.idAvion}">${item.modeloAvion}</option>
+									`
+							}
 						}
 					});
 				});

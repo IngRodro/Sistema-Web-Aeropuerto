@@ -11,7 +11,7 @@ body{
 
 .userbox{
     width: 500px;
-    height: 360px;
+    height: 300px;
     background: black;
     color: #fff;
     top: 50%;
@@ -23,6 +23,7 @@ body{
     padding-bottom: 70px;
     padding-left: 30px;
     padding-right: 30px;
+    border-radius: 10px;
 }
 
 .icono{

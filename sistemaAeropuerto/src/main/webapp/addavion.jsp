@@ -2,7 +2,9 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="CSS/estilotipo.css">
+<link rel="stylesheet" href="CSS/estiloavion.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -44,20 +46,27 @@ function SoloNumeros(evt){
 		Capacidad = "";
 	}
 	%>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#Cerrar").click(function (){
+				location.href = 'http://localhost:8080/sistemaAeropuerto/avion.jsp';
+			
+		});
+	});
+</script>
 
 	<div class="userbox">
-		<form action="ControllerAvion" method="get">
-			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
-				alt="Logo avion">
+			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
+			<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 			<h1>Registro Aviones</h1>
+		<form action="ControllerAvion" method="get">
 			<input type="hidden" name="idAvion" value=<%=IdAvion%>>
 			<label>Modelo</label> 
 			<input type="text" name="modelo"value="<%=Modelo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required> 
-				<div align="center">
-				<label>Capacidad</label> 
+			<label>Capacidad</label> 
 			<input type="number" name="capacidad" min="0" value="<%=Capacidad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" class="Confirmar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

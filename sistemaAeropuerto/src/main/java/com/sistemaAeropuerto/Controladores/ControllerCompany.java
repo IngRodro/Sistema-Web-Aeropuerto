@@ -52,20 +52,27 @@ public class ControllerCompany extends HttpServlet {
 		}else if(agregando.equals("btna")) {
 			comp.setNombre(Nombre);
 			
-			if(IdCompany==null||IdCompany=="") {
-				
-				clscomp.AgregarCompany(comp);
+			if(clscomp.ComprobarExistenciaCom(comp) == true) {
 				Gson json = new Gson();
-
-				String Mensaje = "Agregado";
+				String Mensaje = "Existente";
 				response.getWriter().append(json.toJson(Mensaje));
 			}else {
-				comp.setIdCompany(Integer.parseInt(IdCompany));
-				clscomp.ActualizarCompany(comp);
-				Gson json = new Gson();
+				
+				if(IdCompany==null||IdCompany=="") {
+					
+					clscomp.AgregarCompany(comp);
+					Gson json = new Gson();
 
-				String Mensaje = "Actualizado";
-				response.getWriter().append(json.toJson(Mensaje));
+					String Mensaje = "Agregado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}else {
+					comp.setIdCompany(Integer.parseInt(IdCompany));
+					clscomp.ActualizarCompany(comp);
+					Gson json = new Gson();
+
+					String Mensaje = "Actualizado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}
 			}
 		}
 	}

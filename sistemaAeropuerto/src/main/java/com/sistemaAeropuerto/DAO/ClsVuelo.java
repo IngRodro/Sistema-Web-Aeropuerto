@@ -18,6 +18,8 @@ import com.sistemaAeropuerto.Entidades.Vuelo;
 public class ClsVuelo {
 
 	public ArrayList<InnerJoinVuelo> MostrarVuelos() {
+		
+	
 		ConexionBd cn = new ConexionBd();
 		Connection conexion = cn.RetornarConexion();
 
@@ -58,8 +60,11 @@ public class ClsVuelo {
 	public void AgregarVuelo(Vuelo vuelo, Itinerario itine) {
 		ConexionBd cn = new ConexionBd();
 		Connection conexion = cn.RetornarConexion();
-
+		
+		
+		
 		try {
+			ClsAvion clsAvion = new ClsAvion();
 			ClsItinerario clsItinerario = new ClsItinerario();
 			clsItinerario.AgregarItinerario(itine);
 			CallableStatement Statement = conexion.prepareCall("call SP_I_Vuelos(?,?,?)");
@@ -69,6 +74,7 @@ public class ClsVuelo {
 			Statement.execute();
 			System.out.println("Guardado");
 			conexion.close();
+			clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -104,6 +110,9 @@ public class ClsVuelo {
 		Connection conexion = cn.RetornarConexion();
 
 		try {
+			Vuelo vueloantes = new Vuelo();
+			vueloantes = SeleccionarVuelo(vuelo.getIdVuelo());
+			ClsAvion clsAvion = new ClsAvion();
 			ClsItinerario clsItinerario = new ClsItinerario();
 			Itinerario itiAnti = new Itinerario();
 			Vuelo vueloo = new Vuelo();
@@ -135,6 +144,8 @@ public class ClsVuelo {
 			Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
 			Statement.setInt("PidVuelo", vuelo.getIdVuelo());
 			Statement.execute();
+			clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
+			clsAvion.EstadoAvion(vueloantes.getIdAvion(), "Activo");
 			System.out.println("Vuelo Actualizado");
 			conexion.close();
 		} catch (Exception e) {

@@ -38,25 +38,65 @@
 
 						var tabla = document.getElementById('tablaVuelos');
 						for (let item of datos) {
+						if(item.estado == 1){
 							tabla.innerHTML += `
+								<tr>
+									<td>${item.Vuelo}</td>
+									<td>${item.Company}</td>
+									<td>${item.AeropuertoO}</td>
+									<td>${item.AeropuertoD}</td>
+									<td>${item.Modelo}</td>
+									<td>${item.Tipo}</td>
+									<td>${item.FechaString}</td>
+									<td>${item.hora}:${item.minutos}</td>
+									<td>${item.Descuento}%</td>
+									<td>Activo</td>
+									<td>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									</td>
+								</tr>
+								`
+						}else if(item.estado == 2){
+								tabla.innerHTML += `
+								<tr>
+									<td>${item.Vuelo}</td>
+									<td>${item.Company}</td>
+									<td>${item.AeropuertoO}</td>
+									<td>${item.AeropuertoD}</td>
+									<td>${item.Modelo}</td>
+									<td>${item.Tipo}</td>
+									<td>${item.FechaString}</td>
+									<td>${item.hora}:${item.minutos}</td>
+									<td>${item.Descuento}%</td>
+									<td>Retrasado</td>
+									<td>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									</td>
+								</tr>
+								`
+						}else if(item.estado == 3){
+							tabla.innerHTML += `
+								<tr>
+									<td>${item.Vuelo}</td>
+									<td>${item.Company}</td>
+									<td>${item.AeropuertoO}</td>
+									<td>${item.AeropuertoD}</td>
+									<td>${item.Modelo}</td>
+									<td>${item.Tipo}</td>
+									<td>${item.FechaString}</td>
+									<td>${item.hora}:${item.minutos}</td>
+									<td>${item.Descuento}%</td>
+									<td>Suspendido</td>
+									<td>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									</td>
+								</tr>
+								`
+							}
 							
-					<tr>
-						<td>${item.Vuelo}</td>
-						<td>${item.Company}</td>
-						<td>${item.AeropuertoO}</td>
-						<td>${item.AeropuertoD}</td>
-						<td>${item.Modelo}</td>
-						<td>${item.Tipo}</td>
-						<td>${item.FechaString}</td>
-						<td>${item.hora}:${item.minutos}</td>
-						<td>${item.Descuento}%</td>
-						<td>${item.estado}</td>
-						<td>
-						<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
-						<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
-						</td>
-					</tr>
-					`
 						}
 					});
 				});

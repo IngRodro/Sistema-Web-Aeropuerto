@@ -25,7 +25,10 @@ public class ClsCompany {
                 Company com = new Company();
                 com.setIdCompany(rs.getInt("idCompany"));
                 com.setNombre(rs.getString("nombre"));
+                String estado = rs.getString("estado");
+                if(estado.equals("Activo")) {
                 companies.add(com);
+                }
             }
             conexion.close();
         } catch (Exception e) {
@@ -38,17 +41,18 @@ public class ClsCompany {
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
         try {
-            if (ComprobarExistenciaCom(Com) == true) {
-                if (ComprobarEstadoCom(Com) == true) {
+            if (ComprobarEstadoCom(Com) == false) {
+                if (ComprobarExistenciaCom(Com) == false) {
                     System.out.println("La Compañia ya se encuentra registrada");
                 } else {
-                    CallableStatement Statement = conexion.prepareCall("call SP_A_Company(?)");
+                    CallableStatement Statement = conexion.prepareCall("call SP_I_Company(?)");
                     Statement.setString("PNombre", Com.getNombre());
                     Statement.execute();
                     System.out.println("Guardado");
                 }
             } else {
-                CallableStatement Statement = conexion.prepareCall("call SP_I_Company(?)");
+
+                CallableStatement Statement = conexion.prepareCall("call SP_A_Company(?)");
                 Statement.setString("PNombre", Com.getNombre());
                 Statement.execute();
                 System.out.println("Guardado");
@@ -95,7 +99,7 @@ public class ClsCompany {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
-                if (Com.getNombre().equals(rs.getString("nombre"))) {
+                if (Com.getNombre().equals(rs.getString("nombre")) && rs.getString("estado").equals("Activo")) {
                     Existencia = true;
                     break;
                 };
