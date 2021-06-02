@@ -7,6 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/sweetAlert.js"></script>
 <script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;
@@ -22,7 +24,14 @@ function SoloLetras(e){
 		}
 	}
 	if(letras.indexOf(tecla) == -1 && !tecla_especial){
-		alert("No se permiten ingresar Numeros...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar numeros...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
@@ -65,11 +74,21 @@ $(document).ready(function () {
 			console.log(datos);
 			
 			if(datos == "Actualizado"){
-				alert("Compañia Actualizada...");
-				location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				Swal.fire({
+					  icon: 'success',
+					  title: 'Compañia Actualizada...',
+					  showConfirmButton: false,
+					  timer: 1500
+					})
+				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 			}else if(datos == "Agregado"){
-				alert("Compañia Registrada...");
-				location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				Swal.fire({
+					  icon: 'success',
+					  title: 'Compañia Registrada...',
+					  showConfirmButton: false,
+					  timer: 1500
+					})
+				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 			}
 
 			
