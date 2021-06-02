@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/estilopasajero.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -55,9 +61,37 @@ function SoloNumerosGuion(evt){
 		return false;
 	}
 }
+
+
+
 </script>
 </head>
 <body>
+<script>
+	$(document).ready(function () {
+		$("#DocumentoIdentidad").blur(function (){
+			//Recogiendo el value del INM
+			var NumeroDUI = $("#DocumentoIdentidad").val();
+			console.log(NumeroDUI);
+		
+			
+			$.post('ControllerPasajero', {
+				//Enviando variable al controlador.
+				NumeroDUI
+			}, function (response) {
+			
+				let datos = JSON.parse(response);
+				console.log(datos);
+			
+				var DocumentoIdentidad = document.getElementById('DocumentoIdentidad');
+				if(datos != null){
+					alert("El Numero de Documento ya existe");
+					DocumentoIdentidad.value = "";
+				}
+			});
+		});
+	});
+</script>
 	<%
 	String IdPasajero = request.getParameter("Id");
 	String Nombres = request.getParameter("Nombres");
@@ -91,13 +125,18 @@ function SoloNumerosGuion(evt){
 			<label>Edad</label> 
 			<input type="text" name="edad" value="<%=Edad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required>
 			<label>Sexo</label> 
-			<input type="text" name="sexo" value="<%=Sexo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
+			<select class="form-select form-select-lg mb-3" name="sexo"
+				id="cmbAsientos" required>
+				<option value=>Seleccione una opcion</option>
+				<option value="Masculino">Masculino</option>
+				<option value="Femenino">Femenino</option>
+			</select> 
 			<label>DocumentoIdentidad</label> 
-			<input type="text" name="documentoidentidad" value="<%=DocumentoIdentidad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumerosGuion(event);" required>
+			<input type="text" name="documentoidentidad" id="DocumentoIdentidad" value="<%=DocumentoIdentidad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumerosGuion(event);" required>
 			<label>Pasaporte</label> 
 			<input type="text" name="pasaporte" value="<%=Pasaporte%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+					<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

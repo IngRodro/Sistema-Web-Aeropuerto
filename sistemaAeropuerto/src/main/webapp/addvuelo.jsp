@@ -11,11 +11,6 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot"
-	; integrity="
-	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -34,6 +29,7 @@ function SoloNumeros(evt){
 		return false;
 	}
 }
+
 </script>
 </head>
 <body>
@@ -114,7 +110,40 @@ function SoloNumeros(evt){
 						}
 					});
 				});
-			</script>
+				
+				
+				$(document).ready(function () {
+					$("#Fecha").change(function (){
+						//Recogiendo el value del combo
+						var Fecha = $("#Fecha").val();
+						var FechaI = document.getElementById('FechaI')
+						var FechaF = document.getElementById('FechaF')
+						FechaI.setAttribute("max", Fecha);
+						FechaF.setAttribute("max", Fecha);
+						
+			});
+		});		
+				
+				$(document).ready(function () {
+					$("#FechaI").change(function (){
+						//Recogiendo el value del combo
+						var FechaI = $("#FechaI").val();
+						var FechaF = document.getElementById('FechaF')
+						FechaF.setAttribute("min", FechaI);
+						
+			});
+		});
+				
+				$(document).ready(function () {
+					$("#FechaF").change(function (){
+						//Recogiendo el value del combo
+						var FechaF = $("#FechaF").val();
+						var FechaI = document.getElementById('FechaI')
+						FechaI.setAttribute("max", FechaF);
+						
+			});
+		});		
+		</script>
 
 <%
 	String Vuelo = request.getParameter("Vuelo");
@@ -166,7 +195,7 @@ function SoloNumeros(evt){
 			<input type="hidden" name="vuelo" value="<%=Vuelo%>">
 			<input type="hidden" name="estado" value="<%=estado%>">
 			<label>Fecha Vuelo</label> 
-			<input type="date" name="fecha" value="<%=Fecha%>" onkeypress="return SoloNumeros(event);" required>
+			<input type="date" name="fecha" value="<%=Fecha%>" id="Fecha"onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
 			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="23">
 			<label>Minutos</label> 
@@ -187,9 +216,9 @@ function SoloNumeros(evt){
 			<option value="<%=IdAeropuertoD %>"><%=AeropuertoD %></option>
 			</select>
 			<label>Fecha Inicio</label> 
-			<input type="date" name="fechaI" value="<%=FechaI%>" onkeypress="return SoloNumeros(event);" >
+			<input type="date" name="fechaI" value="<%=FechaI%>" id="FechaI" onkeypress="return SoloNumeros(event);" >
 			<label>Fecha Final</label> 
-			<input type="date" name="fechaF" value="<%=FechaF%>" onkeypress="return SoloNumeros(event);" >
+			<input type="date" name="fechaF" value="<%=FechaF%>" id="FechaF" onkeypress="return SoloNumeros(event);" >
 			<label>Descuento</label> 
 			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="100">
 				<div align="center">

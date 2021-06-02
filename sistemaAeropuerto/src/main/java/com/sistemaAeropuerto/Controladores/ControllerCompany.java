@@ -55,11 +55,17 @@ public class ControllerCompany extends HttpServlet {
 			if(IdCompany==null||IdCompany=="") {
 				
 				clscomp.AgregarCompany(comp);
-				response.sendRedirect("company.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}else {
 				comp.setIdCompany(Integer.parseInt(IdCompany));
 				clscomp.ActualizarCompany(comp);
-				response.sendRedirect("company.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}
 		}
 	}

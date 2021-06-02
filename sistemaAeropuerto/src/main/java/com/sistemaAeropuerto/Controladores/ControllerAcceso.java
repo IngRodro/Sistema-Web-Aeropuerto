@@ -48,6 +48,7 @@ public class ControllerAcceso extends HttpServlet {
 		String btncerrar = request.getParameter("btncerrar");
 		String btnnocerrar = request.getParameter("btnnocerrar");
 		String btnregresar = request.getParameter("btnregresar");
+		String btnnocerraruser = request.getParameter("btnnocerraruser");
 
 		if(btnregresar != null) {
 			response.sendRedirect("index.jsp");
@@ -59,6 +60,8 @@ public class ControllerAcceso extends HttpServlet {
 			} else if(btnnocerrar != null)
 			{
 				response.sendRedirect("menu.jsp");
+			}else if(btnnocerraruser != null) {
+				response.sendRedirect("menuuser.jsp");
 			}
 			
 			else{

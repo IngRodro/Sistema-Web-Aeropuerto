@@ -51,7 +51,7 @@
 		<div align="center">
 			<form action="ControllerAcceso" method="post">
 				<button class="btn btn-danger" name="btncerrar" value="Si"><b>Si</b></button>
-				<button class="btn btn-success" name="btnnocerrar" value="No"><b>No</b></button>
+				<button class="btn btn-success" name="btnnocerraruser" value="No"><b>No</b></button>
 			</form>
 		</div>
 	</div>

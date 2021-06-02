@@ -86,7 +86,7 @@
 				
 				$(document).ready(function () {
 					$("#DUI").blur(function (){
-						//Recogiendo el value del INM
+						//Recogiendo el value
 						var NumeroDUI = $("#DUI").val();
 						console.log(NumeroDUI);
 						
