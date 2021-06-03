@@ -41,8 +41,8 @@ public class ClsCompany {
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
         try {
-            if (ComprobarEstadoCom(Com) == false) {
-                if (ComprobarExistenciaCom(Com) == false) {
+            if (ComprobarEstadoCom(Com) == true) {
+                if (ComprobarExistenciaCom(Com) == true) {
                     System.out.println("La Compañia ya se encuentra registrada");
                 } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_I_Company(?)");
@@ -50,8 +50,7 @@ public class ClsCompany {
                     Statement.execute();
                     System.out.println("Guardado");
                 }
-            } else {
-
+            }else{
                 CallableStatement Statement = conexion.prepareCall("call SP_A_Company(?)");
                 Statement.setString("PNombre", Com.getNombre());
                 Statement.execute();
@@ -120,7 +119,7 @@ public class ClsCompany {
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
                 if (Com.getNombre().equals(rs.getString("nombre"))) {
-                    if (rs.getString("nombre").equals("Inactivo")) {
+                    if (rs.getString("estado").equals("Inactivo")) {
                         Estado = false;
                     }
                 };

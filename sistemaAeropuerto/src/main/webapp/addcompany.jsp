@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="CSS/estilocompany.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -73,61 +72,81 @@ $(document).ready(function () {
 		var nombre = $("#Nombre").val();
 		var idCompany = $("#IdCompany").val();
 		var Guardar = $("#guardar").val();
+		var Nombre = "<%=Nombre%>";
+		var IdCompany = "<%=IdCompany%>";
 		
-		if(nombre == null || nombre == ""){
-			
+		if(nombre == Nombre && idCompany == IdCompany){
 			Swal.fire({
-				  icon: 'error',
-				  title: 'Oops...',
-				  text: 'Complete todos los campos para continuar...',
-				  confirmButtonText: 'Aceptar',
-				  confirmButtonColor: '#ff2600',
-				  showCloseButton: true
+				  title: 'No se resgistraron cambios',
+				  text: "Desea seguir editando?",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Si'
+				}).then((result) => {
+				  if (result.isConfirmed) {
+				    
+				  }else{
+					  location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				  }
 				})
-			
 		}else{
-			$.get('ControllerCompany', {
-				//Enviando variable al controlador.
-				nombre, idCompany, Guardar
-			}, function (response) {
+			if(nombre == null || nombre == ""){
 				
-				let datos = JSON.parse(response);
-				console.log(datos);
-				
-				if(datos == "Actualizado"){
-					Swal.fire({
-						  icon: 'success',
-						  title: 'Compañia Actualizada...',
-						  showConfirmButton: false,
-						  timer: 1500
-						}).then(() => {
-							location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-						})
-					//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-				}else if(datos == "Agregado"){
-					Swal.fire({
-						  icon: 'success',
-						  title: 'Compañia Registrada...',
-						  showConfirmButton: false,
-						  timer: 1500
-						}).then(() => {
-							location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-						})
-					//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-				}else if(datos == "Existente"){
-					Swal.fire({
-						  icon: 'error',
-						  title: 'Oops...',
-						  text: 'La compañia ya esta registrada...',
-						  confirmButtonText: 'Aceptar',
-						  confirmButtonColor: '#ff2600',
-						  showCloseButton: true
-						}).then(() => {
-							var company = document.getElementById('Nombre');
-							company.value = "";
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Complete todos los campos para continuar...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
 					})
-				}
-			});
+				
+			}else{
+				$.get('ControllerCompany', {
+					//Enviando variable al controlador.
+					nombre, idCompany, Guardar
+				}, function (response) {
+					
+					let datos = JSON.parse(response);
+					console.log(datos);
+					
+					if(datos == "Actualizado"){
+						Swal.fire({
+							  icon: 'success',
+							  title: 'Compañia Actualizada...',
+							  showConfirmButton: false,
+							  timer: 1500
+							}).then(() => {
+								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+							})
+						//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+					}else if(datos == "Agregado"){
+						Swal.fire({
+							  icon: 'success',
+							  title: 'Compañia Registrada...',
+							  showConfirmButton: false,
+							  timer: 1500
+							}).then(() => {
+								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+							})
+						//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+					}else if(datos == "Existente"){
+						Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: 'La compañia ya esta registrada...',
+							  confirmButtonText: 'Aceptar',
+							  confirmButtonColor: '#ff2600',
+							  showCloseButton: true
+							}).then(() => {
+								var company = document.getElementById('Nombre');
+								company.value = "";
+						})
+					}
+				});
+			}
 		}
 	});
 });
