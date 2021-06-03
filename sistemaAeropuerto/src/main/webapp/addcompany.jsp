@@ -4,6 +4,8 @@
 <html>
 <link rel="stylesheet" href="CSS/estilocompany.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -59,68 +61,86 @@ function SoloLetras(e){
 <script>
 
 $(document).ready(function () {
+	$("#Cerrar").click(function (){
+			location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+		
+	});
+});
+
+
+$(document).ready(function () {
 	$("#guardar").click(function (){
 		var nombre = $("#Nombre").val();
 		var idCompany = $("#IdCompany").val();
 		var Guardar = $("#guardar").val();
 		
-		
-		$.get('ControllerCompany', {
-			//Enviando variable al controlador.
-			nombre, idCompany, Guardar
-		}, function (response) {
+		if(nombre == null || nombre == ""){
 			
-			let datos = JSON.parse(response);
-			console.log(datos);
+			Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Complete todos los campos para continuar...',
+				  confirmButtonText: 'Aceptar',
+				  confirmButtonColor: '#ff2600',
+				  showCloseButton: true
+				})
 			
-			if(datos == "Actualizado"){
-				Swal.fire({
-					  icon: 'success',
-					  title: 'Compañia Actualizada...',
-					  showConfirmButton: false,
-					  timer: 1500
-					}).then(() => {
-						location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+		}else{
+			$.get('ControllerCompany', {
+				//Enviando variable al controlador.
+				nombre, idCompany, Guardar
+			}, function (response) {
+				
+				let datos = JSON.parse(response);
+				console.log(datos);
+				
+				if(datos == "Actualizado"){
+					Swal.fire({
+						  icon: 'success',
+						  title: 'Compañia Actualizada...',
+						  showConfirmButton: false,
+						  timer: 1500
+						}).then(() => {
+							location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+						})
+					//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				}else if(datos == "Agregado"){
+					Swal.fire({
+						  icon: 'success',
+						  title: 'Compañia Registrada...',
+						  showConfirmButton: false,
+						  timer: 1500
+						}).then(() => {
+							location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+						})
+					//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				}else if(datos == "Existente"){
+					Swal.fire({
+						  icon: 'error',
+						  title: 'Oops...',
+						  text: 'La compañia ya esta registrada...',
+						  confirmButtonText: 'Aceptar',
+						  confirmButtonColor: '#ff2600',
+						  showCloseButton: true
+						}).then(() => {
+							var company = document.getElementById('Nombre');
+							company.value = "";
 					})
-				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-			}else if(datos == "Agregado"){
-				Swal.fire({
-					  icon: 'success',
-					  title: 'Compañia Registrada...',
-					  showConfirmButton: false,
-					  timer: 1500
-					}).then(() => {
-						location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-					})
-				//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-			}else if(datos == "Existente"){
-				Swal.fire({
-					  icon: 'error',
-					  title: 'Oops...',
-					  text: 'La compañia ya esta registrada...',
-					  confirmButtonText: 'Aceptar',
-					  confirmButtonColor: '#ff2600',
-					  showCloseButton: true
-					}).then(() => {
-						var company = document.getElementById('Nombre');
-						company.value = "";
-					})
-			}
-
-			
-		});
+				}
+			});
+		}
 	});
 });
 
 </script>
 	<div class="userbox">
-			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
-				alt="Logo avion">
+			<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
+			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
 			<h1>Registro Compañias</h1>
 			<input type="hidden" name="idCompany" id="IdCompany" value=<%=IdCompany%>>
-			<label>Nombre</label> <input type="text" name="nombre" id="Nombre" value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
+			<label>Nombre</label> <input type="text" name="nombre" id="Nombre" value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);"> 
 				<div align="center">
-			<button name="Guardar" id="guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" id="guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
 				</div>
 	</div>
 </body>

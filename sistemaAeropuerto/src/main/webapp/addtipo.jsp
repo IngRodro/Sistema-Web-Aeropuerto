@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/estilotipo.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -63,20 +65,27 @@ function SoloLetras(e){
 		Descuento = "";
 	}
 	%>
-
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#Cerrar").click(function (){
+				location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+		
+		});
+	});
+</script>
 	<div class="userbox">
+	<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 		<form action="ControllerTipos" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 			<h1>Registro Tipos de Vuelo</h1>
 			<input type="hidden" name="idTipo" value=<%=IdTipo%>>
 			<label>Tipo de Vuelo</label> 
-			<input type="text" name="tipo"value="<%=Tipo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
-				<div align="center">
+			<input type="text" name="tipo"value="<%=Tipo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				<label>Descuento</label> 
 			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Descuento%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

@@ -59,7 +59,7 @@ function SoloNumeros(evt){
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
 			<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 			<h1>Registro Aviones</h1>
-		<form action="ControllerAvion" method="get">
+			<form action="ControllerAvion" method="get">
 			<input type="hidden" name="idAvion" value=<%=IdAvion%>>
 			<label>Modelo</label> 
 			<input type="text" name="modelo"value="<%=Modelo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required> 

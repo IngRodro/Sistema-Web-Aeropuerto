@@ -4,6 +4,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="CSS/estiloadd.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
@@ -58,10 +60,20 @@ function SoloLetras(e){
 </script>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#Cerrar").click(function (){
+				location.href = 'http://localhost:8080/sistemaAeropuerto/index.jsp';
+			
+		});
+	});
+</script>
+
 <div class="userbox">
+	<button id="Cerrar" class="Cerrar"><i class="far fa-window-close fa-lg"></i></button>
 	<form action="ControllerUser" method = "get">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg" alt="Logo avion">
-			<h1>Registrate Ya!!!</h1>
+			<h1>Registro De Usuario</h1>
 		<label>Nombres</label>
 		<input type="text" name="nombres" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 		<label>Apellidos</label>
@@ -78,7 +90,7 @@ function SoloLetras(e){
 		<label>Contraseña de Administrador</label>
 		<input type="number" name="passadmin" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off>
 		<div align="center">
-		<input type="submit" value="Registarme">
+			<button name="Guardar" class="Confirmar" value="btna"><b>Guardar/Actualizar</b></button>
 		</div>
 	</form>
 	</div>

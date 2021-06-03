@@ -6,6 +6,7 @@
 <html>
 <link rel="stylesheet" href="CSS/estilovuelo.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -43,6 +44,13 @@ function SoloNumeros(evt){
 	}
 %>
 <script type="text/javascript">
+	$(document).ready(function () {
+		$("#Cerrar").click(function (){
+				location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+	
+		});
+	});
+
 				$(document).ready(function () {
 					$.post('ControllerCompany', {
 					}, function (response) {
@@ -145,6 +153,26 @@ function SoloNumeros(evt){
 						
 			});
 		});		
+				
+				$(document).ready(function () {
+					$("#Descuento").blur(function (){
+						//Recogiendo el value del combo
+						var Descuento = $("#Descuento").val();
+						console.log(Descuento);
+						if(Descuento > 0){
+							var FechaI = document.getElementById('FechaI')
+							FechaI.disabled = false;
+							var FechaF = document.getElementById('FechaF')
+							FechaF.disabled = false;
+						}else{
+							var FechaI = document.getElementById('FechaI')
+							FechaI.disabled = true;
+							var FechaF = document.getElementById('FechaF')
+							FechaF.disabled = true;
+						}
+						
+			});
+		});	
 		</script>
 
 <%
@@ -190,6 +218,7 @@ function SoloNumeros(evt){
 	%>
 
 	<div class="userbox">
+		<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 		<form action="ControllerVuelo" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
@@ -217,14 +246,14 @@ function SoloNumeros(evt){
 			<select class="form-select form-select-lg mb-3" name="selectAeropuertoD" id="cmbAeropuertoD" required>
 			<option value="<%=IdAeropuertoD %>"><%=AeropuertoD %></option>
 			</select>
-			<label>Fecha Inicio</label> 
-			<input type="date" name="fechaI" value="<%=FechaI%>" id="FechaI" onkeypress="return SoloNumeros(event);" >
-			<label>Fecha Final</label> 
-			<input type="date" name="fechaF" value="<%=FechaF%>" id="FechaF" onkeypress="return SoloNumeros(event);" >
 			<label>Descuento</label> 
-			<input type="number"name="descuento" value="<%=Descuento%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="100">
-				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<input type="number"name="descuento" value="<%=Descuento%>" id="Descuento"onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="100">
+			<label>Fecha Inicio</label> 
+			<input type="date" name="fechaI" value="<%=FechaI%>" id="FechaI" onkeypress="return SoloNumeros(event);" disabled>
+			<label>Fecha Final</label> 
+			<input type="date" name="fechaF" value="<%=FechaF%>" id="FechaF" onkeypress="return SoloNumeros(event);" disabled>
+			<div align="center">
+			<button name="Guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/estiloaeropuerto.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -28,6 +30,14 @@ function SoloLetras(e){
 </script>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#Cerrar").click(function (){
+				location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
+			
+		});
+	});
+</script>
 	<%
 	HttpSession sesion = (HttpSession) request.getSession();
 	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
@@ -53,6 +63,7 @@ function SoloLetras(e){
 	%>
 
 	<div class="userbox">
+		<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 		<form action="ControllerAeropuertos" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
@@ -65,7 +76,7 @@ function SoloLetras(e){
 			<label>Ciudad</label> 
 			<input type="text" name="ciudad" value="<%=Ciudad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
 				</div>
 		</form>
 	</div>
