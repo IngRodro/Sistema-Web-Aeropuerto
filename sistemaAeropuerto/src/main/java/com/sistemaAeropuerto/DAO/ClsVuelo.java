@@ -37,6 +37,8 @@ public class ClsVuelo {
 				InJoin.setTipo(resultadoDeConsulta.getString("Tipo_de_Vuelo"));
 				String Fecha = resultadoDeConsulta.getString("Fecha");
 				InJoin.setFechaString(Fecha);
+				InJoin.setFechaInicio(resultadoDeConsulta.getString("FechaIni"));
+				InJoin.setFechaFinal(resultadoDeConsulta.getString("FechaMax"));
 				InJoin.setHora(resultadoDeConsulta.getString("Hora"));
 				InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
 				InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));

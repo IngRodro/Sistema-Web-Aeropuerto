@@ -17,7 +17,9 @@ public class InnerJoinVuelo {
 	Double Descuento;
 	int estado;
 	Date FechaFinalDesc;
+	String FechaFinal;
 	Date FechaInicioDesc;
+	String FechaInicio;
 	int IdCompany;
 	int IdAeropuertO;
 	int IdAeropuertoD;
@@ -176,4 +178,21 @@ public class InnerJoinVuelo {
 		FechaString = fechaString;
 	}
 
+	public String getFechaFinal() {
+		return FechaFinal;
+	}
+
+	public void setFechaFinal(String fechaFinal) {
+		FechaFinal = fechaFinal;
+	}
+
+	public String getFechaInicio() {
+		return FechaInicio;
+	}
+
+	public void setFechaInicio(String fechaInicio) {
+		FechaInicio = fechaInicio;
+	}
+
+	
 }

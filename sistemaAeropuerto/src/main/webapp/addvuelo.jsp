@@ -6,6 +6,7 @@
 <html>
 <link rel="stylesheet" href="CSS/estilovuelo.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
@@ -26,14 +27,21 @@ function SoloNumeros(evt){
 	if((keynum > 47 && keynum < 58) || keynum == 46 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
-		alert("No se permiten ingresar Letras...");
+		Swal.fire({
+			icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permiten ingresar Letras...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
 
 </script>
 </head>
-<body>
+<body onload="verificarUpdate()">
 <%
 	HttpSession sesion = (HttpSession) request.getSession();
 	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
@@ -43,13 +51,86 @@ function SoloNumeros(evt){
 		response.sendRedirect("index.jsp");
 	}
 %>
+
+<%
+	String Vuelo = request.getParameter("Vuelo");
+	String Fecha = request.getParameter("Fecha");
+	String Hora = request.getParameter("Hora");
+	String Minutos = request.getParameter("Minutos");
+	String Descuento = request.getParameter("Descuento");
+	String IdAeropuertoD = request.getParameter("IdAeropuertoD");
+	String IdAeropuertoO = request.getParameter("IdAeropuertO");
+	String IdAvion = request.getParameter("IdAvion");
+	String IdCompany = request.getParameter("IdCompany");
+	String IdTipo = request.getParameter("IdTipo");
+	String Modelo = request.getParameter("Modelo");
+	String Tipo = request.getParameter("Tipo");
+	String estado = request.getParameter("estado");
+	String AeropuertoD = request.getParameter("AeropuertoD");
+	String AeropuertoO = request.getParameter("AeropuertoO");
+	String Company = request.getParameter("Company");
+	
+	String FechaI = request.getParameter("FechaI");
+	String FechaF = request.getParameter("FechaF");
+	
+	String FechaMaxInicio = ""; 
+	String FechaMaxFinal = "";
+	String FechaMinFinal = ""; 
+
+   	if(Fecha != null){
+   		FechaMaxInicio = Fecha;
+   		FechaMaxFinal = Fecha;
+   	}
+   	if(FechaI != null){
+   		FechaMinFinal = FechaI; 
+   	}
+   	if(FechaF != null){
+   		FechaMaxInicio = FechaF;
+   	}
+	
+	
+	if (Vuelo == null) {
+		Vuelo = "";
+		Fecha = "";
+		Hora = "00";
+		Minutos = "00";
+		Descuento = "0";
+		IdAeropuertoD =  "";
+		IdAeropuertoO =  "";
+		IdAvion =  "";
+		IdCompany =  "";;
+		IdTipo =  "";
+		Modelo =  "Modelos de Avion";
+		Tipo =  "Tipos de Vuelos";
+		estado = "";
+		AeropuertoD =  "Aeropuerto Destino";
+		AeropuertoO =  "Aeropuerto Origen";
+		Company =  "Compañias";
+		FechaI = "";
+		FechaF = "";
+	}
+	%>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#Cerrar").click(function (){
-				location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+				location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
 	
 		});
 	});
+	
+	function verificarUpdate(){ 
+	   	if (<%=Descuento%> == 0){
+			var FechaI = document.getElementById('FechaI')
+			FechaI.disabled = true;
+			var FechaF = document.getElementById('FechaF')
+			FechaF.disabled = true;
+	   	}else{
+	   		var FechaI = document.getElementById('FechaI')
+			FechaI.disabled = false;
+			var FechaF = document.getElementById('FechaF')
+			FechaF.disabled = false;
+	   	}
+	} 
 
 				$(document).ready(function () {
 					$.post('ControllerCompany', {
@@ -159,7 +240,23 @@ function SoloNumeros(evt){
 						//Recogiendo el value del combo
 						var Descuento = $("#Descuento").val();
 						console.log(Descuento);
-						if(Descuento > 0){
+						if(Descuento > 99 || Descuento < 0 ){
+							Swal.fire({
+								  icon: 'error',
+								  title: 'Oops...',
+								  text: 'El Descuento no puede ser menor a 0% o mayor a 99%...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								}).then(() => {
+									var descuento = document.getElementById('Descuento');
+									descuento.value = "0";
+									var FechaI = document.getElementById('FechaI')
+									FechaI.disabled = true;
+									var FechaF = document.getElementById('FechaF')
+									FechaF.disabled = true;
+							})
+						}else if(Descuento > 0){
 							var FechaI = document.getElementById('FechaI')
 							FechaI.disabled = false;
 							var FechaF = document.getElementById('FechaF')
@@ -173,64 +270,146 @@ function SoloNumeros(evt){
 						
 			});
 		});	
-		</script>
+				
+				
+				$(document).ready(function () {
+					$("#guardar").click(function (){
+						var vuelo = $("#Vuelo").val();
+						var fecha  = $("#Fecha").val();
+						var hora = $("#Hora").val();
+						var minutos = $("#Minutos").val();
+						var selectcompany = $("#cmbcompany").val();
+						var selectAvion = $("#cmbavion").val();
+						var seletTipos = $("#cmbTipo").val();
+						var selectAeropuertoO = $("#cmbAeropuertoO").val();
+						var selectAeropuertoD = $("#cmbAeropuertoD").val();
+						var descuento = $("#Descuento").val();
+						var fechaI = $("#FechaI").val();
+						var fechaF = $("#FechaF").val();
+						var Guardar = $("#guardar").val();
+						console.log(vuelo)
+						console.log(fecha);
+						console.log(hora);
+						console.log(minutos);
+						console.log(selectcompany);
+						console.log(selectAvion);
+						console.log(seletTipos);
+						console.log(selectAeropuertoO);
+						console.log(selectAeropuertoD);
+						console.log(descuento);
+						console.log(fechaI);
+						console.log(fechaF);
+						
+							if(fecha == null || hora == null || hora == "" || minutos == null 
+								|| minutos == "" || selectcompany == null  || selectcompany == "" 
+								|| selectAvion == null || selectAvion == "" || seletTipos == null 
+								|| seletTipos == "" || selectAeropuertoO == null || selectAeropuertoO == "" 
+								|| selectAeropuertoD == null || selectAeropuertoD == ""){
+								
+								Swal.fire({
+									  icon: 'error',
+									  title: 'Oops...',
+									  text: 'Complete todos los campos para continuar...',
+									  confirmButtonText: 'Aceptar',
+									  confirmButtonColor: '#ff2600',
+									  showCloseButton: true
+									})
+								
+							}else{
+								$.get('ControllerVuelo', {
+									//Enviando variable al controlador.
+									vuelo, fecha, hora, minutos, selectcompany, selectAvion, seletTipos, selectAeropuertoO, selectAeropuertoD, descuento, fechaI, fechaF, Guardar
+								}, function (response) {
+									
+									let datos = JSON.parse(response);
+									console.log(datos);
+									
+									if(datos == "Agregado"){
+										Swal.fire({
+											  icon: 'success',
+											  title: 'Vuelo Registrado...',
+											  showConfirmButton: false,
+											  timer: 10000
+											}).then(() => {
+												location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+											})
+										//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+									}else if(datos == "Actualizado"){
+										Swal.fire({
+											  icon: 'success',
+											  title: 'Vuelo Actualizado...',
+											  showConfirmButton: false,
+											  timer: 1500
+											}).then(() => {
+												location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+											})
+									}
+								});
+							}
+					});
+				});
+				
+				
+				$(document).ready(function () {
+					$("#Hora").blur(function (){
+						//Recogiendo el value del combo
+						var Hora = $("#Hora").val();
+						if(Hora > 24 || Hora < 0 ){
+							Swal.fire({
+								icon: 'error',
+								  title: 'Oops...',
+								  text: 'Introduzca el formato de hora correcto...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								}).then(() => {
+									var hora = document.getElementById('Hora');
+									hora.value = "00";
+							})
+					}
+						
+			});
+		});	
+				
+				$(document).ready(function () {
+					$("#Minutos").blur(function (){
+						//Recogiendo el value del combo
+						var Minutos = $("#Minutos").val();
+						if(Minutos > 60 || Minutos < 0 ){
+							Swal.fire({
+								icon: 'error',
+								  title: 'Oops...',
+								  text: 'Introduzca el formato de hora correcto...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								}).then(() => {
+									var minutos = document.getElementById('Minutos');
+									minutos.value = "00";
+							})
+					}
+						
+			});
+		});	
+				
+				
+</script>
 
-<%
-	String Vuelo = request.getParameter("Vuelo");
-	String Fecha = request.getParameter("Fecha");
-	String Hora = request.getParameter("Hora");
-	String Minutos = request.getParameter("Minutos");
-	String Descuento = request.getParameter("Descuento");
-	String IdAeropuertoD = request.getParameter("IdAeropuertoD");
-	String IdAeropuertoO = request.getParameter("IdAeropuertO");
-	String IdAvion = request.getParameter("IdAvion");
-	String IdCompany = request.getParameter("IdCompany");
-	String IdTipo = request.getParameter("IdTipo");
-	String Modelo = request.getParameter("Modelo");
-	String Tipo = request.getParameter("Tipo");
-	String estado = request.getParameter("estado");
-	String AeropuertoD = request.getParameter("AeropuertoD");
-	String AeropuertoO = request.getParameter("AeropuertoO");
-	String Company = request.getParameter("Company");
-	
-	String FechaI = request.getParameter("FechaI");
-	String FechaF = request.getParameter("FechaF");
-	
-	
-	if (Vuelo == null) {
-		Vuelo = "";
-		Fecha = "";
-		Hora = "00";
-		Minutos = "00";
-		Descuento = "0";
-		IdAeropuertoD =  "";
-		IdAeropuertoO =  "";
-		IdAvion =  "";
-		IdCompany =  "";;
-		IdTipo =  "";
-		Modelo =  "Modelos de Avion";
-		Tipo =  "Tipos de Vuelos";
-		estado = "";
-		AeropuertoD =  "Aeropuerto Destino";
-		AeropuertoO =  "Aeropuerto Origen";
-		Company =  "Compañias";
-	}
-	%>
+
 
 	<div class="userbox">
 		<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
-		<form action="ControllerVuelo" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 			<h1>Registro Vuelo</h1>
-			<input type="hidden" name="vuelo" value="<%=Vuelo%>">
+			<input type="hidden" name="vuelo" id="Vuelo" value="<%=Vuelo%>">
 			<input type="hidden" name="estado" value="<%=estado%>">
 			<label>Fecha Vuelo</label> 
-			<input type="date" name="fecha" value="<%=Fecha%>" id="Fecha"onkeypress="return SoloNumeros(event);" required>
+			<input type="date" name="fecha" value="<%=Fecha%>" id="Fecha" onkeypress="return SoloNumeros(event);" required>
 			<label>Hora</label> 
-			<input type="number"name="hora" value="<%=Hora%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="23">
+			<input type="number"name="hora" value="<%=Hora%>" id="Hora" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="23">
 			<label>Minutos</label> 
-			<input type="number" name="minutos" value="<%=Minutos%>" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="59">
+			<input type="number" name="minutos" value="<%=Minutos%>" id="Minutos" onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="59">
 			<select class="form-select form-select-lg mb-3" name="selectcompany" id="cmbcompany" required>
 			<option value="<%=IdCompany %>"><%=Company %></option>
 			</select>
@@ -249,13 +428,12 @@ function SoloNumeros(evt){
 			<label>Descuento</label> 
 			<input type="number"name="descuento" value="<%=Descuento%>" id="Descuento"onkeypress="return SoloNumeros(event);" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required min="0" max="100">
 			<label>Fecha Inicio</label> 
-			<input type="date" name="fechaI" value="<%=FechaI%>" id="FechaI" onkeypress="return SoloNumeros(event);" disabled>
+			<input type="date" name="fechaI" value="<%=FechaI%>" id="FechaI" onkeypress="return SoloNumeros(event);" max="<%=FechaMaxInicio%>">
 			<label>Fecha Final</label> 
-			<input type="date" name="fechaF" value="<%=FechaF%>" id="FechaF" onkeypress="return SoloNumeros(event);" disabled>
+			<input type="date" name="fechaF" value="<%=FechaF%>" id="FechaF" onkeypress="return SoloNumeros(event);"  min="<%=FechaMinFinal%>" max="<%=FechaMaxFinal%>">
 			<div align="center">
-			<button name="Guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" value="btna" class="Confirmar" id="guardar"><b>Guardar/Actualizar</b></button>
 				</div>
-		</form>
 	</div>
 </body>
 </html>

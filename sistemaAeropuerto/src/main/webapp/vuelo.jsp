@@ -13,11 +13,6 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot"
-	; integrity="
-	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
 <body>
 	<%
 	HttpSession sesion = (HttpSession) request.getSession();
@@ -52,7 +47,7 @@
 									<td>${item.Descuento}%</td>
 									<td>Activo</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
 									</td>
 								</tr>
@@ -71,7 +66,7 @@
 									<td>${item.Descuento}%</td>
 									<td>Retrasado</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
 									</td>
 								</tr>
@@ -90,7 +85,7 @@
 									<td>${item.Descuento}%</td>
 									<td>Suspendido</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}" class="btn btn-warning"> Actualizar</a>
+									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
 									</td>
 								</tr>

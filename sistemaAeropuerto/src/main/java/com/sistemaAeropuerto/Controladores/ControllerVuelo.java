@@ -61,7 +61,6 @@ public class ControllerVuelo extends HttpServlet {
 		String Tipos = request.getParameter("seletTipos");
 		String Avion = request.getParameter("selectAvion");
 		String Descuento = request.getParameter("descuento");
-		String estado = request.getParameter("estado");
 		
 		if(Descuento.equals("0")) {
 			FechaI = null;
@@ -102,13 +101,19 @@ public class ControllerVuelo extends HttpServlet {
 			if(IdVuelo==null||IdVuelo=="") {
 				clsVuelo.AgregarVuelo(vuelo, itinerario);
 				clsPromo.AgregarPromo(promo);
-				response.sendRedirect("vuelo.jsp");
+				
+				Gson json = new Gson();
+
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 				
 			}else {
 				vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
-				vuelo.setEstado(Integer.parseInt(estado));
 				clsVuelo.ActualizarVuelo(vuelo, itinerario, promo);
-				response.sendRedirect("vuelo.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}
 		}
 		
