@@ -53,14 +53,27 @@ public class ControllerAeropuertos extends HttpServlet {
 			aeropuerto.setCiudad(Ciudad);
 			aeropuerto.setPais(Pais);
 			
-			if(IdAeropuerto==null||IdAeropuerto=="") {
-				
-				clsaeropuerto.AgregarAeropuerto(aeropuerto);
-				response.sendRedirect("aeropuerto.jsp");
+			if(clsaeropuerto.ComprobarExistenciaAeroP(aeropuerto) == false) {
+				if(IdAeropuerto==null||IdAeropuerto=="") {
+					
+					clsaeropuerto.AgregarAeropuerto(aeropuerto);
+					Gson json = new Gson();
+
+					String Mensaje = "Agregado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}else {
+					aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
+					clsaeropuerto.ActualizarAeropuerto(aeropuerto);
+					Gson json = new Gson();
+
+					String Mensaje = "Actualizado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}
 			}else {
-				aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
-				clsaeropuerto.ActualizarAeropuerto(aeropuerto);
-				response.sendRedirect("aeropuerto.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Existente";
+				response.getWriter().append(json.toJson(Mensaje));
 			}
 		}
 	}

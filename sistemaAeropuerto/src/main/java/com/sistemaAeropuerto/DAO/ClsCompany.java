@@ -43,7 +43,6 @@ public class ClsCompany {
         try {
             if (ComprobarEstadoCom(Com) == true) {
                 if (ComprobarExistenciaCom(Com) == true) {
-                    System.out.println("La Compañia ya se encuentra registrada");
                 } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_I_Company(?)");
                     Statement.setString("PNombre", Com.getNombre());

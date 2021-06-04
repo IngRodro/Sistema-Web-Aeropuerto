@@ -25,7 +25,10 @@ public class ClsAeropuerto {
                 aeropuerto.setNombre(resultadoDeConsulta.getString("nombre"));
                 aeropuerto.setPais(resultadoDeConsulta.getString("pais"));
                 aeropuerto.setCiudad(resultadoDeConsulta.getString("ciudad"));
+                String estado = resultadoDeConsulta.getString("estado");
+                if(estado.equals("Activo")) {
                 aeropuertos.add(aeropuerto);
+                }
             }
             conexion.close();
         } catch (Exception e) {
@@ -36,20 +39,20 @@ public class ClsAeropuerto {
 
     public void AgregarAeropuerto(Aeropuerto Aero) {
         try {
-            if (ComprobarExistenciaAeroP(Aero) == true) {
+            if (ComprobarExistenciaAeroP(Aero) == false) {
                 if (ComprobarEstadoAeroP(Aero) == true) {
+                	CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?)");
+                    Statement.setString("Pnombre", Aero.getNombre());
+                    Statement.setString("Ppais", Aero.getPais());
+                    Statement.setString("Pciudad", Aero.getCiudad());
+                    Statement.execute();
+                    conexion.close();
+                	
                 } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
                     Statement.setString("PNombre", Aero.getNombre());
                     Statement.execute();
                 }
-            } else {
-                CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?)");
-                Statement.setString("Pnombre", Aero.getNombre());
-                Statement.setString("Ppais", Aero.getPais());
-                Statement.setString("Pciudad", Aero.getCiudad());
-                Statement.execute();
-                conexion.close();
             }
         } catch (Exception e) {
         	System.out.println(e);
@@ -83,10 +86,10 @@ public class ClsAeropuerto {
     public boolean ComprobarExistenciaAeroP(Aeropuerto Aero) {
         boolean Existencia = false;
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Aeropuerto()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
-                if (Aero.getNombre().equals(rs.getString("nombre"))) {
+                if (Aero.getNombre().equals(rs.getString("nombre")) && rs.getString("estado").equals("Activo")) {
                     Existencia = true;
                     break;
                 };
@@ -100,11 +103,11 @@ public class ClsAeropuerto {
     public boolean ComprobarEstadoAeroP(Aeropuerto Aero) {
         boolean Estado = true;
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Aeropuerto()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
                 if (Aero.getNombre().equals(rs.getString("nombre"))) {
-                    if (rs.getString("nombre").equals("Inactivo")) {
+                    if (rs.getString("estado").equals("Inactivo")) {
                         Estado = false;
                     }
                 };
