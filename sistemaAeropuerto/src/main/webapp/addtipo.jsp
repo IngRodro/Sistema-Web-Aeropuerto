@@ -9,7 +9,6 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloNumeros(evt){
 	if(window.event){
@@ -110,7 +109,7 @@ function SoloLetras(e){
 					  }
 					})
 			}else{
-				if(tipo == null || tipo == ""){
+				if(tipo == null || tipo == "" || descuento == null || descuento ==""){
 					
 					Swal.fire({
 						  icon: 'error',
@@ -171,19 +170,17 @@ function SoloLetras(e){
 </script>
 	<div class="userbox">
 	<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
-		<form action="ControllerTipos" method="get">
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 			<h1>Registro Tipos de Vuelo</h1>
-			<input type="hidden" name="idTipo" value=<%=IdTipo%>>
+			<input type="hidden" name="idTipo" value=<%=IdTipo%> id="IdTipo">
 			<label>Tipo de Vuelo</label> 
-			<input type="text" name="tipo"value="<%=Tipo%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
+			<input type="text" name="tipo"value="<%=Tipo%>" id="Tipo" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				<label>Descuento</label> 
-			<input type="number" name="descuento" min="0" max="100"  step="any"  value="<%=Descuento%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="descuento" id="Descuento" min="0" max="100"  step="any"  value="<%=Descuento%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
-			<button name="Guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" value="btna" class="Confirmar" id="guardar"><b>Guardar/Actualizar</b></button>
 				</div>
-		</form>
 	</div>
 </body>
 </html>

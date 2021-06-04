@@ -16,7 +16,7 @@ public class ClsTiposVuelo {
     Connection conexion = cn.RetornarConexion();
 
     public ArrayList<Tipos_vuelo> MostrarTipos() {
-        ArrayList<Tipos_vuelo> companies = new ArrayList<>();
+        ArrayList<Tipos_vuelo> tipos = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
             ResultSet rs = Statement.executeQuery();
@@ -25,18 +25,22 @@ public class ClsTiposVuelo {
                 tipo.setIdTipos_vuelo(rs.getInt("idTipos_vuelo"));
                 tipo.setTipo(rs.getString("Tipo"));
                 tipo.setPorcentajeDesc(rs.getDouble("PorcentajeDesc"));
-                companies.add(tipo);
+                String estado = rs.getString("estado");
+                if(estado.equals("Activo")) {
+                tipos.add(tipo);
+                }
             }
             conexion.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-        return companies;
+        return tipos;
     }
 
     public void AgregarTipo(Tipos_vuelo Tipo) {
         try {
         	if (ComprobarEstadoTip(Tipo) == true) {
+        		System.out.println(ComprobarEstadoTip(Tipo));
             if (ComprobarExistenciaTip(Tipo) == true) {
                 System.out.println("El Tipo de vuelo ya se encuentra registrado");
             } else {
@@ -44,13 +48,11 @@ public class ClsTiposVuelo {
                 Statement.setString("PTipo", Tipo.getTipo());
                 Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
                 Statement.execute();
-                System.out.println("Guardado");
             }
         }else{
             CallableStatement Statement = conexion.prepareCall("call SP_A_Tipo(?)");
             Statement.setString("PTipo", Tipo.getTipo());
             Statement.execute();
-            System.out.println("Guardado");
         }
             conexion.close();
         } catch (Exception e) {
@@ -108,6 +110,7 @@ public class ClsTiposVuelo {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
+            	System.out.println(rs.getString("Tipo"));
                 if (Tipo.getTipo().equals(rs.getString("Tipo")) && rs.getString("estado").equals("Activo")) {
                     Existencia = true;
                     break;
