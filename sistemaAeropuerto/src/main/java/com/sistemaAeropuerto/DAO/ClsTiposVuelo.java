@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
+import com.sistemaAeropuerto.Entidades.Company;
 import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
 
 public class ClsTiposVuelo {
@@ -35,11 +36,22 @@ public class ClsTiposVuelo {
 
     public void AgregarTipo(Tipos_vuelo Tipo) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Tipos(?,?)");
+        	if (ComprobarEstadoTip(Tipo) == true) {
+            if (ComprobarExistenciaTip(Tipo) == true) {
+                System.out.println("El Tipo de vuelo ya se encuentra registrado");
+            } else {
+            	CallableStatement Statement = conexion.prepareCall("call SP_I_Tipos(?,?)");
+                Statement.setString("PTipo", Tipo.getTipo());
+                Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
+                Statement.execute();
+                System.out.println("Guardado");
+            }
+        }else{
+            CallableStatement Statement = conexion.prepareCall("call SP_A_Tipo(?)");
             Statement.setString("PTipo", Tipo.getTipo());
-            Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
             Statement.execute();
             System.out.println("Guardado");
+        }
             conexion.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -87,5 +99,44 @@ public class ClsTiposVuelo {
         }
         return tipo;
     }
+    public boolean ComprobarExistenciaTip(Tipos_vuelo Tipo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
+        boolean Existencia = false;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (Tipo.getTipo().equals(rs.getString("Tipo")) && rs.getString("estado").equals("Activo")) {
+                    Existencia = true;
+                    break;
+                };
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Existencia;
+    }
 
+    public boolean ComprobarEstadoTip(Tipos_vuelo Tipo) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
+        boolean Estado = true;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (Tipo.getTipo().equals(rs.getString("Tipo"))) {
+                    if (rs.getString("estado").equals("Inactivo")) {
+                        Estado = false;
+                    }
+                };
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Estado;
+        }
 }

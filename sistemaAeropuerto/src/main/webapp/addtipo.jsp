@@ -8,6 +8,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/sweetAlert.js"></script>
 <script>
 function SoloNumeros(evt){
 	if(window.event){
@@ -70,6 +72,93 @@ function SoloLetras(e){
 		$("#Cerrar").click(function (){
 				location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
 		
+		});
+	});
+	
+	
+	$(document).ready(function () {
+		$("#guardar").click(function (){
+			var descuento = $("#Descuento").val();
+			var tipo = $("#Tipo").val();
+			var idTipo = $("#IdTipo").val();
+			var Guardar = $("#guardar").val();
+			var Descuento ="<%=Descuento%>"
+			var Tipo = "<%=Tipo%>";
+			var IdTipo = "<%=IdTipo%>";
+			
+			if(descuento == Descuento  && tipo == Tipo && idTipo == IdTipo){
+				Swal.fire({
+					  title: 'No se resgistraron cambios',
+					  text: "Desea seguir editando?",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Si'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    
+					  }else{
+						  location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+					  }
+					})
+			}else{
+				if(tipo == null || tipo == ""){
+					
+					Swal.fire({
+						  icon: 'error',
+						  title: 'Oops...',
+						  text: 'Complete todos los campos para continuar...',
+						  confirmButtonText: 'Aceptar',
+						  confirmButtonColor: '#ff2600',
+						  showCloseButton: true
+						})
+					
+				}else{
+					$.get('ControllerTipos', {
+						//Enviando variable al controlador.
+						descuento, tipo, idTipo, Guardar
+					}, function (response) {
+						
+						let datos = JSON.parse(response);
+						console.log(datos);
+						
+						if(datos == "Actualizado"){
+							Swal.fire({
+								  icon: 'success',
+								  title: 'Tipo de Vuelo Actualizado...',
+								  showConfirmButton: false,
+								  timer: 1500
+								}).then(() => {
+									location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+								})
+							//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+						}else if(datos == "Agregado"){
+							Swal.fire({
+								  icon: 'success',
+								  title: 'Tipo de Vuelo Registrado...',
+								  showConfirmButton: false,
+								  timer: 1500
+								}).then(() => {
+									location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+								})
+							//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+						}else if(datos == "Existente"){
+							Swal.fire({
+								  icon: 'error',
+								  title: 'Oops...',
+								  text: 'El tipo de vuelo ya esta registrado...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								}).then(() => {
+									var tipos_vuelo = document.getElementById('Tipo');
+									tipos_vuelo.value = "";
+							})
+						}
+					});
+				}
+			}
 		});
 	});
 </script>

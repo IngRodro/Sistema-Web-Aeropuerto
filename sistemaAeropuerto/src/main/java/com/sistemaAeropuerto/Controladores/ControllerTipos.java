@@ -17,28 +17,29 @@ import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
  */
 public class ControllerTipos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ControllerTipos() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ControllerTipos() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
 		String IdTipo = request.getParameter("idTipo");
 		String Tipo = request.getParameter("tipo");
 		String Descuento = request.getParameter("descuento");
-	
 
 		ClsTiposVuelo clstipo = new ClsTiposVuelo();
 		Tipos_vuelo tipo = new Tipos_vuelo();
@@ -49,27 +50,43 @@ public class ControllerTipos extends HttpServlet {
 				clstipo.BorrarTipo(tipo);
 				response.sendRedirect("tipos.jsp");
 			}
-		}else if(agregando.equals("btna")) {
+		} else if (agregando.equals("btna")) {
 			tipo.setTipo(Tipo);
 			tipo.setPorcentajeDesc(Double.parseDouble(Descuento));
-			if(IdTipo==null||IdTipo=="") {
-				clstipo.AgregarTipo(tipo);
-				response.sendRedirect("tipos.jsp");
-			}else {
-				tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
-				clstipo.ActualizarTipo(tipo);
-				response.sendRedirect("tipos.jsp");
+
+			if (clstipo.ComprobarExistenciaTip(tipo) == true) {
+				Gson json = new Gson();
+				String Mensaje = "Existente";
+				response.getWriter().append(json.toJson(Mensaje));
+			} else {
+				if (IdTipo == null || IdTipo == "") {
+
+					clstipo.AgregarTipo(tipo);
+					Gson json = new Gson();
+
+					String Mensaje = "Agregado";
+					response.getWriter().append(json.toJson(Mensaje));
+				} else {
+					tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
+					clstipo.ActualizarTipo(tipo);
+					Gson json = new Gson();
+
+					String Mensaje = "Actualizado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}
 			}
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
+		// doGet(request, response);
+
 		Gson json = new Gson();
 
 		ClsTiposVuelo clsTipos = new ClsTiposVuelo();
