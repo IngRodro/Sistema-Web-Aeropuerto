@@ -6,7 +6,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="js/sweetAlert.js"></script>
 <%
 HttpSession sesion = (HttpSession) request.getSession();
 String adminSession = String.valueOf(sesion.getAttribute("usuario"));
@@ -42,7 +43,14 @@ function SoloLetras(e){
 		}
 	}
 	if(letras.indexOf(tecla) == -1 && !tecla_especial){
-		alert("No se permiten ingresar Numeros o Caracteres Especiales...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar numeros...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }

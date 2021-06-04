@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/sweetAlert.js"></script>
 <script>
 function SoloNumeros(evt){
 	if(window.event){
@@ -19,7 +21,14 @@ function SoloNumeros(evt){
 	if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13){
 		return true;
 	}else{
-		alert("No se permiten ingresar Letras...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar letras...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
@@ -34,7 +43,14 @@ function SoloNumerosGuion(evt){
 	if((keynum > 47 && keynum < 58) || keynum == 45 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
-		alert("No se permiten ingresar Letras...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar letras...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
@@ -53,7 +69,14 @@ function SoloLetras(e){
 		}
 	}
 	if(letras.indexOf(tecla) == -1 && !tecla_especial){
-		alert("No se permiten ingresar Numeros o Caracteres Especiales...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar numeros...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }

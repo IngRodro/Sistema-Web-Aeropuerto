@@ -40,7 +40,14 @@ function SoloLetras(e){
 		}
 	}
 	if(letras.indexOf(tecla) == -1 && !tecla_especial){
-		alert("No se permiten ingresar Numeros o Caracteres Especiales...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar numeros...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
