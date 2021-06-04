@@ -26,7 +26,7 @@ function SoloNumeros(evt){
 function SoloLetras(e){
 	key = e.keyCode || e.which;
 	tecla = String.fromCharCode(key).toString();
-	letras = "ABCDEFGHYJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
+	letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
 	
 	especiales = [8,13];
 	tecla_especial = false
