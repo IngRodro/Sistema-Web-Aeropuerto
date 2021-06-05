@@ -106,6 +106,7 @@ public class ClsVuelo {
 		}
 		return vuelo;
 	}
+	
 
 	public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti, Promociones promo) {
 		ConexionBd cn = new ConexionBd();
@@ -193,11 +194,15 @@ public class ClsVuelo {
 	public void VueloFinalizado(Vuelo vuelo) {
 		ConexionBd cn = new ConexionBd();
 		Connection conexion = cn.RetornarConexion();
+		ClsVuelo clsvuelo = new ClsVuelo();
+		Vuelo vueloo = new Vuelo();
+		vueloo = clsvuelo.SeleccionarVuelo(vuelo.getIdVuelo());
+		ClsAvion clsAvion = new ClsAvion();
 		try {
 			CallableStatement Statement = conexion.prepareCall("call SP_U_VueloFinalizado(?)");
 			Statement.setInt("PidVuelo", vuelo.getIdVuelo());
 			Statement.execute();
-			System.out.println("Vuelo Marcado como Finalizado");
+			clsAvion.EstadoAvion(vueloo.getIdAvion(), "Activo");
 			conexion.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -227,6 +232,31 @@ public class ClsVuelo {
 		try {
 			CallableStatement Statement = conexion.prepareCall("call SP_S_VueloItinerario(?)");
 			Statement.setInt("PidItinerario", idItinerario);
+			ResultSet rs = Statement.executeQuery();
+			while (rs.next()) {
+				vuelo.setIdVuelo(rs.getInt("idVuelo"));
+				vuelo.setIdCompany(rs.getInt("idCompany"));
+				vuelo.setIdIterinario(rs.getInt("idItinerario"));
+				vuelo.setIdTiposVuelo(rs.getInt("idTiposvuelo"));
+				vuelo.setIdAvion(rs.getInt("idAvion"));
+				vuelo.setEstado(rs.getInt("estado"));
+			}
+
+			conexion.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return vuelo;
+	}
+	
+	public Vuelo SeleccionarVuelodeAvion(int idAvion) {
+		ConexionBd cn = new ConexionBd();
+		Connection conexion = cn.RetornarConexion();
+
+		Vuelo vuelo = new Vuelo();
+		try {
+			CallableStatement Statement = conexion.prepareCall("call SP_S_VueloAvion(?)");
+			Statement.setInt("PidAvion", idAvion);
 			ResultSet rs = Statement.executeQuery();
 			while (rs.next()) {
 				vuelo.setIdVuelo(rs.getInt("idVuelo"));

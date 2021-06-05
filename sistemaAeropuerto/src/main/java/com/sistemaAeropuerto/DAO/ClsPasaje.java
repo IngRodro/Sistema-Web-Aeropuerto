@@ -39,6 +39,32 @@ public class ClsPasaje {
 		}
 		return pasajes;
 	}
+	
+	public ArrayList<Pasaje> ListaPasajeClase(int idVuelo, int idClase) {
+		ConexionBd cn = new ConexionBd();
+		Connection conexion = cn.RetornarConexion();
+		ArrayList<Pasaje> pasajes = new ArrayList<>();
+		try {
+			CallableStatement statement = conexion.prepareCall("call SP_S_PasajeClase(?,?)");
+			statement.setInt("PidVuelo", idVuelo);
+			statement.setInt("PidClase", idClase);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				Pasaje psj = new Pasaje();
+				psj.setIdPasaje(rs.getInt("idPasaje"));
+				psj.setIdPasajero(rs.getInt("idPasajero"));
+				psj.setIdVuelo(rs.getInt("idVuelo"));
+				psj.setIdClase(rs.getInt("idClase"));
+				psj.setNAsiento(rs.getInt("NAsiento"));
+				psj.setPrecionTotal(rs.getFloat("precioTotal"));
+				psj.setNEscala(rs.getInt("NEscala"));
+				pasajes.add(psj);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return pasajes;
+	}
 
 	public ArrayList<Integer> AsientosOcupados(int idVuelo, int idClase) {
 		ConexionBd cn = new ConexionBd();

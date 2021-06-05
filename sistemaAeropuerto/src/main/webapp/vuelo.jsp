@@ -49,6 +49,7 @@
 									<td>
 									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`
@@ -68,6 +69,7 @@
 									<td>
 									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`
@@ -87,6 +89,7 @@
 									<td>
 									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
 									<a class="btn btn-success" href="escala.jsp?IdVuelo=${item.Vuelo}&Ver=btne">Ver Escalas</a>
+									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`

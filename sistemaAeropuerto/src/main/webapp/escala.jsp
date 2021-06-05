@@ -41,17 +41,29 @@ String IdVuelo = request.getParameter("IdVuelo");
 
 						var tabla = document.getElementById('tablaAviones');
 						for (let item of datos) {
-							tabla.innerHTML += `
-					<tr>
-						<td>${item.idEscala}</td>
-						<td>${item.numeroEscala}</td>
-						<td>$${item.Precio}</td>
-						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerEscala?IdEscala=${item.idEscala}&numeroEscala=${item.numeroEscala}&idVuelo=<%=IdVuelo%>&Eliminar=btne">Eliminar</a>
-						<a href="addescala.jsp?Id=${item.idEscala}&Precio=${item.Precio}&nombre=${item.nombre}&IdAeropuerto=${item.idAeropuerto}&numeroEscala=${item.numeroEscala}&IdVuelo=<%=IdVuelo %>" class="btn btn-warning"> Actualizar</a>
-						</td>
-					</tr>
-					`
+							if(item.estado == 0){
+								tabla.innerHTML += `
+									<tr>
+										<td>${item.idEscala}</td>
+										<td>${item.numeroEscala}</td>
+										<td>$${item.Precio}</td>
+										<td>${item.nombre}</td>
+										<td>Opciones no disponibles</td>
+									</tr>
+									`
+							}else{
+								tabla.innerHTML += `
+									<tr>
+										<td>${item.idEscala}</td>
+										<td>${item.numeroEscala}</td>
+										<td>$${item.Precio}</td>
+										<td>${item.nombre}</td>
+										<td><a class="btn btn-danger" href="ControllerEscala?IdEscala=${item.idEscala}&numeroEscala=${item.numeroEscala}&idVuelo=<%=IdVuelo%>&Eliminar=btne">Eliminar</a>
+										<a href="addescala.jsp?Id=${item.idEscala}&Precio=${item.Precio}&nombre=${item.nombre}&IdAeropuerto=${item.idAeropuerto}&numeroEscala=${item.numeroEscala}&IdVuelo=<%=IdVuelo %>" class="btn btn-warning"> Actualizar</a>
+										</td>
+									</tr>
+									`
+							}
 						}
 					});
 				});

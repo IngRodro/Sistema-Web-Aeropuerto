@@ -41,17 +41,30 @@ String IdAvion = request.getParameter("IdAvion");
 
 						var tabla = document.getElementById('tablaAviones');
 						for (let item of datos) {
-							tabla.innerHTML += `
-					<tr>
-						<td>${item.idClase}</td>
-						<td>${item.nombreClase}</td>
-						<td>${item.nAsientos}</td>
-						<td>${item.porcentajeEPrecio}%</td>
-						<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&Eliminar=btne">Eliminar</a>
-						<a href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>" class="btn btn-warning"> Actualizar</a>
-						</td>
-					</tr>
-					`
+							if(item.estado == 0){
+								tabla.innerHTML += `
+									<tr>
+										<td>${item.idClase}</td>
+										<td>${item.nombreClase}</td>
+										<td>${item.nAsientos}</td>
+										<td>${item.porcentajeEPrecio}%</td>
+										<td>Opciones no disponibles</td>
+									</tr>
+									`
+							}else{
+								tabla.innerHTML += `
+									<tr>
+										<td>${item.idClase}</td>
+										<td>${item.nombreClase}</td>
+										<td>${item.nAsientos}</td>
+										<td>${item.porcentajeEPrecio}%</td>
+										<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&Eliminar=btne">Eliminar</a>
+										<a href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>" class="btn btn-warning"> Actualizar</a>
+										</td>
+									</tr>
+									`
+							}
+							
 						}
 					});
 				});

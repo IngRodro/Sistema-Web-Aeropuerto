@@ -20,7 +20,14 @@ function SoloNumeros(evt){
 	if((keynum > 47 && keynum < 58) || keynum == 46 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
-		alert("No se permiten ingresar Letras...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Solo se permiten numeros...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
@@ -70,7 +77,7 @@ function SoloLetras(e){
 	if (IdTipo == null) {
 		IdTipo = "";
 		Tipo = "";
-		Descuento = "";
+		Descuento = "0";
 	}
 	%>
 <script type="text/javascript">
@@ -80,6 +87,27 @@ function SoloLetras(e){
 		
 		});
 	});
+	
+	$(document).ready(function () {
+		$("#Descuento").blur(function (){
+			//Recogiendo el value del combo
+			var Minutos = $("#Descuento").val();
+			if(Minutos > 60 || Minutos < 0 ){
+				Swal.fire({
+					icon: 'error',
+					  title: 'Oops...',
+					  text: 'El Descuento no puede ser menor a 0% o mayor a 99%...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
+					}).then(() => {
+						var descuento = document.getElementById('Descuento');
+						descuento.value = "0";
+				})
+		}
+			
+});
+});	
 	
 	
 	$(document).ready(function () {
@@ -92,32 +120,44 @@ function SoloLetras(e){
 			var Tipo = "<%=Tipo%>";
 			var IdTipo = "<%=IdTipo%>";
 			
-			if(descuento == Descuento  && tipo == Tipo && idTipo == IdTipo){
+			var verificar ="";
+
+			verificar = tipo.split(" ").join("");
+			
+			if(tipo == null || verificar.length == 0 || descuento == null || descuento ==""){
 				Swal.fire({
-					  title: 'No se resgistraron cambios',
-					  text: "Desea seguir editando?",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Si'
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Complete todos los campos para continuar...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
 					}).then((result) => {
-					  if (result.isConfirmed) {
-					    
-					  }else{
-						  location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
-					  }
-					})
+						  if (verificar.length == 0) {
+							  var tipo = document.getElementById('Tipo');
+							  tipo.value = "";
+						  }
+						  if(descuento == "" || descuento == null){
+							  var descuento = document.getElementById('Descuento');
+							  descuento.value = "0";
+						  }
+						})
 			}else{
-				if(tipo == null || tipo == "" || descuento == null || descuento ==""){
-					
+				if(descuento == Descuento  && tipo == Tipo && idTipo == IdTipo){
 					Swal.fire({
-						  icon: 'error',
-						  title: 'Oops...',
-						  text: 'Complete todos los campos para continuar...',
-						  confirmButtonText: 'Aceptar',
-						  confirmButtonColor: '#ff2600',
-						  showCloseButton: true
+						  title: 'No se resgistraron cambios',
+						  text: "Desea seguir editando?",
+						  icon: 'warning',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  confirmButtonText: 'Si'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    
+						  }else{
+							  location.href = 'http://localhost:8080/sistemaAeropuerto/tipos.jsp';
+						  }
 						})
 					
 				}else{

@@ -6,6 +6,7 @@ public class Escala extends Aeropuerto{
     private int numeroEscala;
     private int idItinerario;
     private double Precio;
+    private int estado;
     
 	public int getIdEscala() {
 		return idEscala;
@@ -31,5 +32,12 @@ public class Escala extends Aeropuerto{
 	public void setPrecio(double precio) {
 		Precio = precio;
 	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
 	
 }

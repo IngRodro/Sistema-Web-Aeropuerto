@@ -83,33 +83,39 @@ function SoloLetras(e){
 			var Pais = "<%=Pais%>";
 			var IdAeropuerto = "<%=IdAeropuerto%>";
 			
-			if(nombre == Nombre && Ciudad == ciudad && Pais == pais && IdAeropuerto == idAeropuerto){
+			var verificarnombre ="";
+			verificarnombre = nombre.split(" ").join("");
+			var verificarpais ="";
+			verificarnombre = nombre.split(" ").join("");
+			
+			if(nombre == null || verificarnombre.length == 0 || ){
 				Swal.fire({
-					  title: 'No se resgistraron cambios',
-					  text: "Desea seguir editando?",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Si'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    
-					  }else{
-						  location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
-					  }
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Complete todos los campos para continuar...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
 					})
 			}else{
-				if(nombre == null || nombre == " "){
+				if(nombre == Nombre && Ciudad == ciudad && Pais == pais && IdAeropuerto == idAeropuerto){
 					
 					Swal.fire({
-						  icon: 'error',
-						  title: 'Oops...',
-						  text: 'Complete todos los campos para continuar...',
-						  confirmButtonText: 'Aceptar',
-						  confirmButtonColor: '#ff2600',
-						  showCloseButton: true
+						  title: 'No se resgistraron cambios',
+						  text: "Desea seguir editando?",
+						  icon: 'warning',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  confirmButtonText: 'Si'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    
+						  }else{
+							  location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
+						  }
 						})
+					
 					
 				}else{
 					$.get('ControllerAeropuertos', {

@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Escala;
+import com.sistemaAeropuerto.Entidades.Pasaje;
+import com.sistemaAeropuerto.Entidades.Vuelo;
 
 public class ClsEscala {
 
@@ -17,6 +19,8 @@ public class ClsEscala {
     	
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
+        ClsVuelo clsV = new ClsVuelo();
+        ClsPasaje clsP = new ClsPasaje();
     	
         ArrayList<Escala> escalas = new ArrayList<>();
         try {
@@ -31,6 +35,14 @@ public class ClsEscala {
                 esc.setPrecio(rs.getDouble("Precio"));
                 esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
                 esc.setIdItinerario(rs.getInt("idItinerario"));
+                Vuelo vuelo = new Vuelo();
+                vuelo = clsV.SeleccionarVuelodeItinerario(idIti);
+                ArrayList<Pasaje> listaPasaje = clsP.ListaPasaje(vuelo.getIdVuelo(), esc.getNumeroEscala());
+                if(listaPasaje.size() > 0) {
+                	esc.setEstado(0);
+                }else {
+                	esc.setEstado(1);
+                }
                 escalas.add(esc);
             }
             conexion.close();

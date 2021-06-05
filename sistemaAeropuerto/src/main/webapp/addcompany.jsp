@@ -9,7 +9,6 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;
@@ -75,33 +74,45 @@ $(document).ready(function () {
 		var Nombre = "<%=Nombre%>";
 		var IdCompany = "<%=IdCompany%>";
 		
-		if(nombre == Nombre && idCompany == IdCompany){
+		var verificar ="";
+
+		verificar = nombre.split(" ").join("");
+		
+		if(nombre == null || verificar.length == 0){
+			
 			Swal.fire({
-				  title: 'No se resgistraron cambios',
-				  text: "Desea seguir editando?",
-				  icon: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  cancelButtonColor: '#d33',
-				  confirmButtonText: 'Si'
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Complete todos los campos para continuar...',
+				  confirmButtonText: 'Aceptar',
+				  confirmButtonColor: '#ff2600',
+				  showCloseButton: true
 				}).then((result) => {
-				  if (result.isConfirmed) {
-				    
-				  }else{
-					  location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-				  }
-				})
+					  if (verificar.length == 0) {
+						  var nombre = document.getElementById('Nombre');
+						  nombre.value = "";
+					  }
+					})
+			
 		}else{
-			if(nombre == null || nombre == ""){
+			if(nombre == Nombre && idCompany == IdCompany){
 				
 				Swal.fire({
-					  icon: 'error',
-					  title: 'Oops...',
-					  text: 'Complete todos los campos para continuar...',
-					  confirmButtonText: 'Aceptar',
-					  confirmButtonColor: '#ff2600',
-					  showCloseButton: true
+					  title: 'No se resgistraron cambios',
+					  text: "Desea seguir editando?",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Si'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    
+					  }else{
+						  location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+					  }
 					})
+				
 				
 			}else{
 				$.get('ControllerCompany', {
@@ -117,7 +128,7 @@ $(document).ready(function () {
 							  icon: 'success',
 							  title: 'Compañia Actualizada...',
 							  showConfirmButton: false,
-							  timer: 1500
+							  timer: 15000
 							}).then(() => {
 								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 							})
@@ -127,7 +138,7 @@ $(document).ready(function () {
 							  icon: 'success',
 							  title: 'Compañia Registrada...',
 							  showConfirmButton: false,
-							  timer: 1500
+							  timer: 15000
 							}).then(() => {
 								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 							})

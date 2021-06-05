@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Avion;
 import com.sistemaAeropuerto.Entidades.Clases;
+import com.sistemaAeropuerto.Entidades.Pasaje;
+import com.sistemaAeropuerto.Entidades.Vuelo;
 
 public class ClsClase {
 
@@ -17,6 +19,9 @@ public class ClsClase {
     public ArrayList<Clases> MostrarClase(int idAvion) {
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
+
+        ClsVuelo clsV = new ClsVuelo();
+        ClsPasaje clsP = new ClsPasaje();
         ArrayList<Clases> clases = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
@@ -29,6 +34,15 @@ public class ClsClase {
                 clase.setNombreClase(rs.getString("nombreClase"));
                 clase.setPorcentajeEPrecio(rs.getDouble("porcentajeEPrecio"));
                 clase.setIdAvion(rs.getInt("idAvion"));
+                Vuelo vuelo = new Vuelo();
+                vuelo = clsV.SeleccionarVuelodeAvion(idAvion);
+                ArrayList<Pasaje> listaPasaje = clsP.ListaPasajeClase(vuelo.getIdVuelo(), clase.getIdClase());
+                if(listaPasaje.size() > 0) {
+                	clase.setEstado(0);
+                }else {
+                	clase.setEstado(1);
+                }
+                
                 clases.add(clase);
             }
             conexion.close();

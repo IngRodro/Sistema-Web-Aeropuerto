@@ -7,6 +7,7 @@ public class Clases {
     private int nAsientos;
     private int idAvion;
     private Double porcentajeEPrecio;
+    private int estado;
 	public int getIdClase() {
 		return idClase;
 	}
@@ -37,5 +38,12 @@ public class Clases {
 	public void setPorcentajeEPrecio(Double porcentajeEPrecio) {
 		this.porcentajeEPrecio = porcentajeEPrecio;
 	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
 	
 }

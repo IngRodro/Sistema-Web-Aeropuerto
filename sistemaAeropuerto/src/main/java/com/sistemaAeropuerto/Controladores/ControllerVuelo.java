@@ -61,19 +61,8 @@ public class ControllerVuelo extends HttpServlet {
 		String Tipos = request.getParameter("seletTipos");
 		String Avion = request.getParameter("selectAvion");
 		String Descuento = request.getParameter("descuento");
+		String Finalizando = request.getParameter("Finalizar");
 		
-		if(Descuento.equals("0")) {
-			FechaI = null;
-			FechaF= null;
-		}else {
-			try {
-				FechaI = formatodeFecha.parse(FechaIString);
-				FechaF = formatodeFecha.parse(FechaFString);
-			} catch (Exception e) {
-				FechaI = null;
-				FechaF= null;
-			}
-		}
 		
 		ClsVuelo clsVuelo = new ClsVuelo();
 		Vuelo vuelo = new Vuelo();
@@ -81,6 +70,25 @@ public class ControllerVuelo extends HttpServlet {
 		Promociones promo = new Promociones();
 		ClsPromocion clsPromo = new ClsPromocion();
 		
+
+		if(Finalizando.equals("btnf")){
+			vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
+			clsVuelo.VueloFinalizado(vuelo);
+			response.sendRedirect("vuelo.jsp");
+		}else {
+			if(Descuento.equals("0")) {
+				FechaI = null;
+				FechaF= null;
+			}else {
+				try {
+					FechaI = formatodeFecha.parse(FechaIString);
+					FechaF = formatodeFecha.parse(FechaFString);
+				} catch (Exception e) {
+					FechaI = null;
+					FechaF= null;
+				}
+			}
+			
 		itinerario.setFecha(Fecha);
 		itinerario.setHora(Hora);
 		itinerario.setMinutos(Minutos);
@@ -98,25 +106,25 @@ public class ControllerVuelo extends HttpServlet {
 		String agregando = request.getParameter("Guardar");
 		
 		if(agregando.equals("btna")) {
-			if(IdVuelo==null||IdVuelo=="") {
-				clsVuelo.AgregarVuelo(vuelo, itinerario);
-				clsPromo.AgregarPromo(promo);
-				
-				Gson json = new Gson();
+				if(IdVuelo==null||IdVuelo=="") {
+					clsVuelo.AgregarVuelo(vuelo, itinerario);
+					clsPromo.AgregarPromo(promo);
+					
+					Gson json = new Gson();
 
-				String Mensaje = "Agregado";
-				response.getWriter().append(json.toJson(Mensaje));
-				
-			}else {
-				vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
-				clsVuelo.ActualizarVuelo(vuelo, itinerario, promo);
-				Gson json = new Gson();
+					String Mensaje = "Agregado";
+					response.getWriter().append(json.toJson(Mensaje));
+					
+				}else {
+					vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
+					clsVuelo.ActualizarVuelo(vuelo, itinerario, promo);
+					Gson json = new Gson();
 
-				String Mensaje = "Actualizado";
-				response.getWriter().append(json.toJson(Mensaje));
+					String Mensaje = "Actualizado";
+					response.getWriter().append(json.toJson(Mensaje));
+				}
 			}
 		}
-		
 	}
 
 	/**
