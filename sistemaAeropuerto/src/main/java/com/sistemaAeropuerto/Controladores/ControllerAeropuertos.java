@@ -85,11 +85,23 @@ public class ControllerAeropuertos extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		String idVuelo = request.getParameter("idVuelo");
+		
+		if(idVuelo != null) {
+			Gson json = new Gson();
+
+			ClsAeropuerto clsAerpuerto = new ClsAeropuerto();
+			response.setCharacterEncoding("UTF8");
+			response.getWriter().append(json.toJson(clsAerpuerto.MostrAeropuertoEscala(Integer.parseInt(idVuelo))));
+		}
+		else {
+		
 		Gson json = new Gson();
 
 		ClsAeropuerto clsAerpuerto = new ClsAeropuerto();
 		response.setCharacterEncoding("UTF8");
 		response.getWriter().append(json.toJson(clsAerpuerto.MostrAeropuerto()));
+		}
 	}
 
 }

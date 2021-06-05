@@ -51,6 +51,43 @@ public class ClsEscala {
         }
         return escalas;
     }
+    
+public ArrayList<Escala> MostrarEscalaAeropuertos(int idIti, int idAeropuerto) {
+    	
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        ClsVuelo clsV = new ClsVuelo();
+        ClsPasaje clsP = new ClsPasaje();
+    	
+        ArrayList<Escala> escalas = new ArrayList<>();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_AeropuertosEscala(?,?)");
+            Statement.setInt("PidItinerario", idIti);
+            Statement.setInt("PidAeropuerto", idAeropuerto);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                Escala esc = new Escala();
+                esc.setIdEscala(rs.getInt("idEscala"));
+                esc.setNumeroEscala(rs.getInt("numeroEscala"));
+                esc.setPrecio(rs.getDouble("Precio"));
+                esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
+                esc.setIdItinerario(rs.getInt("idItinerario"));
+                Vuelo vuelo = new Vuelo();
+                vuelo = clsV.SeleccionarVuelodeItinerario(idIti);
+                ArrayList<Pasaje> listaPasaje = clsP.ListaPasaje(vuelo.getIdVuelo(), esc.getNumeroEscala());
+                if(listaPasaje.size() > 0) {
+                	esc.setEstado(0);
+                }else {
+                	esc.setEstado(1);
+                }
+                escalas.add(esc);
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return escalas;
+    }
 
     public void AgregarEscala(Escala Esc, int idIti) {
     	

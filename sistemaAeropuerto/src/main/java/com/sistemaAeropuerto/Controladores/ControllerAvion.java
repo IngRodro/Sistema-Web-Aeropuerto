@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.sistemaAeropuerto.DAO.ClsAvion;
+import com.sistemaAeropuerto.DAO.ClsClase;
 import com.sistemaAeropuerto.Entidades.Avion;
 
 /**
@@ -33,32 +34,48 @@ public class ControllerAvion extends HttpServlet {
 		
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
-		String IdAeropuerto = request.getParameter("idAvion");
+		String IdAvion = request.getParameter("idAvion");
 		String Modelo = request.getParameter("modelo");
 		String Capacidad = request.getParameter("capacidad");
+		String IdAvionVerif = request.getParameter("IdAvionVerificar");
 	
 
 		ClsAvion clsavion = new ClsAvion();
 		Avion aeropuerto = new Avion();
+		
+		if(IdAvionVerif != null) {
+			ClsClase clsClase = new ClsClase();
+			int MinAsientos = clsClase.MaximoAsientosDisponibles(Integer.parseInt(IdAvionVerif));
+			Gson json = new Gson();
 
+			response.getWriter().append(json.toJson(MinAsientos));
+		}else {
+		
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
 				aeropuerto.setIdAvion(Integer.parseInt(request.getParameter("IdAvion")));
 				clsavion.BorrarAvion(aeropuerto);
-				response.sendRedirect("aeropuerto.jsp");
+				response.sendRedirect("avion.jsp");
 			}
 		}else if(agregando.equals("btna")) {
 			aeropuerto.setModeloAvion(Modelo);
 			aeropuerto.setCapacidad(Integer.parseInt(Capacidad));
 			
-			if(IdAeropuerto==null||IdAeropuerto=="") {
+			if(IdAvion==null||IdAvion=="") {
 				
 				clsavion.AgregarAvion(aeropuerto);
-				response.sendRedirect("aeropuerto.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}else {
-				aeropuerto.setIdAvion(Integer.parseInt(IdAeropuerto));
+				aeropuerto.setIdAvion(Integer.parseInt(IdAvion));
 				clsavion.ActualizarAvion(aeropuerto);
-				response.sendRedirect("aeropuerto.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
+				}
 			}
 		}
 	}

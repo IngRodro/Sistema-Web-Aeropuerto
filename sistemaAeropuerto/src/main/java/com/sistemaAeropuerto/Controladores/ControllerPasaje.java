@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import com.sistemaAeropuerto.DAO.ClsPasaje;
 import com.sistemaAeropuerto.DAO.ClsPasajero;
 import com.sistemaAeropuerto.Entidades.Pasaje;
-import com.sistemaAeropuerto.Entidades.Pasajero;
 
 /**
  * Servlet implementation class ControllerPasaje

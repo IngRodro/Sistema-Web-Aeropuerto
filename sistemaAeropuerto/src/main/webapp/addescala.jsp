@@ -2,23 +2,18 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="CSS/estilocompany.css">
+<link rel="stylesheet" href="CSS/estiloescala.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot"
-	; integrity="
-	sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloNumeros(evt){
 	if(window.event){
@@ -92,13 +87,15 @@ function SoloLetras(e){
 	if (IdEscala == null) {
 		IdEscala = "";
 		Precio = "0";
-		Nombre = "";
+		Nombre = "Seleccione una opcion";
 	}
 	%>
 	
 <script>	
 $(document).ready(function () {
+		var idVuelo = $("#IdVuelo").val();
 	$.post('ControllerAeropuertos', {
+		idVuelo
 	}, function (response) {
 		let datos = JSON.parse(response);
 
@@ -112,27 +109,103 @@ $(document).ready(function () {
 		}
 	});
 });
+
+$(document).ready(function () {
+	$("#guardar").click(function (){
+		var precio = $("#Precio").val();
+		var idEscala = $("#IdEscala").val();
+		var idVuelo = $("#IdVuelo").val();
+		var numeroEscala = $("#NumeroEscala").val();
+		var selectAeropuerto = $("#cmbAeropuerto").val();
+		var Guardar = $("#guardar").val();
+		var Precio = "<%=Precio%>";
+		
+		
+		if(precio == null || precio <= 0 || selectAeropuerto == "null"){
+			
+			Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Complete todos los campos para continuar...',
+				  confirmButtonText: 'Aceptar',
+				  confirmButtonColor: '#ff2600',
+				  showCloseButton: true
+				}).then((result) => {
+				})
+			
+		}else{
+			if(selectAeropuerto == <%=IdAeropuerto%> && precio == Precio){
+				
+				Swal.fire({
+					  title: 'No se resgistraron cambios',
+					  text: "Desea seguir editando?",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Si'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    
+					  }else{
+						  location.href = 'http://localhost:8080/sistemaAeropuerto/escala.jsp?IdVuelo=<%=IdVuelo%>';
+					  }
+					})
+				
+				
+			}else{
+				$.get('ControllerEscala', {
+					//Enviando variable al controlador.
+					precio, idVuelo, idEscala, numeroEscala, selectAeropuerto,Guardar
+				}, function (response) {
+					
+					let datos = JSON.parse(response);
+					console.log(datos);
+					
+					if(datos == "Actualizado"){
+						Swal.fire({
+							  icon: 'success',
+							  title: 'Escala Actualizada...',
+							  showConfirmButton: false,
+							  timer: 2000
+							}).then(() => {
+								location.href = 'http://localhost:8080/sistemaAeropuerto/escala.jsp?IdVuelo=<%=IdVuelo%>';
+							})
+					}else if(datos == "Agregado"){
+						Swal.fire({
+							  icon: 'success',
+							  title: 'Escala Registrada...',
+							  showConfirmButton: false,
+							  timer: 2000
+							}).then(() => {
+								location.href = 'http://localhost:8080/sistemaAeropuerto/escala.jsp?IdVuelo=<%=IdVuelo%>';
+							})
+					}
+				});
+			}
+		}
+	});
+});
 </script>
 
 	<div class="userbox">
-		<form action="ControllerEscala" method="get">
+		<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 				
-			<input type="hidden" name="idVuelo" value=<%=IdVuelo%>>
-			<h1>Registro Clases</h1>
-			<input type="hidden" name="idEscala" value=<%=IdEscala%>>
-			<input type="hidden" name="numeroEscala" value=<%=numeroEscala %>>
+			<input type="hidden" name="idVuelo" id="IdVuelo" value=<%=IdVuelo%>>
+			<h1>Registro Escala</h1>
+			<input type="hidden" name="idEscala" id="IdEscala" value=<%=IdEscala%>>
+			<input type="hidden" name="numeroEscala" id="NumeroEscala" value=<%=numeroEscala %>>
 			<label>Aeropuerto</label> 
 			<select class="form-select form-select-lg mb-3" name="selectAeropuerto" id="cmbAeropuerto" required>
 			<option value="<%=IdAeropuerto %>"><%=Nombre %></option>
 			</select>
 			<label>Precio</label> 
-			<input type="number" name="precio" min="0" max=""  step="any"  value="<%=Precio%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="precio" id="Precio" min="0" max=""  step="any"  value="<%=Precio%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" id="guardar" value="btna" class="Confirmar"><b>Guardar/Actualizar</b></button>
 				</div>
-		</form>
 	</div>
 </body>
 </html>

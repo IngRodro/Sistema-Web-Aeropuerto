@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.sistemaAeropuerto.DAO.ClsCompany;
 import com.sistemaAeropuerto.DAO.ClsTiposVuelo;
-import com.sistemaAeropuerto.Entidades.Company;
 import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
 
 /**

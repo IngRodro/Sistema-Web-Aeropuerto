@@ -60,7 +60,7 @@ public class ControllerEscala extends HttpServlet {
                 for (var iterarescala : Escalas) {
                 	clsEscala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
                 }
-				response.sendRedirect("vuelo.jsp");
+				response.sendRedirect("escala.jsp?IdVuelo=" + IdVuelo);
 			}
 		}else if(agregando.equals("btna")) {
 			
@@ -74,12 +74,18 @@ public class ControllerEscala extends HttpServlet {
 			if(IdEscala==null||IdEscala=="") {
 				escala.setNumeroEscala(NEscala + 1);
 				clsEscala.AgregarEscala(escala, vuelo.getIdIterinario());
-				response.sendRedirect("vuelo.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}else {
 				escala.setNumeroEscala(Integer.parseInt(NumeroEscala));
 				escala.setIdEscala(Integer.parseInt(IdEscala));
 				clsEscala.ActualizarEscala(escala);
-				response.sendRedirect("vuelo.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
 				
 			}
 		}

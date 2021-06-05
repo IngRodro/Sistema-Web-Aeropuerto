@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Aeropuerto;
+import com.sistemaAeropuerto.Entidades.Escala;
+import com.sistemaAeropuerto.Entidades.Vuelo;
 
 public class ClsAeropuerto {
 
@@ -29,6 +31,37 @@ public class ClsAeropuerto {
                 if(estado.equals("Activo")) {
                 aeropuertos.add(aeropuerto);
                 }
+            }
+            conexion.close();
+        } catch (Exception e) {
+        	System.out.println(e);
+        }
+        return aeropuertos;
+    }
+    
+    public ArrayList<Aeropuerto> MostrAeropuertoEscala(int idVuelo) {
+        ArrayList<Aeropuerto> aeropuertos = new ArrayList<>();
+        Vuelo vuelo = new Vuelo();
+        ClsVuelo clsVuelo = new ClsVuelo();
+    	ClsEscala clsEscala = new ClsEscala();
+        vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Aeropuerto()");
+            ResultSet resultadoDeConsulta = Statement.executeQuery();
+            while (resultadoDeConsulta.next()) {
+                Aeropuerto aeropuerto = new Aeropuerto();
+                aeropuerto.setIdAeropuerto(resultadoDeConsulta.getInt("idAeropuerto"));
+                aeropuerto.setNombre(resultadoDeConsulta.getString("nombre"));
+                aeropuerto.setPais(resultadoDeConsulta.getString("pais"));
+                aeropuerto.setCiudad(resultadoDeConsulta.getString("ciudad"));
+                String estado = resultadoDeConsulta.getString("estado");
+                if(estado.equals("Activo")) {
+                ArrayList<Escala> escalas = clsEscala.MostrarEscalaAeropuertos(vuelo.getIdIterinario(), aeropuerto.getIdAeropuerto());
+                	if(escalas.size() == 0) {
+                		aeropuertos.add(aeropuerto);
+                	}
+                }
+                
             }
             conexion.close();
         } catch (Exception e) {

@@ -1,7 +1,6 @@
 package com.sistemaAeropuerto.Controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.sistemaAeropuerto.DAO.ClsVuelo;
-import com.sistemaAeropuerto.DAO.InnerJoinEscalas;
-import com.sistemaAeropuerto.Entidades.Escala;
 
 /**
  * Servlet implementation class ControllerVuelosEscalas
@@ -49,8 +46,6 @@ public class ControllerVuelosEscalas extends HttpServlet {
 		ClsVuelo clsVuelo = new ClsVuelo();
 		response.setCharacterEncoding("UTF8");
 		
-		ArrayList<InnerJoinEscalas> Vuelos = new ArrayList<>();
-		Vuelos = clsVuelo.MostrarVuelosEscala();
 		response.getWriter().append(json.toJson(clsVuelo.MostrarVuelosEscala()));
 	}
 

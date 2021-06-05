@@ -7,11 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.sistemaAeropuerto.DAO.ClsAvion;
 import com.sistemaAeropuerto.DAO.ClsClase;
-import com.sistemaAeropuerto.DAO.ClsCompany;
 import com.sistemaAeropuerto.Entidades.Clases;
-import com.sistemaAeropuerto.Entidades.Company;
 
 /**
  * Servlet implementation class ControllerClases

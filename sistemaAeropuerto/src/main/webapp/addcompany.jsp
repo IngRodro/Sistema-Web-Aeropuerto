@@ -127,21 +127,19 @@ $(document).ready(function () {
 							  icon: 'success',
 							  title: 'Compañia Actualizada...',
 							  showConfirmButton: false,
-							  timer: 15000
+							  timer: 2000
 							}).then(() => {
 								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 							})
-						//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 					}else if(datos == "Agregado"){
 						Swal.fire({
 							  icon: 'success',
 							  title: 'Compañia Registrada...',
 							  showConfirmButton: false,
-							  timer: 15000
+							  timer: 2000
 							}).then(() => {
 								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 							})
-						//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 					}else if(datos == "Existente"){
 						Swal.fire({
 							  icon: 'error',

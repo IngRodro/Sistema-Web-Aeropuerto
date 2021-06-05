@@ -1,16 +1,13 @@
 package com.sistemaAeropuerto.Controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sistemaAeropuerto.DAO.ClsAeropuerto;
 import com.sistemaAeropuerto.DAO.ClsCompany;
-import com.sistemaAeropuerto.Entidades.Aeropuerto;
 import com.sistemaAeropuerto.Entidades.Company;
 import com.google.gson.Gson;
 

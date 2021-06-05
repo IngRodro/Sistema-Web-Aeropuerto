@@ -87,7 +87,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 
 						console.log(datos);
 
-						var tabla = document.getElementById('tablaAviones');
+						var tabla = document.getElementById('tablaEscalas');
 						for (let item of datos) {
 							if(item.estado == 0){
 								tabla.innerHTML += `
@@ -137,7 +137,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Aviones</h1>
+		<h1 align="center">Escalas</h1>
 		<table>
 			<thead>
 				<th>Id Escala</th>
@@ -146,7 +146,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 				<th>Aeropuerto</th>
 				<th>Acciones</th>
 			</thead>
-			<tbody id="tablaAviones">
+			<tbody id="tablaEscalas">
 
 			</tbody>
 		</table>

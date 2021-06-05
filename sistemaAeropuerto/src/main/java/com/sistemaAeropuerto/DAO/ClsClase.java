@@ -5,12 +5,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Avion;
 import com.sistemaAeropuerto.Entidades.Clases;
-import com.sistemaAeropuerto.Entidades.Company;
 import com.sistemaAeropuerto.Entidades.Pasaje;
 import com.sistemaAeropuerto.Entidades.Vuelo;
 
@@ -172,6 +171,26 @@ public class ClsClase {
             while (rs.next()) {
             	if(rs.getInt("estado") == 1) {
             	Asientos = Asientos -(rs.getInt("nAsientos"));
+            	}
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Asientos;
+    }
+    
+    public int MinAsientosDisponibles(int idAvion) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        int Asientos = 0;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
+            Statement.setInt("PidAvion", idAvion);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+            	if(rs.getInt("estado") == 1) {
+            	Asientos = Asientos +(rs.getInt("nAsientos"));
             	}
             }
             conexion.close();
