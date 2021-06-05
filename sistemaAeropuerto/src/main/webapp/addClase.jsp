@@ -4,11 +4,12 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/estiloaeropuerto.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloNumeros(evt){
 	if(window.event){
@@ -49,7 +50,7 @@ function SoloLetras(e){
 		Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: 'No se permite ingresar numeros...',
+			  text: 'No se permite ingresar numeros ...',
 			  confirmButtonText: 'Aceptar',
 			  confirmButtonColor: '#ff2600',
 			  showCloseButton: true
@@ -91,25 +92,180 @@ function SoloLetras(e){
 	}
 	%>
 
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$("#Cerrar").click(function (){
+		location.href = 'http://localhost:8080/sistemaAeropuerto/clases.jsp?IdAvion=<%=IdAvion%>';
+	
+	});
+});
+
+	$(document).ready(function () {
+		$("#Porcentaje").blur(function (){
+			var Porcentaje = $("#Porcentaje").val();
+			if(Porcentaje > 100 || Porcentaje < 0 ){
+				Swal.fire({
+					icon: 'error',
+					  title: 'Oops...',
+				 	 text: 'El Porcentaje Extra no puede ser menor a 0% o mayor a 100%...',
+				  	confirmButtonText: 'Aceptar',
+				 	 confirmButtonColor: '#ff2600',
+				 	 showCloseButton: true
+					}).then(() => {
+						var porcentaje = document.getElementById('Porcentaje');
+						porcentaje.value = "0";
+				})
+			}
+		
+		});
+	});	
+	
+	$(document).ready(function () {
+		$("#Asiento").blur(function (){
+			//Recogiendo el value del combo
+			var Asiento = $("#Asiento").val();
+			if(Asiento > <%=MaximoAsientos%> || Asiento < 0 ){
+				Swal.fire({
+					icon: 'error',
+					  title: 'Oops...',
+				 	 text: 'El maximo de Asientos Disponibles para Asignar es de <%=MaximoAsientos%>...',
+				  	confirmButtonText: 'Aceptar',
+				 	 confirmButtonColor: '#ff2600',
+				 	 showCloseButton: true
+					}).then(() => {
+						var asiento = document.getElementById('Asiento');
+						asiento.value = "0";
+				})
+			}
+		
+		});
+	});	
+	
+	$(document).ready(function () {
+		$("#guardar").click(function (){
+			var porcentaje = $("#Porcentaje").val();
+			var asientos = $("#Asiento").val();
+			var nombre = $("#Nombre").val();
+			var idClase = $("#IdClase").val();
+			var Guardar = $("#guardar").val();
+			var idAvion = $("#IdAvion").val();
+			var IdClase ="<%=IdClase%>"
+			var Nombre = "<%=nombreClase%>";
+			var Porcentaje = "<%=Porcentaje%>";
+			var Asiento = "<%=nAsientos%>";
+			
+			var verificar ="";
+
+			verificar = nombre.split(" ").join("");
+			
+			if(nombre == null || verificar.length == 0 || porcentaje == null || porcentaje =="" || asientos == "" || asientos == null || asientos == 0){
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Complete todos los campos para continuar...',
+					  confirmButtonText: 'Aceptar',
+					  confirmButtonColor: '#ff2600',
+					  showCloseButton: true
+					}).then((result) => {
+						  if (verificar.length == 0) {
+							  var Nombre = document.getElementById('Nombre');
+							  Nombre.value = "";
+						  }
+						  if(porcentaje == "" || porcentaje == null){
+							  var Porcentaje = document.getElementById('Porcentaje');
+							  Porcentaje.value = "0";
+						  }
+						  if(asiento == "" || asiento == null){
+							  var Asiento = document.getElementById('Asiento');
+							  Asiento.value = "0";
+						  }
+						})
+			}else{
+				if(nombre == Nombre  && porcentaje == Porcentaje && asientos == Asiento){
+					Swal.fire({
+						  title: 'No se resgistraron cambios',
+						  text: "¿Desea seguir editando?",
+						  icon: 'warning',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  confirmButtonText: 'Si',
+						  cancelButtonText: 'No'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    
+						  }else{
+							  location.href = 'http://localhost:8080/sistemaAeropuerto/clases.jsp?IdAvion=<%=IdAvion%>';
+						  }
+						})
+					
+				}else{
+					$.get('ControllerClases', {
+						//Enviando variable al controlador.
+						porcentaje, asientos, nombre, idClase, idAvion, Guardar
+						
+					}, function (response) {
+						
+						let datos = JSON.parse(response);
+						console.log(datos);
+						
+						if(datos == "Actualizado"){
+							Swal.fire({
+								  icon: 'success',
+								  title: 'Clase Actualizada...',
+								  showConfirmButton: false,
+								  timer: 1500
+								}).then(() => {
+									location.href = 'http://localhost:8080/sistemaAeropuerto/clases.jsp?IdAvion=<%=IdAvion%>';
+								})
+						}else if(datos == "Agregado"){
+							Swal.fire({
+								  icon: 'success',
+								  title: 'Clase Registrado...',
+								  showConfirmButton: false,
+								  timer: 1500
+								}).then(() => {
+									location.href = 'http://localhost:8080/sistemaAeropuerto/clases.jsp?IdAvion=<%=IdAvion%>';
+								})
+						}else if(datos == "Existente"){
+							Swal.fire({
+								  icon: 'error',
+								  title: 'Oops...',
+								  text: 'La Clase ya esta registrada...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								}).then(() => {
+									var Nombre = document.getElementById('Nombre');
+									Nombre.value = "";
+							})
+						}
+					});
+				}
+			}
+		});
+	});
+</script>
+
 	<div class="userbox">
-		<form action="ControllerClases" method="get">
+			<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 				
-			<input type="hidden" name="idAvion" value=<%=IdAvion%>>
+			<input type="hidden" name="idAvion" id="IdAvion" value="<%=IdAvion%>">
 			<h1>Registro Clases</h1>
-			<input type="hidden" name="idClase" value=<%=IdClase%>>
+			<input type="hidden" name="idClase" id="IdClase" value="<%=IdClase%>">
 			<label>Nombre</label> 
-			<input type="text" name="nombre"value="<%=nombreClase%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="nombre" id="Nombre" value="<%=nombreClase%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 				
 			<label>N Asientos</label> 
-			<input type="number" name="asientos" min="0" max="<%=MaximoAsientos%>"  step="any"  value="<%=nAsientos%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="asientos" id="Asiento" min="0" max="<%=MaximoAsientos%>"  step="any"  value="<%=nAsientos%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 			<label>Porcentaje Extra de Precio</label> 
-			<input type="number" name="porcentaje" min="0" max="100"  step="any"  value="<%=Porcentaje%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
+			<input type="number" name="porcentaje" id="Porcentaje" min="0" max="100"  step="any"  value="<%=Porcentaje%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required> 
 				<div align="center">
-			<button name="Guardar" value="btna"><b>Guardar/Actualizar</b></button>
+			<button name="Guardar" value="btna" class="Confirmar" id="guardar"><b>Guardar/Actualizar</b></button>
 				</div>
-		</form>
 	</div>
 </body>
 </html>

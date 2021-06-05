@@ -44,33 +44,46 @@ public class ControllerClases extends HttpServlet {
 	
 
 		ClsClase clsClase = new ClsClase();
-		Clases clases = new Clases();
+		Clases clase = new Clases();
 
 		if (Evaluar != null) {
 			if (Evaluar.equals("btne")) {
-				clases.setIdClase(Integer.parseInt(request.getParameter("IdClase")));
-				clsClase.BorrarClase(clases);
+				clase.setIdClase(Integer.parseInt(request.getParameter("IdClase")));
+				clsClase.BorrarClase(clase);
 				request.setAttribute("IdAvion", IdAvion);
-				response.sendRedirect("avion.jsp");
+				response.sendRedirect("clases.jsp" + "?IdAvion="+ IdAvion +"&Ver=btne");
 			}
 		}else if(agregando.equals("btna")) {
-			clases.setNombreClase(Nombre);
-			clases.setnAsientos(Integer.parseInt(NAsientos));
-			clases.setPorcentajeEPrecio(Double.parseDouble(Porcentaje));
-			clases.setIdAvion(Integer.parseInt(IdAvion));
+			clase.setNombreClase(Nombre);
+			clase.setnAsientos(Integer.parseInt(NAsientos));
+			clase.setPorcentajeEPrecio(Double.parseDouble(Porcentaje));
+			clase.setIdAvion(Integer.parseInt(IdAvion));
 			
+			if (clsClase.ComprobarExistenciaClass(clase) == true) {
+				Gson json = new Gson();
+				
+				String Mensaje = "Existente";
+				response.getWriter().append(json.toJson(Mensaje));
+			} else {
 			
 			if(IdClase==null||IdClase=="") {
-				clsClase.AgregarClase(clases);
+				clsClase.AgregarClase(clase);
 				request.setAttribute("IdAvion", IdAvion);
-				response.sendRedirect("avion.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}else {
-				clases.setIdClase(Integer.parseInt(IdClase));
-				clases.setIdAvion(Integer.parseInt(IdAvion));
-				clsClase.ActualizarClase(clases);
+				clase.setIdClase(Integer.parseInt(IdClase));
+				clase.setIdAvion(Integer.parseInt(IdAvion));
+				clsClase.ActualizarClase(clase);
 				request.setAttribute("IdAvion", IdAvion);
-				response.sendRedirect("avion.jsp");
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
 				
+				}
 			}
 		}
 	}

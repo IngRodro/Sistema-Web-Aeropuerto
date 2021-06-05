@@ -26,6 +26,11 @@ body{
     border-radius: 10px;
 }
 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .icono{
     width: 100px;
     height: 100px;

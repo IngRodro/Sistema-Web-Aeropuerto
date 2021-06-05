@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Avion;
 import com.sistemaAeropuerto.Entidades.Clases;
+import com.sistemaAeropuerto.Entidades.Company;
 import com.sistemaAeropuerto.Entidades.Pasaje;
 import com.sistemaAeropuerto.Entidades.Vuelo;
 
@@ -42,8 +43,9 @@ public class ClsClase {
                 }else {
                 	clase.setEstado(1);
                 }
-                
-                clases.add(clase);
+                if(rs.getInt("estado") == 1) {
+                	clases.add(clase);
+                }
             }
             conexion.close();
         } catch (Exception e) {
@@ -56,14 +58,28 @@ public class ClsClase {
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Clase(?,?,?,?)");
-            Statement.setString("PnombreClase", clase.getNombreClase());
-            Statement.setInt("PnAsientos", clase.getnAsientos());
-            Statement.setInt("PidAvion", clase.getIdAvion());
-            Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
-            Statement.execute();
-            System.out.println("Guardado");
-            conexion.close();
+        	 if (ComprobarEstadoClass(clase) == true) {
+                 if (ComprobarExistenciaClass(clase) == true) {
+                 } else {
+                     CallableStatement Statement = conexion.prepareCall("call SP_I_Clase(?,?,?,?)");
+                     Statement.setString("PnombreClase", clase.getNombreClase());
+                     Statement.setInt("PnAsientos", clase.getnAsientos());
+                     Statement.setInt("PidAvion", clase.getIdAvion());
+                     Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
+                     Statement.execute();
+                     conexion.close();
+                 }
+             }else{
+            	 CallableStatement Statement = conexion.prepareCall("call SP_A_Clase(?,?,?,?)");
+                 Statement.setString("PnombreClase", clase.getNombreClase());
+                 Statement.setInt("PnAsientos", clase.getnAsientos());
+                 Statement.setInt("PidAvion", clase.getIdAvion());
+                 Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
+                 Statement.execute();
+                 conexion.close();
+             }
+        	
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -83,6 +99,27 @@ public class ClsClase {
         }
     }
 
+    public boolean ComprobarExistenciaClass(Clases clase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
+        boolean Existencia = false;
+        try {
+        	CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
+        	 Statement.setInt("PidAvion", clase.getIdAvion());
+             ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (clase.getNombreClase().equals(rs.getString("nombreClase")) && rs.getInt("estado") == 1) {
+                    Existencia = true;
+                    break;
+                };
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Existencia;
+    }
+    
     public void ActualizarClase(Clases clase) {
     	ConexionBd cn = new ConexionBd();
         Connection conexion = cn.RetornarConexion();
@@ -90,7 +127,6 @@ public class ClsClase {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Clase(?,?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
             Statement.setInt("PnAsientos", clase.getnAsientos());
-            Statement.setInt("PidAvion", clase.getIdAvion());
             Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.setDouble("PidClase", clase.getIdClase());
             Statement.execute();
@@ -134,13 +170,37 @@ public class ClsClase {
             Statement.setInt("PidAvion", idAvion);
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
+            	if(rs.getInt("estado") == 1) {
             	Asientos = Asientos -(rs.getInt("nAsientos"));
+            	}
             }
             conexion.close();
         } catch (Exception e) {
             System.out.println(e);
         }
         return Asientos;
+    }
+    
+    public boolean ComprobarEstadoClass(Clases clase) {
+    	ConexionBd cn = new ConexionBd();
+        Connection conexion = cn.RetornarConexion();
+        
+        boolean Estado = true;
+        try {
+        	CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
+       	 Statement.setInt("PidAvion", clase.getIdAvion());
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (clase.getNombreClase().equals(rs.getString("nombreClase"))) {
+                    if (rs.getInt("estado") == 0) {
+                        Estado = false;
+                    }
+                };
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return Estado;
     }
     
 }

@@ -39,7 +39,7 @@ String IdAvion = request.getParameter("IdAvion");
 
 						console.log(datos);
 
-						var tabla = document.getElementById('tablaAviones');
+						var tabla = document.getElementById('tablaClases');
 						for (let item of datos) {
 							if(item.estado == 0){
 								tabla.innerHTML += `
@@ -58,7 +58,7 @@ String IdAvion = request.getParameter("IdAvion");
 										<td>${item.nombreClase}</td>
 										<td>${item.nAsientos}</td>
 										<td>${item.porcentajeEPrecio}%</td>
-										<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&Eliminar=btne">Eliminar</a>
+										<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&idAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
 										<a href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>" class="btn btn-warning"> Actualizar</a>
 										</td>
 									</tr>
@@ -90,7 +90,7 @@ String IdAvion = request.getParameter("IdAvion");
 	<div class="containertabla">
 		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 			alt="Logo avion">
-		<h1 align="center">Aviones</h1>
+		<h1 align="center">Clases</h1>
 		<table>
 			<thead>
 				<th>ID</th>
@@ -99,7 +99,7 @@ String IdAvion = request.getParameter("IdAvion");
 				<th>Descuentos</th>
 				<th>Acciones</th>
 			</thead>
-			<tbody id="tablaAviones">
+			<tbody id="tablaClases">
 
 			</tbody>
 		</table>
