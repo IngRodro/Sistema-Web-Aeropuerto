@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`aeropuerto` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAeropuerto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 49
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`avion` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -54,13 +54,14 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`clases` (
   `nAsientos` INT NULL DEFAULT NULL,
   `idAvion` INT NULL DEFAULT NULL,
   `porcentajeEPrecio` FLOAT NULL DEFAULT NULL,
+  `estado` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idClases`),
   INDEX `FK_Clases_Vuelo_idx` (`idAvion` ASC) VISIBLE,
   CONSTRAINT `FK_Clases_Avion`
     FOREIGN KEY (`idAvion`)
     REFERENCES `sistemaaeropuerto`.`avion` (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 31
+AUTO_INCREMENT = 42
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`company` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idCompany`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 45
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -99,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`itinerario` (
     FOREIGN KEY (`idAeropuertoOrigen`)
     REFERENCES `sistemaaeropuerto`.`aeropuerto` (`idAeropuerto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 31
+AUTO_INCREMENT = 40
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -123,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`escala` (
     FOREIGN KEY (`idItinerario`)
     REFERENCES `sistemaaeropuerto`.`itinerario` (`idItinerario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 27
+AUTO_INCREMENT = 34
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`tipos_vuelo` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipos_vuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -206,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`vuelo` (
     FOREIGN KEY (`idTiposvuelo`)
     REFERENCES `sistemaaeropuerto`.`tipos_vuelo` (`idTipos_vuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 35
+AUTO_INCREMENT = 44
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -241,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`pasaje` (
     FOREIGN KEY (`idVuelo`)
     REFERENCES `sistemaaeropuerto`.`vuelo` (`idVuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -261,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`promocionesvuelos` (
     FOREIGN KEY (`idVuelo`)
     REFERENCES `sistemaaeropuerto`.`vuelo` (`idVuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
+AUTO_INCREMENT = 34
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -281,6 +282,23 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_A_Clase
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Clase`(
+PnombreClase varchar(45), 
+PidAvion int, 
+PnAsientos int,
+PPorcentajeEprecio float)
+BEGIN
+	Update clases set nAsientos = PnAsientos ,idAvion = PidAvion, PorcentajeEprecio = PPorcentajeEprecio, estado = 1 where nombreClase = PnombreClase and idAvion = PidAvion;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_A_Company
 -- -----------------------------------------------------
 
@@ -289,6 +307,21 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Company`(PNombre varchar(45))
 BEGIN
 	Update company set estado = 'Activo' where nombre = PNombre;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_A_Tipo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Tipo`(PTipo varchar(45))
+BEGIN
+
+update tipos_vuelo set estado = 'Activo' where Tipo = PTipo;
+
 END$$
 
 DELIMITER ;
@@ -329,7 +362,7 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_Clase`(PidClase int)
 BEGIN
-	Delete from clases where PidClase = idClases;
+	Update clases set estado = 0 where PidClase = idClases;
 END$$
 
 DELIMITER ;
@@ -461,7 +494,7 @@ PidAvion int,
 PPorcentajeEprecio float
 )
 BEGIN
-	Insert into clases(nombreClase,nAsientos,idAvion,porcentajeEPrecio) values(PnombreClase,PnAsientos,PidAvion,PPorcentajeEprecio);
+	Insert into clases(nombreClase,nAsientos,idAvion,porcentajeEPrecio, estado) values(PnombreClase,PnAsientos,PidAvion,PPorcentajeEprecio, 1);
 END$$
 
 DELIMITER ;
@@ -738,7 +771,7 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Aeropuerto`(
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.aeropuerto where Estado = "Activo";
+SELECT * FROM sistemaaeropuerto.aeropuerto;
 END$$
 
 DELIMITER ;
@@ -805,7 +838,7 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Company`(
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.company where estado = "Activo";
+	SELECT * FROM sistemaaeropuerto.company;
 END$$
 
 DELIMITER ;
@@ -871,6 +904,22 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_S_PasajeClase
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_PasajeClase`(
+PidVuelo int,
+PidClase int
+)
+BEGIN
+SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = PidVuelo and idClase = PidClase;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_S_PasajeVuelo
 -- -----------------------------------------------------
 
@@ -909,7 +958,20 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Tipos`(
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.tipos_vuelo where estado = "Activo";
+SELECT * FROM sistemaaeropuerto.tipos_vuelo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_VueloAvion
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_VueloAvion`(PidAvion int)
+BEGIN
+	Select * from vuelo where idAvion = PidAvion && estado != 0;
 END$$
 
 DELIMITER ;
@@ -952,6 +1014,31 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_S_VuelosId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_VuelosId`()
+BEGIN
+	SELECT vuelo.idVuelo Vuelo, company.idCompany  , company.nombre Compania, A1.idAeropuerto idAeropuertoO,A1.nombre Aeropuerto_Origen, 
+    A2.idAeropuerto idAeropuertoD, A2.nombre Aeropuerto_Destino, avion.idAvion, avion.modelo Modelo_Avion, TV.idTipos_vuelo, TV.Tipo Tipo_de_Vuelo,
+    itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, 
+    PV.Descuento Promo, PV.FechaFinal FechaMax, PV.FechaInicio FechaIni, vuelo.estado Estado
+	FROM sistemaaeropuerto.vuelo 
+	INNER JOIN company ON vuelo.idCompany = company.idCompany 
+	INNER JOIN itinerario ON vuelo.idItinerario = itinerario.idItinerario  
+	INNER JOIN aeropuerto A1 ON itinerario.idAeropuertoOrigen = A1.idAeropuerto 
+	INNER JOIN aeropuerto A2 ON itinerario.idAeropuertoDestino = A2.idAeropuerto
+	INNER JOIN avion ON vuelo.idAvion = avion.idAvion
+	INNER JOIN tipos_vuelo TV ON vuelo.idTiposvuelo = TV.idTipos_vuelo
+    INNER JOIN promocionesvuelos PV ON vuelo.idVuelo = PV.idVuelo
+    order by Vuelo asc;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_S_VuelosOrigen
 -- -----------------------------------------------------
 
@@ -970,6 +1057,31 @@ BEGIN
 	INNER JOIN tipos_vuelo TV ON vuelo.idTiposvuelo = TV.idTipos_vuelo
     INNER JOIN promocionesvuelos PV ON vuelo.idVuelo = PV.idVuelo
     where A1.idAeropuerto = PidAeropuerto;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_Vuelos_Escalas
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Vuelos_Escalas`()
+BEGIN
+SELECT vuelo.idVuelo Vuelo, escala.numeroEscala, escala.precio,AE.nombre AeropuertoEscala , A1.idAeropuerto idAeropuertoO,A1.nombre Aeropuerto_Origen, 
+	TV.idTipos_vuelo, TV.Tipo Tipo_de_Vuelo, TV.PorcentajeDesc,
+    itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, 
+    PV.Descuento Promo, PV.FechaFinal FechaMax, PV.FechaInicio FechaIni, vuelo.estado Estado
+	FROM sistemaaeropuerto.escala
+    INNER JOIN aeropuerto AE ON escala.idAeropuerto = AE.idAeropuerto
+    INNER JOIN itinerario ON escala.idItinerario = itinerario.idItinerario
+    INNER JOIN vuelo ON itinerario.idItinerario = vuelo.idItinerario
+	INNER JOIN aeropuerto A1 ON itinerario.idAeropuertoOrigen = A1.idAeropuerto 
+	INNER JOIN avion ON vuelo.idAvion = avion.idAvion
+	INNER JOIN tipos_vuelo TV ON vuelo.idTiposvuelo = TV.idTipos_vuelo
+    INNER JOIN promocionesvuelos PV ON vuelo.idVuelo = PV.idVuelo
+    order by Vuelo,numeroEscala asc;
 END$$
 
 DELIMITER ;
@@ -1015,12 +1127,11 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Clase`(
 PnombreClase varchar(45),
 PnAsientos int,
-PidAvion int,
 PPorcentajeEprecio float,
 PidClase int
 )
 BEGIN
-    Update clases set nombreClase = PnombreClase, nAsientos = PnAsientos ,idAvion = PidAvion, PorcentajeEprecio = PPorcentajeEprecio where idClases = PidClase;
+    Update clases set nombreClase = PnombreClase, nAsientos = PnAsientos , PorcentajeEprecio = PPorcentajeEprecio where idClases = PidClase;
 END$$
 
 DELIMITER ;

@@ -7,7 +7,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="js/sweetAlert.js"></script>
 <%
 HttpSession sesion = (HttpSession) request.getSession();
 String adminSession = String.valueOf(sesion.getAttribute("usuario"));
@@ -20,12 +19,12 @@ if (usuSession.equals(null) || usuSession.equals("null")) {
 		
 		
 	}else{
-		response.sendRedirect("cerrar.jsp");
+		response.sendRedirect("menu.jsp");
 	}
 	
 }else{
 	
-	response.sendRedirect("cerraruser.jsp");
+	response.sendRedirect("menuuser.jsp");
 }
 %>
 <script>

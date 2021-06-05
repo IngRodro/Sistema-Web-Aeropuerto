@@ -75,7 +75,6 @@ $(document).ready(function () {
 		var IdCompany = "<%=IdCompany%>";
 		
 		var verificar ="";
-
 		verificar = nombre.split(" ").join("");
 		
 		if(nombre == null || verificar.length == 0){

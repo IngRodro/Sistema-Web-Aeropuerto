@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.sistemaAeropuerto.DAO.ClsUsuario;
 import com.sistemaAeropuerto.Entidades.Usuario;
 
@@ -36,35 +37,36 @@ public class ControllerUser extends HttpServlet {
 		String Edad = request.getParameter("edad");
 		String Telefono = request.getParameter("telefono");
 		String passadmin = request.getParameter("passadmin");
-		String btnregresar = request.getParameter("btnregresar");
 		
 		
-		if(btnregresar != null) {
-			response.sendRedirect("NuevoUser.jsp");
+		
+		ClsUsuario clsusu = new ClsUsuario();
+		Usuario usu = new Usuario();
+			
+		usu.setNombreUsuario(User);
+		usu.setPassword(Pass);
+		usu.setNombres(Nombres);
+		usu.setApellidos(Apellidos);
+		usu.setEdad(Integer.parseInt(Edad));
+		usu.setTelefono(Telefono);
+		if(passadmin.equals("2158")) {
+			usu.setTipoUser(1);
 		}else {
-			ClsUsuario clsusu = new ClsUsuario();
-			Usuario usu = new Usuario();
-			
-			usu.setNombreUsuario(User);
-			usu.setPassword(Pass);
-			usu.setNombres(Nombres);
-			usu.setApellidos(Apellidos);
-			usu.setEdad(Integer.parseInt(Edad));
-			usu.setTelefono(Telefono);
-			if(passadmin.equals("2310")) {
-				usu.setTipoUser(1);
-			}else {
-				usu.setTipoUser(0);
-			}
-			
-			if(clsusu.ComprobarExistencia(User)==false) {
-				clsusu.AgregarUsuario(usu);
-				response.sendRedirect("index.jsp");
-				
-			}else {
-				response.sendRedirect("usuarioexistente.jsp");
-			}
+			usu.setTipoUser(0);
 		}
+			
+		if(clsusu.ComprobarExistencia(User)==false) {
+			clsusu.AgregarUsuario(usu);
+			Gson json = new Gson();
+			String Mensaje = "Agregado";
+			response.getWriter().append(json.toJson(Mensaje));
+				
+		}else {
+			Gson json = new Gson();
+			String Mensaje = "Existente";
+			response.getWriter().append(json.toJson(Mensaje));
+		}
+		
 		
 	}
 

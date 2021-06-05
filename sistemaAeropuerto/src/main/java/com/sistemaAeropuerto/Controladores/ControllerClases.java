@@ -51,7 +51,7 @@ public class ControllerClases extends HttpServlet {
 				clase.setIdClase(Integer.parseInt(request.getParameter("IdClase")));
 				clsClase.BorrarClase(clase);
 				request.setAttribute("IdAvion", IdAvion);
-				response.sendRedirect("clases.jsp" + "?IdAvion="+ IdAvion +"&Ver=btne");
+				response.sendRedirect("clases.jsp" + "?IdAvion="+ IdAvion);
 			}
 		}else if(agregando.equals("btna")) {
 			clase.setNombreClase(Nombre);

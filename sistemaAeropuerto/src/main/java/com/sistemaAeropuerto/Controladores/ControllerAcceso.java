@@ -46,25 +46,16 @@ public class ControllerAcceso extends HttpServlet {
 		HttpSession session = request.getSession(true);
 
 		String btncerrar = request.getParameter("btncerrar");
-		String btnnocerrar = request.getParameter("btnnocerrar");
 		String btnregresar = request.getParameter("btnregresar");
-		String btnnocerraruser = request.getParameter("btnnocerraruser");
 
+		System.out.println(btncerrar);
 		if(btnregresar != null) {
 			response.sendRedirect("index.jsp");
 		}else {
 			if (btncerrar != null) {
-				response.sendRedirect("index.jsp");
 				session.invalidate();
 
-			} else if(btnnocerrar != null)
-			{
-				response.sendRedirect("menu.jsp");
-			}else if(btnnocerraruser != null) {
-				response.sendRedirect("menuuser.jsp");
-			}
-			
-			else{
+			}else{
 
 				String user = request.getParameter("user");
 				String pass = request.getParameter("pass");
@@ -86,7 +77,7 @@ public class ControllerAcceso extends HttpServlet {
 						response.sendRedirect("menuuser.jsp");
 					}
 				} else {
-					response.sendRedirect("Error.jsp");
+				
 
 				}
 			}
