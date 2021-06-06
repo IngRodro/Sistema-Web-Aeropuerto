@@ -38,6 +38,7 @@ public class ControllerTipos extends HttpServlet {
 		String IdTipo = request.getParameter("idTipo");
 		String Tipo = request.getParameter("tipo");
 		String Descuento = request.getParameter("descuento");
+		String Comprobacion = request.getParameter("Comprobacion");
 
 		ClsTiposVuelo clstipo = new ClsTiposVuelo();
 		Tipos_vuelo tipo = new Tipos_vuelo();
@@ -51,28 +52,37 @@ public class ControllerTipos extends HttpServlet {
 		} else if (agregando.equals("btna")) {
 			tipo.setTipo(Tipo);
 			tipo.setPorcentajeDesc(Double.parseDouble(Descuento));
-
-			if (clstipo.ComprobarExistenciaTip(tipo) == true) {
+			if(Comprobacion.equals("Comprobado")) {
+				tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
+				clstipo.ActualizarTipo(tipo);
 				Gson json = new Gson();
-				String Mensaje = "Existente";
+
+				String Mensaje = "Actualizado";
 				response.getWriter().append(json.toJson(Mensaje));
-			} else {
-				if (IdTipo == null || IdTipo == "") {
-
-					clstipo.AgregarTipo(tipo);
+			}else {
+				if (clstipo.ComprobarExistenciaTip(tipo) == true) {
 					Gson json = new Gson();
-
-					String Mensaje = "Agregado";
+					String Mensaje = "Existente";
 					response.getWriter().append(json.toJson(Mensaje));
 				} else {
-					tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
-					clstipo.ActualizarTipo(tipo);
-					Gson json = new Gson();
+					if (IdTipo == null || IdTipo == "") {
 
-					String Mensaje = "Actualizado";
-					response.getWriter().append(json.toJson(Mensaje));
+						clstipo.AgregarTipo(tipo);
+						Gson json = new Gson();
+
+						String Mensaje = "Agregado";
+						response.getWriter().append(json.toJson(Mensaje));
+					} else {
+						tipo.setIdTipos_vuelo(Integer.parseInt(IdTipo));
+						clstipo.ActualizarTipo(tipo);
+						Gson json = new Gson();
+
+						String Mensaje = "Actualizado";
+						response.getWriter().append(json.toJson(Mensaje));
+					}
 				}
 			}
+			
 		}
 	}
 

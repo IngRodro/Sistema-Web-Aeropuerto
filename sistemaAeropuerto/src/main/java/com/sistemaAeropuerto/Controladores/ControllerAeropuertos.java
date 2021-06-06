@@ -37,8 +37,10 @@ public class ControllerAeropuertos extends HttpServlet {
 		String Nombre = request.getParameter("nombre");
 		String Ciudad = request.getParameter("ciudad");
 		String Pais = request.getParameter("pais");
+		String Comprobacion = request.getParameter("Comprobacion");
 	
 
+		
 		ClsAeropuerto clsaeropuerto = new ClsAeropuerto();
 		Aeropuerto aeropuerto = new Aeropuerto();
 
@@ -49,32 +51,47 @@ public class ControllerAeropuertos extends HttpServlet {
 				response.sendRedirect("aeropuerto.jsp");
 			}
 		}else if(agregando.equals("btna")) {
+			
 			aeropuerto.setNombre(Nombre);
 			aeropuerto.setCiudad(Ciudad);
 			aeropuerto.setPais(Pais);
 			
-			if(clsaeropuerto.ComprobarExistenciaAeroP(aeropuerto) == false) {
-				if(IdAeropuerto==null||IdAeropuerto=="") {
-					
-					clsaeropuerto.AgregarAeropuerto(aeropuerto);
-					Gson json = new Gson();
-
-					String Mensaje = "Agregado";
-					response.getWriter().append(json.toJson(Mensaje));
-				}else {
-					aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
-					clsaeropuerto.ActualizarAeropuerto(aeropuerto);
-					Gson json = new Gson();
-
-					String Mensaje = "Actualizado";
-					response.getWriter().append(json.toJson(Mensaje));
-				}
-			}else {
+			if(Comprobacion.equals("Comprobado")) {
+				
+				aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
+				clsaeropuerto.ActualizarAeropuerto(aeropuerto);
 				Gson json = new Gson();
 
-				String Mensaje = "Existente";
+				String Mensaje = "Actualizado";
 				response.getWriter().append(json.toJson(Mensaje));
+				
+			}else {
+				
+				if(clsaeropuerto.ComprobarExistenciaAeroP(aeropuerto) == false) {
+					if(IdAeropuerto==null||IdAeropuerto=="") {
+						
+						clsaeropuerto.AgregarAeropuerto(aeropuerto);
+						Gson json = new Gson();
+
+						String Mensaje = "Agregado";
+						response.getWriter().append(json.toJson(Mensaje));
+					}else {
+						aeropuerto.setIdAeropuerto(Integer.parseInt(IdAeropuerto));
+						clsaeropuerto.ActualizarAeropuerto(aeropuerto);
+						Gson json = new Gson();
+
+						String Mensaje = "Actualizado";
+						response.getWriter().append(json.toJson(Mensaje));
+					}
+				}else {
+					Gson json = new Gson();
+
+					String Mensaje = "Existente";
+					response.getWriter().append(json.toJson(Mensaje));
+				}
+				
 			}
+			
 		}
 	}
 

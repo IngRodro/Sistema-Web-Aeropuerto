@@ -150,7 +150,7 @@ $(document).ready(function () {
 							  showCloseButton: true
 							}).then(() => {
 								var company = document.getElementById('Nombre');
-								company.value = "";
+								company.value = "<%=Nombre%>";
 						})
 					}
 				});

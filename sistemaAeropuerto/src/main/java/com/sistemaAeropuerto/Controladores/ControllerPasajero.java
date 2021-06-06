@@ -30,7 +30,6 @@ public class ControllerPasajero extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
 		String IdPasajero = request.getParameter("idPasajero");
 		String Nombres = request.getParameter("nombres");
@@ -43,13 +42,7 @@ public class ControllerPasajero extends HttpServlet {
 		ClsPasajero clspasajero = new ClsPasajero();
 		Pasajero pasajero = new Pasajero();
 		
-		if(Evaluar != null) {
-			if (Evaluar.equals("btne")) {
-				pasajero.setIdPasajero(Integer.parseInt(request.getParameter("IdPasajero")));
-				clspasajero.BorrarPasajero(pasajero);
-				response.sendRedirect("vuelouser.jsp");
-			}
-		}else if(agregando.equals("btna")){
+		if(agregando.equals("btna")){
 			pasajero.setNombres(Nombres);
 			pasajero.setApellidos(Apellidos);
 			pasajero.setEdad(Integer.parseInt(Edad));
@@ -63,14 +56,6 @@ public class ControllerPasajero extends HttpServlet {
 				Gson json = new Gson();
 				
 				String Mensaje = "Agregado";
-				response.getWriter().append(json.toJson(Mensaje));
-			}else {
-				pasajero.setIdPasajero(Integer.parseInt(IdPasajero));
-				clspasajero.ActualizarPasajero(pasajero);
-				
-				Gson json = new Gson();
-
-				String Mensaje = "Actualizado";
 				response.getWriter().append(json.toJson(Mensaje));
 			}
 		}

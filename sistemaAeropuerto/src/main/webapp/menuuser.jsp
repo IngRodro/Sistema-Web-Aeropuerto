@@ -43,7 +43,7 @@
 							  didOpen: () => {
 							    Swal.showLoading()
 							  },
-							}).then((result) => {
+							}).then(() => {
 								var btncerrar = "Cerrar";
 								$.post('ControllerAcceso', {
 									//Enviando variable al controlador.

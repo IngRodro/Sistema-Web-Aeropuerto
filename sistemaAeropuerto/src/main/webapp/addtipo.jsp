@@ -162,9 +162,13 @@ function SoloLetras(e){
 						})
 					
 				}else{
+					var Comprobacion = null;					
+					if(tipo == Tipo && IdTipo != null){
+						Comprobacion = "Comprobado";
+					}
 					$.get('ControllerTipos', {
 						//Enviando variable al controlador.
-						descuento, tipo, idTipo, Guardar
+						descuento, tipo, idTipo, Guardar, Comprobacion
 					}, function (response) {
 						
 						let datos = JSON.parse(response);
@@ -200,7 +204,7 @@ function SoloLetras(e){
 								  showCloseButton: true
 								}).then(() => {
 									var tipos_vuelo = document.getElementById('Tipo');
-									tipos_vuelo.value = "";
+									tipos_vuelo.value = "<%=Tipo%>";
 							})
 						}
 					});

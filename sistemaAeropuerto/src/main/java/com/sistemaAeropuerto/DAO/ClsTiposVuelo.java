@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
-import com.sistemaAeropuerto.Entidades.Company;
 import com.sistemaAeropuerto.Entidades.Tipos_vuelo;
 
 public class ClsTiposVuelo {
@@ -42,7 +41,7 @@ public class ClsTiposVuelo {
         	if (ComprobarEstadoTip(Tipo) == true) {
         		System.out.println(ComprobarEstadoTip(Tipo));
             if (ComprobarExistenciaTip(Tipo) == true) {
-                System.out.println("El Tipo de vuelo ya se encuentra registrado");
+            	
             } else {
             	CallableStatement Statement = conexion.prepareCall("call SP_I_Tipos(?,?)");
                 Statement.setString("PTipo", Tipo.getTipo());
@@ -50,8 +49,9 @@ public class ClsTiposVuelo {
                 Statement.execute();
             }
         }else{
-            CallableStatement Statement = conexion.prepareCall("call SP_A_Tipo(?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_A_Tipo(?,?)");
             Statement.setString("PTipo", Tipo.getTipo());
+            Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
             Statement.execute();
         }
             conexion.close();
@@ -65,7 +65,6 @@ public class ClsTiposVuelo {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Tipos(?)");
             Statement.setInt("PidTipos_vuelo", Tipo.getIdTipos_vuelo());
             Statement.execute();
-            System.out.println("Eliminado");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -78,7 +77,6 @@ public class ClsTiposVuelo {
             Statement.setString("PTipo", Tipo.getTipo());
             Statement.setDouble("PDescuento", Tipo.getPorcentajeDesc());
             Statement.execute();
-            System.out.println("Actualizado");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -110,7 +108,6 @@ public class ClsTiposVuelo {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
-            	System.out.println(rs.getString("Tipo"));
                 if (Tipo.getTipo().equals(rs.getString("Tipo")) && rs.getString("estado").equals("Activo")) {
                     Existencia = true;
                     break;

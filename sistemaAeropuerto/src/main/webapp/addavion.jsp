@@ -47,10 +47,11 @@ function SoloNumeros(evt){
 	String IdAvion = request.getParameter("Id");
 	String Modelo = request.getParameter("Modelo");
 	String Capacidad = request.getParameter("Capacidad");
-	
+	int MinAsientos = 0;
 	ClsClase clsClase = new ClsClase();
-	int MinAsientos = clsClase.MinAsientosDisponibles(Integer.parseInt(IdAvion));
-
+	if(IdAvion != null){
+	MinAsientos = clsClase.MinAsientosDisponibles(Integer.parseInt(IdAvion));
+	}
 	if (IdAvion == null) {
 		IdAvion = "";
 		Modelo = "";
@@ -73,7 +74,7 @@ function SoloNumeros(evt){
 			console.log(capacidad);
 			
 				if(<%=MinAsientos%> != null)
-				if(<%=MinAsientos%> > capacidad){
+				if(<%=MinAsientos%> > capacidad ){
 					
 					Swal.fire({
 						  icon: 'error',

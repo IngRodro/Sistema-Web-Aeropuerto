@@ -201,9 +201,13 @@ $(document).ready(function () {
 						})
 					
 				}else{
+					var Comprobacion = null;					
+					if(nombre == Nombre && IdClase != null){
+						Comprobacion = "Comprobado";
+					}
 					$.get('ControllerClases', {
 						//Enviando variable al controlador.
-						porcentaje, asientos, nombre, idClase, idAvion, Guardar
+						porcentaje, asientos, nombre, idClase, idAvion, Guardar, Comprobacion
 						
 					}, function (response) {
 						
@@ -238,7 +242,7 @@ $(document).ready(function () {
 								  showCloseButton: true
 								}).then(() => {
 									var Nombre = document.getElementById('Nombre');
-									Nombre.value = "";
+									Nombre.value = "<%=nombreClase%>";
 							})
 						}
 					});

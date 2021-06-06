@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`avion` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`pasajero` (
   `pasaporte` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idPasajero`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`pasaje` (
     FOREIGN KEY (`idVuelo`)
     REFERENCES `sistemaaeropuerto`.`vuelo` (`idVuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -274,9 +274,13 @@ USE `sistemaaeropuerto` ;
 
 DELIMITER $$
 USE `sistemaaeropuerto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Aeropuerto`(PNombre varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Aeropuerto`(
+PNombre varchar(45),
+Ppais varchar(45),
+Pciudad varchar(45)
+)
 BEGIN
-	Update aeropuerto set estado = 'Activo' where nombre = PNombre;
+	Update aeropuerto set pais = Ppais, ciudad = Pciudad, estado = 'Activo' where nombre = PNombre;
 END$$
 
 DELIMITER ;
@@ -317,11 +321,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `sistemaaeropuerto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Tipo`(PTipo varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_A_Tipo`(PTipo varchar(45), PDescuento float)
 BEGIN
-
-update tipos_vuelo set estado = 'Activo' where Tipo = PTipo;
-
+update tipos_vuelo set estado = 'Activo', PorcentajeDesc = PDescuento where Tipo = PTipo;
 END$$
 
 DELIMITER ;

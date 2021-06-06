@@ -82,8 +82,10 @@ public class ClsAeropuerto {
                     conexion.close();
                 	
                 } else {
-                    CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
+                    CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?,?,?)");
                     Statement.setString("PNombre", Aero.getNombre());
+                    Statement.setString("Ppais", Aero.getPais());
+                    Statement.setString("Pciudad", Aero.getCiudad());
                     Statement.execute();
                 }
             }

@@ -132,9 +132,14 @@ function SoloLetras(e){
 					
 					
 				}else{
+					var Comprobacion = null;					
+					if(nombre == Nombre && IdAeropuerto != null){
+						Comprobacion = "Comprobado";
+					}
+					console.log(Comprobacion)
 					$.get('ControllerAeropuertos', {
 						//Enviando variable al controlador.
-						nombre, pais, ciudad, idAeropuerto, Guardar
+						nombre, pais, ciudad, idAeropuerto, Guardar, Comprobacion
 					}, function (response) {
 						
 						let datos = JSON.parse(response);
@@ -168,7 +173,7 @@ function SoloLetras(e){
 								  showCloseButton: true
 								}).then(() => {
 									var nombre = document.getElementById('Nombre');
-									nombre.value = "";
+									nombre.value = "<%=Nombre%>";
 							})
 						}
 					});
@@ -188,7 +193,7 @@ function SoloLetras(e){
 			<label>Nombre</label> 
 			<input type="text" name="nombre" id="Nombre" value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Pais</label> 
-			<input type="text" name="pais" id="Pais" value="<%=Pais%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="pais" id="Pais" value="<%=Pais%>" onselectstart="return false" onCut="return false"onCopy="return false"  onpaste="return false" onDrop="return false" onDrag="return false"  autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Ciudad</label> 
 			<input type="text" name="ciudad" id="Ciudad" value="<%=Ciudad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 				<div align="center">

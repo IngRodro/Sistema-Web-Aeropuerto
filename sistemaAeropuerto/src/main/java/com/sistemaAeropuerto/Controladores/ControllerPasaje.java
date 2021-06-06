@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.sistemaAeropuerto.DAO.ClsPasaje;
 import com.sistemaAeropuerto.DAO.ClsPasajero;
 import com.sistemaAeropuerto.Entidades.Pasaje;
@@ -61,7 +62,10 @@ public class ControllerPasaje extends HttpServlet {
 		pasaje.setNombreUsuario(usuSession);
 		
 		clsPasaje.AgregarPasaje(pasaje);
-		response.sendRedirect("vuelouser.jsp");
+		Gson json = new Gson();
+		
+		String Mensaje = "Agregado";
+		response.getWriter().append(json.toJson(Mensaje));
 		
 	}
 

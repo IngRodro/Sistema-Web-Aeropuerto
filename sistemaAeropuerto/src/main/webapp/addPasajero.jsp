@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="CSS/estilopasajero.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link
@@ -13,7 +14,6 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;
@@ -73,7 +73,14 @@ function SoloNumerosGuion(evt){
 	if((keynum > 47 && keynum < 58) || keynum == 45 || keynum == 8 || keynum == 13){
 		return true;
 	}else{
-		alert("No se permiten ingresar Letras...");
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'No se permite ingresar Letras...',
+			  confirmButtonText: 'Aceptar',
+			  confirmButtonColor: '#ff2600',
+			  showCloseButton: true
+			})
 		return false;
 	}
 }
@@ -91,7 +98,10 @@ function SoloNumerosGuion(evt){
 
 		response.sendRedirect("index.jsp");
 	}
-	%>
+%>
+<%
+	String Document = request.getParameter("Documento");
+%>
 <script>
 	$(document).ready(function () {
 		$("#DocumentoIdentidad").blur(function (){
@@ -116,31 +126,10 @@ function SoloNumerosGuion(evt){
 			});
 		});
 	});
-</script>
-	<%
-	String IdPasajero = request.getParameter("Id");
-	String Nombres = request.getParameter("Nombres");
-	String Apellidos = request.getParameter("Apellidos");
-	String Edad = request.getParameter("Edad");
-	String Sexo = request.getParameter("Sexo");
-	String DocumentoIdentidad = request.getParameter("DocumentoIdentidad");
-	String Pasaporte = request.getParameter("Pasaporte");
-
-	if (IdPasajero == null) {
-		IdPasajero = "";
-		Nombres = "";
-		Apellidos = "";
-		Edad = "";
-		Sexo = "";
-		DocumentoIdentidad = "";
-		Pasaporte = "";
-	}
-	%>
-	<script>
 	
 	$(document).ready(function () {
 		$("#Cerrar").click(function (){
-				location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+				location.href = 'http://localhost:8080/sistemaAeropuerto/vuelouser.jsp';
 			
 		});
 	});
@@ -155,18 +144,11 @@ function SoloNumerosGuion(evt){
 			var nombres = $("#Nombres").val();
 			var idPasajero = $("#IdPasajero").val();
 			var Guardar = $("#guardar").val();
-			var Pasaporte "<%=Pasaporte%>"
-			var DocumentoIdentidad "<%=DocumentoIdentidad%>"
-			var Sexo "<%=Sexo%>"
-			var Edad "<%=Edad%>"
-			var Apellidos "<%=Apellidos%>"
-			var Nombres = "<%=Nombres%>";
-			var IdPasajero = "<%=IdPasajero%>";
 			
 			var verificar ="";
 			verificar = nombres.split(" ").join("");
 			
-			if(nombres == null || verificar.length == 0){
+if(nombres == null || verificar.length == 0){
 				
 				Swal.fire({
 					  icon: 'error',
@@ -183,71 +165,42 @@ function SoloNumerosGuion(evt){
 						})
 				
 			}else{
-				if(pasaporte == Pasaporte && documentoidentidad == DocumentoIdentidad && sexo == Sexo && edad == Edad && apellidos == Apellidos && nombres == Nombres && idPasajero == IdPasajero){
+				$.get('ControllerPasajero', {
+					//Enviando variable al controlador.
+					pasaporte, documentoidentidad, sexo, edad, apellidos, nombres, idPasajero, Guardar
+				}, function (response) {
+					let datos = JSON.parse(response);
+					console.log(datos);
 					
-					Swal.fire({
-						  title: 'No se resgistraron cambios',
-						  text: "Desea seguir editando?",
-						  icon: 'warning',
-						  showCancelButton: true,
-						  confirmButtonColor: '#3085d6',
-						  cancelButtonColor: '#d33',
-						  confirmButtonText: 'Si'
-						}).then((result) => {
-						  if (result.isConfirmed) {
-						    
-						  }else{
-							  location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-						  }
-						})
+					if(datos == "Agregado"){
+						Swal.fire({
+							  icon: 'success',
+							  title: 'Pasajero Registrado...',
+							  showConfirmButton: false,
+							  timer: 2000
+							}).then(() => {
+								location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+							})
+						};
 					
-					
-				}else{
-					$.get('ControllerPasajero', {
-						//Enviando variable al controlador.
-						pasaporte, documentoidentidad, sexo, edad, apellidos, nombres, idPasajero, Guardar
-					}, function (response) {
-						
-						let datos = JSON.parse(response);
-						console.log(datos);
-						
-						if(datos == "Actualizado"){
-							Swal.fire({
-								  icon: 'success',
-								  title: 'Pasajero Actualizado...',
-								  showConfirmButton: false,
-								  timer: 2000
-								}).then(() => {
-									location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-								})
-						}else if(datos == "Agregado"){
-							Swal.fire({
-								  icon: 'success',
-								  title: 'Pasajero Registrado...',
-								  showConfirmButton: false,
-								  timer: 2000
-								}).then(() => {
-									location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-								})
-						});
-					}
+					})
 				}
 			});
 		});
 	</script>
 	
 	<div class="userbox">
-	<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
+			<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
 			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
 				alt="Logo avion">
 			<h1>Registro Pasajero</h1>
-			<input type="hidden" name="idPasajero" id="IdPasajero" value=<%=IdPasajero%>>
+			<input type="hidden" name="idPasajero" id="IdPasajero" >
 			<label>Nombres</label> 
-			<input type="text" name="nombres" id="Nombres" value="<%=Nombres%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="nombres" id="Nombres" " onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Apellidos</label> 
-			<input type="text" name="apellidos" id="Apellidos" value="<%=Apellidos%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
+			<input type="text" name="apellidos" id="Apellidos" " onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
 			<label>Edad</label> 
-			<input type="text" name="edad" id="Edad" value="<%=Edad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required>
+			<input type="text" name="edad" id="Edad" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumeros(event);" required>
 			<label>Sexo</label> 
 			<select class="form-select form-select-lg mb-3" id="Sexo" name="sexo"
 				id="cmbAsientos" required>
@@ -256,11 +209,11 @@ function SoloNumerosGuion(evt){
 				<option value="Femenino">Femenino</option>
 			</select> 
 			<label>DocumentoIdentidad</label> 
-			<input type="text" name="documentoidentidad" id="DocumentoIdentidad" value="<%=DocumentoIdentidad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumerosGuion(event);" required>
+			<input type="text" name="documentoidentidad" id="DocumentoIdentidad" value="<%=Document%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloNumerosGuion(event);" required>
 			<label>Pasaporte</label> 
-			<input type="text" name="pasaporte" id="Pasaporte" value="<%=Pasaporte%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
+			<input type="text" name="pasaporte" id="Pasaporte" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 				<div align="center">
-					<button name="Guardar" id="guardar" value="btna"><b>Guardar/Actualizar</b></button>
+					<button name="Guardar" id="guardar" class="Confirmar" value="btna"><b>Guardar</b></button>
 				</div>
 	</div>
 </body>
