@@ -83,6 +83,15 @@ function SoloNumerosGuion(evt){
 </script>
 </head>
 <body>
+<%
+	HttpSession sesion = (HttpSession) request.getSession();
+	String usuSession = String.valueOf(sesion.getAttribute("user"));
+
+	if (usuSession.equals(null) || usuSession.equals("null")) {
+
+		response.sendRedirect("index.jsp");
+	}
+	%>
 <script>
 	$(document).ready(function () {
 		$("#DocumentoIdentidad").blur(function (){

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.sistemaAeropuerto.Entidades.Usuario;
 import com.sistemaAeropuerto.Negocio.ClsLoguin;
 
@@ -46,13 +47,9 @@ public class ControllerAcceso extends HttpServlet {
 		HttpSession session = request.getSession(true);
 
 		String btncerrar = request.getParameter("btncerrar");
-		String btnregresar = request.getParameter("btnregresar");
 
 		System.out.println(btncerrar);
-		if(btnregresar != null) {
-			response.sendRedirect("index.jsp");
-		}else {
-			if (btncerrar != null) {
+		if (btncerrar != null) {
 				session.invalidate();
 
 			}else{
@@ -70,17 +67,25 @@ public class ControllerAcceso extends HttpServlet {
 
 				if (valoracceso == 1) {
 					if (clsL.tipoacceso(usuario) == 1) {
-						response.sendRedirect("menu.jsp");
 						session.setAttribute("usuario", user);
+						Gson json = new Gson();
+
+						String Mensaje = "Admin";
+						response.getWriter().append(json.toJson(Mensaje));
 					} else {
 						session.setAttribute("user", user);
-						response.sendRedirect("menuuser.jsp");
+						Gson json = new Gson();
+
+						String Mensaje = "Usuario";
+						response.getWriter().append(json.toJson(Mensaje));
 					}
 				} else {
-				
+					Gson json = new Gson();
 
+					String Mensaje = "Error";
+					response.getWriter().append(json.toJson(Mensaje));
 				}
 			}
 		}
 	}
-}
+

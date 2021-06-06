@@ -140,7 +140,7 @@
 			<label>Escala</label> 
 			<input type="text" value="<%=NEscala%>" name="NEscala" readonly> 
 			<label>Documento de Identidad</label> 
-			<input type="text" id="DUI" name="NDUI" required> 
+			<input type="text" id="DUI" name="NDUI" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required> 
 			<select class="form-select form-select-lg mb-3" name="selectclases" id="cmbclases" required>
 				<option value=>Seleccione una clase</option>
 			</select> 

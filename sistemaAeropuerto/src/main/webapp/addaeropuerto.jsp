@@ -9,8 +9,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/sweetAlert.js"></script>
 <script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;
@@ -86,9 +84,12 @@ function SoloLetras(e){
 			var verificarnombre ="";
 			verificarnombre = nombre.split(" ").join("");
 			var verificarpais ="";
-			verificarnombre = nombre.split(" ").join("");
+			verificarpais = pais.split(" ").join("");
+			var verificarciudad ="";
+			verificarciudad = ciudad.split(" ").join("");
 			
-			if(nombre == null || verificarnombre.length == 0 || ){
+			if(nombre == null || verificarnombre.length == 0 || verificarpais.lenght == 0
+					|| verificarciudad.lenght ==0 || pais == null || ciudad == null){
 				Swal.fire({
 					  icon: 'error',
 					  title: 'Oops...',
@@ -96,6 +97,19 @@ function SoloLetras(e){
 					  confirmButtonText: 'Aceptar',
 					  confirmButtonColor: '#ff2600',
 					  showCloseButton: true
+					}).then(() => {
+						  if(verificarnombre.length == 0){
+							  var nombre = document.getElementById('Nombre');
+							  nombre.value = "";
+						  }
+						  if(verificarpais.length == 0){
+							  var pais = document.getElementById('Pais');
+							  pais.value = "";
+						  }
+						  if(verificarciudad.length == 0){
+							  var ciudad = document.getElementById('Ciudad');
+							  ciudad.value = "";
+						  }
 					})
 			}else{
 				if(nombre == Nombre && Ciudad == ciudad && Pais == pais && IdAeropuerto == idAeropuerto){
@@ -131,21 +145,19 @@ function SoloLetras(e){
 								  icon: 'success',
 								  title: 'Compañia Actualizada...',
 								  showConfirmButton: false,
-								  timer: 1500
+								  timer: 2000
 								}).then(() => {
 									location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
 								})
-							//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 						}else if(datos == "Agregado"){
 							Swal.fire({
 								  icon: 'success',
 								  title: 'Aeropuerto Registrado...',
 								  showConfirmButton: false,
-								  timer: 1500
+								  timer: 2000
 								}).then(() => {
 									location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
 								})
-							//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
 						}else if(datos == "Existente"){
 							Swal.fire({
 								  icon: 'error',
@@ -155,8 +167,8 @@ function SoloLetras(e){
 								  confirmButtonColor: '#ff2600',
 								  showCloseButton: true
 								}).then(() => {
-									var company = document.getElementById('Nombre');
-									company.value = "";
+									var nombre = document.getElementById('Nombre');
+									nombre.value = "";
 							})
 						}
 					});
