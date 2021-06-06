@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
+<title>Cerrar - AeroLine</title>
 </head>
 <link rel="stylesheet" href=CSS/estilomenu.css>
 

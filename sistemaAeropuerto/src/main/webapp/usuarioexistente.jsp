@@ -2,10 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <head>
 <link rel="stylesheet" href="CSS/estilomenu.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Usuario Existente - AeroLine</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 	rel="stylesheet"

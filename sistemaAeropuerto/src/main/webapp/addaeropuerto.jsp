@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <link rel="stylesheet" href="CSS/estiloaeropuerto.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet"
@@ -9,7 +10,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrar Aeropuerto - AeroLine</title>
 <script>
 function SoloLetras(e){
 	key = e.keyCode || e.which;

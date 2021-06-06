@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <link rel="stylesheet" href="CSS/estilovuelo.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -15,7 +16,7 @@
 	crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registrar Vuelo - AeroLine</title>
 <script>
 function SoloNumeros(evt){
 	if(window.event){

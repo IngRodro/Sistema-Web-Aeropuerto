@@ -5,7 +5,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
+<title>Aeropuertos - AeroLine</title>
 </head>
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>

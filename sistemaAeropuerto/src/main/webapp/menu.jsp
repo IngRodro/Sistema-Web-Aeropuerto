@@ -7,7 +7,8 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
+<title>Menu Principal - AeroLine</title>
 </head>
 
 <body>

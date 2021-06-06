@@ -8,6 +8,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%
 HttpSession sesion = (HttpSession) request.getSession();
@@ -29,6 +30,7 @@ if (usuSession.equals(null) || usuSession.equals("null")) {
 	response.sendRedirect("menuuser.jsp");
 }
 %>
+<title>AeroLine</title>
 <body>
 <script type="text/javascript">
 $(document).ready(function () {

@@ -3,12 +3,13 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <link rel="stylesheet" href="CSS/estiloavion.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrar Avion - AeroLine</title>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 function SoloNumeros(evt){
