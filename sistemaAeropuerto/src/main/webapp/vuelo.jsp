@@ -149,7 +149,7 @@
 				});
 				$(document).ready(function () {
 					$("#Agregar").click(function (){
-							location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+							location.href = 'http://localhost:8080/sistemaAeropuerto/addvuelo.jsp';
 					});
 				});	
 </script>

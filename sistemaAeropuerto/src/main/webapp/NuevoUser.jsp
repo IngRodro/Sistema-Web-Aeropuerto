@@ -57,7 +57,7 @@ function SoloNumerosGuion(evt){
 function SoloLetras(e){
 	key = e.keyCode || e.which;
 	tecla = String.fromCharCode(key).toString();
-	letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
+	letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnñopqrstuvwxyzáéíóúü ";
 	
 	especiales = [8,13];
 	tecla_especial = false
