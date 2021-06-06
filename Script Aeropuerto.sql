@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`avion` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`escala` (
     FOREIGN KEY (`idItinerario`)
     REFERENCES `sistemaaeropuerto`.`itinerario` (`idItinerario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 34
+AUTO_INCREMENT = 39
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -772,6 +772,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Aeropuerto`(
 )
 BEGIN
 SELECT * FROM sistemaaeropuerto.aeropuerto;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_AeropuertosEscala
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_AeropuertosEscala`(PidItinerario int, PidAeropuerto int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.escala where idItinerario = PidItinerario and idAeropuerto = PidAeropuerto;
 END$$
 
 DELIMITER ;
