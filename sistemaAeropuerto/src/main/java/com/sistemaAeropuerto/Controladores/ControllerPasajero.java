@@ -60,11 +60,18 @@ public class ControllerPasajero extends HttpServlet {
 			if(IdPasajero==null||IdPasajero=="") {
 				
 				clspasajero.AgregarPasajero(pasajero);
-				response.sendRedirect("vuelouser.jsp");
+				Gson json = new Gson();
+				
+				String Mensaje = "Agregado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}else {
 				pasajero.setIdPasajero(Integer.parseInt(IdPasajero));
 				clspasajero.ActualizarPasajero(pasajero);
-				response.sendRedirect("vuelouser.jsp");
+				
+				Gson json = new Gson();
+
+				String Mensaje = "Actualizado";
+				response.getWriter().append(json.toJson(Mensaje));
 			}
 		}
 	}
