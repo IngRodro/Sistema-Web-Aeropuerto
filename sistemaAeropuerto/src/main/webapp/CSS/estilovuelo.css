@@ -49,6 +49,7 @@ label{
     display: block;
     font-size: 18px;
     width:15%;
+    text-align: right;
 }
 
 input{

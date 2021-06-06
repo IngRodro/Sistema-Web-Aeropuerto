@@ -71,7 +71,7 @@ public class ControllerVuelo extends HttpServlet {
 		ClsPromocion clsPromo = new ClsPromocion();
 		
 
-		if(Finalizando.equals("btnf")){
+		if(Finalizando != null){
 			vuelo.setIdVuelo(Integer.parseInt(IdVuelo));
 			clsVuelo.VueloFinalizado(vuelo);
 			response.sendRedirect("vuelo.jsp");

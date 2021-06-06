@@ -287,65 +287,64 @@ function SoloNumeros(evt){
 						var fechaI = $("#FechaI").val();
 						var fechaF = $("#FechaF").val();
 						var Guardar = $("#guardar").val();
-						console.log(vuelo)
-						console.log(fecha);
-						console.log(hora);
-						console.log(minutos);
-						console.log(selectcompany);
-						console.log(selectAvion);
-						console.log(seletTipos);
-						console.log(selectAeropuertoO);
-						console.log(selectAeropuertoD);
-						console.log(descuento);
-						console.log(fechaI);
-						console.log(fechaF);
 						
+						if(selectAeropuertoO == selectAeropuertoD){
+							Swal.fire({
+								  icon: 'error',
+								  title: 'Oops...',
+								  text: 'El Aeropuerto de Origen y de Destino no pueden ser el mismo...',
+								  confirmButtonText: 'Aceptar',
+								  confirmButtonColor: '#ff2600',
+								  showCloseButton: true
+								})
+						}else{
 							if(fecha == null || hora == null || hora == "" || minutos == null 
-								|| minutos == "" || selectcompany == null  || selectcompany == "" 
-								|| selectAvion == null || selectAvion == "" || seletTipos == null 
-								|| seletTipos == "" || selectAeropuertoO == null || selectAeropuertoO == "" 
-								|| selectAeropuertoD == null || selectAeropuertoD == ""){
-								
-								Swal.fire({
-									  icon: 'error',
-									  title: 'Oops...',
-									  text: 'Complete todos los campos para continuar...',
-									  confirmButtonText: 'Aceptar',
-									  confirmButtonColor: '#ff2600',
-									  showCloseButton: true
-									})
-								
-							}else{
-								$.get('ControllerVuelo', {
-									//Enviando variable al controlador.
-									vuelo, fecha, hora, minutos, selectcompany, selectAvion, seletTipos, selectAeropuertoO, selectAeropuertoD, descuento, fechaI, fechaF, Guardar
-								}, function (response) {
+									|| minutos == "" || selectcompany == null  || selectcompany == "" 
+									|| selectAvion == null || selectAvion == "" || seletTipos == null 
+									|| seletTipos == "" || selectAeropuertoO == null || selectAeropuertoO == "" 
+									|| selectAeropuertoD == null || selectAeropuertoD == ""){
 									
-									let datos = JSON.parse(response);
-									console.log(datos);
+									Swal.fire({
+										  icon: 'error',
+										  title: 'Oops...',
+										  text: 'Complete todos los campos para continuar...',
+										  confirmButtonText: 'Aceptar',
+										  confirmButtonColor: '#ff2600',
+										  showCloseButton: true
+										})
 									
-									if(datos == "Agregado"){
-										Swal.fire({
-											  icon: 'success',
-											  title: 'Vuelo Registrado...',
-											  showConfirmButton: false,
-											  timer: 10000
-											}).then(() => {
-												location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
-											})
-										//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
-									}else if(datos == "Actualizado"){
-										Swal.fire({
-											  icon: 'success',
-											  title: 'Vuelo Actualizado...',
-											  showConfirmButton: false,
-											  timer: 1500
-											}).then(() => {
-												location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
-											})
-									}
-								});
-							}
+								}else{
+									$.get('ControllerVuelo', {
+										//Enviando variable al controlador.
+										vuelo, fecha, hora, minutos, selectcompany, selectAvion, seletTipos, selectAeropuertoO, selectAeropuertoD, descuento, fechaI, fechaF, Guardar
+									}, function (response) {
+										
+										let datos = JSON.parse(response);
+										console.log(datos);
+										
+										if(datos == "Agregado"){
+											Swal.fire({
+												  icon: 'success',
+												  title: 'Vuelo Registrado...',
+												  showConfirmButton: false,
+												  timer: 10000
+												}).then(() => {
+													location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+												})
+											//location.href = 'http://localhost:8080/sistemaAeropuerto/company.jsp';
+										}else if(datos == "Actualizado"){
+											Swal.fire({
+												  icon: 'success',
+												  title: 'Vuelo Actualizado...',
+												  showConfirmButton: false,
+												  timer: 1500
+												}).then(() => {
+													location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+												})
+										}
+									});
+								}
+						}
 					});
 				});
 				
