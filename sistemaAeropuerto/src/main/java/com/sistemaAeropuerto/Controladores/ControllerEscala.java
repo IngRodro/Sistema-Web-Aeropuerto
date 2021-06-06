@@ -38,7 +38,7 @@ public class ControllerEscala extends HttpServlet {
 		String Evaluar = request.getParameter("Eliminar");
 		String agregando = request.getParameter("Guardar");
 		String IdVuelo = request.getParameter("idVuelo");
-		String IdEscala = request.getParameter("IdEscala");
+		String IdEscala = request.getParameter("idEscala");
 		String Precio = request.getParameter("precio");
 		String Aeropuerto =request.getParameter("selectAeropuerto");
 		String NumeroEscala = request.getParameter("numeroEscala");
