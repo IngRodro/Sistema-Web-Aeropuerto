@@ -29,33 +29,6 @@ if (usuSession.equals(null) || usuSession.equals("null")) {
 	response.sendRedirect("menuuser.jsp");
 }
 %>
-<script>
-function SoloLetras(e){
-	key = e.keyCode || e.which;
-	tecla = String.fromCharCode(key).toString();
-	letras = "ABCDEFGHIJKLMN—OPQRSTUVWXYZ¡…Õ”⁄‹abcdefghijklmnÒopqrstuvwxyz·ÈÌÛ˙¸ ";
-	
-	especiales = [8,13];
-	tecla_especial = false
-	for(var i in especiales){
-		if(key == especiales[1]){
-			tecla_especial = true;
-			break;
-		}
-	}
-	if(letras.indexOf(tecla) == -1 && !tecla_especial){
-		Swal.fire({
-			  icon: 'error',
-			  title: 'Oops...',
-			  text: 'No se permite ingresar numeros...',
-			  confirmButtonText: 'Aceptar',
-			  confirmButtonColor: '#ff2600',
-			  showCloseButton: true
-			})
-		return false;
-	}
-}
-</script>
 <body>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -156,7 +129,7 @@ $(document).ready(function () {
 				<h1>Inicia Sesion</h1>
 				<div class="input-group mt-5 mb-5">
 					<span class="input-group-text fa fa-user"></span>
-					<input class="form-control" type="text" name="user" id="User" placeholder="Ingrese su Usuario" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
+					<input class="form-control" type="text" name="user" id="User" placeholder="Ingrese su Usuario" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 				</div>
 				<div class="input-group mt-5 mb-5">
 					<span class="input-group-text fa fa-key"></span>

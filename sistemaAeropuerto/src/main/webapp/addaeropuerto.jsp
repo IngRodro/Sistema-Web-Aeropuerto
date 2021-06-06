@@ -4,7 +4,8 @@
 <html>
 <link rel="stylesheet" href="CSS/estiloaeropuerto.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <head>
 <meta charset="ISO-8859-1">
@@ -38,7 +39,7 @@ function SoloLetras(e){
 </script>
 </head>
 <body>
-<%
+	<%
 	HttpSession sesion = (HttpSession) request.getSession();
 	String usuSession = String.valueOf(sesion.getAttribute("usuario"));
 
@@ -61,7 +62,7 @@ function SoloLetras(e){
 		Pais = "";
 	}
 	%>
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function () {
 		$("#Cerrar").click(function (){
 				location.href = 'http://localhost:8080/sistemaAeropuerto/aeropuerto.jsp';
@@ -121,7 +122,8 @@ function SoloLetras(e){
 						  showCancelButton: true,
 						  confirmButtonColor: '#3085d6',
 						  cancelButtonColor: '#d33',
-						  confirmButtonText: 'Si'
+						  confirmButtonText: 'Si',
+						  cancelButtonText: 'No'
 						}).then((result) => {
 						  if (result.isConfirmed) {
 						    
@@ -182,23 +184,37 @@ function SoloLetras(e){
 		});
 	});
 </script>
-	
+
 
 	<div class="userbox">
-		<button id="Cerrar" class="Cerrar"><i class="far fa-window-close"></i></button>
-			<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
-				alt="Logo avion">
-			<h1>Registro Aeropuerto</h1>
-			<input type="hidden" name="idAeropuerto" id="IdAeropuerto" value=<%=IdAeropuerto%>>
-			<label>Nombre</label> 
-			<input type="text" name="nombre" id="Nombre" value="<%=Nombre%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required> 
-			<label>Pais</label> 
-			<input type="text" name="pais" id="Pais" value="<%=Pais%>" onselectstart="return false" onCut="return false"onCopy="return false"  onpaste="return false" onDrop="return false" onDrag="return false"  autocomplete=off onkeypress="return SoloLetras(event);" required> 
-			<label>Ciudad</label> 
-			<input type="text" name="ciudad" id="Ciudad" value="<%=Ciudad%>" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
-				<div align="center">
-			<button name="Guardar" value="btna" id="guardar" class="Confirmar"><b>Guardar/Actualizar</b></button>
-				</div>
+		<button id="Cerrar" class="Cerrar">
+			<i class="far fa-window-close"></i>
+		</button>
+		<img class="icono" src="IMG/icono-avion-viaje_18591-39662.jpg"
+			alt="Logo avion">
+		<h1>Registro Aeropuerto</h1>
+		<input type="hidden" name="idAeropuerto" id="IdAeropuerto"
+			value=<%=IdAeropuerto%>> <label>Nombre</label> <input
+			type="text" name="nombre" id="Nombre" value="<%=Nombre%>"
+			onselectstart="return false" onCut="return false"
+			onCopy="return false" onpaste="return false" onDrop="return false"
+			onDrag="return false" autocomplete=off
+			onkeypress="return SoloLetras(event);" required> <label>Pais</label>
+		<input type="text" name="pais" id="Pais" value="<%=Pais%>"
+			onselectstart="return false" onCut="return false"
+			onCopy="return false" onpaste="return false" onDrop="return false"
+			onDrag="return false" autocomplete=off
+			onkeypress="return SoloLetras(event);" required> <label>Ciudad</label>
+		<input type="text" name="ciudad" id="Ciudad" value="<%=Ciudad%>"
+			onselectstart="return false" onCut="return false"
+			onCopy="return false" onpaste="return false" onDrop="return false"
+			onDrag="return false" autocomplete=off
+			onkeypress="return SoloLetras(event);" required>
+		<div align="center">
+			<button name="Guardar" value="btna" id="guardar" class="Confirmar">
+				<b>Guardar/Actualizar</b>
+			</button>
+		</div>
 	</div>
 </body>
 </html>

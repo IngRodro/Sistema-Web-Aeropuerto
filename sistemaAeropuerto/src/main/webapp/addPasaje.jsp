@@ -197,7 +197,7 @@ function SoloNumerosGuion(evt){
 										  confirmButtonColor: '#3085d6',
 										  cancelButtonColor: '#d33',
 										  confirmButtonText: 'Si',
-										  cancelButtonText: 'Cancelar'
+										  cancelButtonText: 'No'
 										}).then((result) => {
 											if (result.isConfirmed) {
 												location.href = 'http://localhost:8080/sistemaAeropuerto/addPasajero.jsp?Documento=' + NumeroDUI;

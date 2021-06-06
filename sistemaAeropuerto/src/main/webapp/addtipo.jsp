@@ -23,7 +23,7 @@ function SoloNumeros(evt){
 		Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: 'Solo se permiten numeros...',
+			  text: 'Solo se permiten letras...',
 			  confirmButtonText: 'Aceptar',
 			  confirmButtonColor: '#ff2600',
 			  showCloseButton: true

@@ -151,7 +151,7 @@ function SoloLetras(e){
 								  confirmButtonColor: '#3085d6',
 								  cancelButtonColor: '#d33',
 								  confirmButtonText: 'Si',
-								  cancelButtonText: 'Cancelar',
+								  cancelButtonText: 'No',
 								  backdrop: `
 									    rgba(0,0,123,0.4)
 									    left top
@@ -246,7 +246,7 @@ function SoloLetras(e){
 		<label>Apellidos</label>
 		<input type="text" name="apellidos" id="Apellidos" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
 		<label>Nombre de Usuario</label>
-		<input type="text" name="usuario" id="Usuario" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off onkeypress="return SoloLetras(event);" required>
+		<input type="text" name="usuario" id="Usuario" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 		<label>Password</label>
 		<input type="password" name="pass" id="Pass" onselectstart="return false" onCut="return false" onCopy="return false" onpaste="return false" onDrop="return false" onDrag="return false" autocomplete=off required>
 		<label>Edad</label>

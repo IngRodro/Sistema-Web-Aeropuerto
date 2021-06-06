@@ -91,7 +91,13 @@ function SoloLetras(e){
 	}
 	%>
 	
-<script>	
+<script>
+$(document).ready(function () {
+	$("#Cerrar").click(function (){
+		location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
+	});
+});
+
 $(document).ready(function () {
 		var idVuelo = $("#IdVuelo").val();
 	$.post('ControllerAeropuertos', {
@@ -143,7 +149,8 @@ $(document).ready(function () {
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
 					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Si'
+					  confirmButtonText: 'Si',
+					  cancelButtonText: 'No'
 					}).then((result) => {
 					  if (result.isConfirmed) {
 					    
