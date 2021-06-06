@@ -48,7 +48,6 @@ public class ControllerAcceso extends HttpServlet {
 
 		String btncerrar = request.getParameter("btncerrar");
 
-		System.out.println(btncerrar);
 		if (btncerrar != null) {
 				session.invalidate();
 

@@ -20,7 +20,7 @@
 			Swal.fire({
 				  title: 'Cierre de Sesion',
 				  text: "¿Esta seguro que desea cerrar sesion?",
-				  icon: 'warning',
+				  icon: 'question',
 				  showCancelButton: true,
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
@@ -36,7 +36,7 @@
 						  Swal.fire({
 							  title: 'Cerrando Sesion...',
 							  html: 'Espere unos instantes',
-							  timer: 4250,
+							  timer: 3000,
 							  showConfirmButton: false,
 							  timerProgressBar: true,
 							  backdrop: `
@@ -115,7 +115,13 @@ String IdVuelo = request.getParameter("IdVuelo");
 						}
 					});
 				});
-			</script>
+				
+				$(document).ready(function () {
+					$("#Agregar").click(function (){
+							location.href = 'http://localhost:8080/sistemaAeropuerto/addescala.jsp?IdVuelo=<%=IdVuelo %>';
+					});
+				});						
+</script>
 
 <header>
 	<input type="checkbox" id="btn-menu">
@@ -151,7 +157,7 @@ String IdVuelo = request.getParameter("IdVuelo");
 			</tbody>
 		</table>
 		<div align="center">
-			<a href="addescala.jsp?IdVuelo=<%=IdVuelo %>" type="button" class="btn btn-primary"><b>Agregar</b></a>
+			<button class="agregar" id="Agregar"><b>Agregar</b></button>
 		</div>
 	</div>
 </body>

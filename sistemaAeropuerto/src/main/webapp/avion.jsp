@@ -36,7 +36,7 @@
 						  Swal.fire({
 							  title: 'Cerrando Sesion...',
 							  html: 'Espere unos instantes',
-							  timer: 4250,
+							  timer: 3000,
 							  showConfirmButton: false,
 							  timerProgressBar: true,
 							  backdrop: `
@@ -96,7 +96,12 @@
 						}
 					});
 				});
-			</script>
+			$(document).ready(function () {
+				$("#Agregar").click(function (){
+						location.href = 'http://localhost:8080/sistemaAeropuerto/addavion.jsp';
+				});
+			});				
+</script>
 
 <header>
 	<input type="checkbox" id="btn-menu">
@@ -131,7 +136,7 @@
 			</tbody>
 		</table>
 		<div align="center">
-			<a href="addavion.jsp" type="button" class="btn btn-primary"><b>Agregar</b></a>
+			<button class="agregar" id="Agregar"><b>Agregar</b></button>
 		</div>
 	</div>
 </body>

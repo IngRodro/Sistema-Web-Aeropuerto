@@ -19,7 +19,7 @@
 			Swal.fire({
 				  title: 'Cierre de Sesion',
 				  text: "¿Esta seguro que desea cerrar sesion?",
-				  icon: 'warning',
+				  icon: 'question',
 				  showCancelButton: true,
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
@@ -35,7 +35,7 @@
 						  Swal.fire({
 							  title: 'Cerrando Sesion...',
 							  html: 'Espere unos instantes',
-							  timer: 4250,
+							  timer: 3000,
 							  showConfirmButton: false,
 							  timerProgressBar: true,
 							  backdrop: `

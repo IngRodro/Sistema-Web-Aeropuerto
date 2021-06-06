@@ -99,7 +99,7 @@ $(document).ready(function () {
 						 Swal.fire({
 							  title: 'Iniciando Sesion como Administrador...',
 							  html: 'Espere unos instantes',
-							  timer: 3500,
+							  timer: 2500,
 							  showConfirmButton: false,
 							  timerProgressBar: true,
 							  backdrop: `
@@ -117,7 +117,7 @@ $(document).ready(function () {
 						Swal.fire({
 							  title: 'Iniciando Sesion como Usuario...',
 							  html: 'Espere unos instantes',
-							  timer: 3500,
+							  timer: 2500,
 							  showConfirmButton: false,
 							  timerProgressBar: true,
 							  backdrop: `
@@ -140,8 +140,10 @@ $(document).ready(function () {
 							  confirmButtonColor: '#ff2600',
 							  showCloseButton: true
 							}).then(() => {
-								var nombre = document.getElementById('Nombre');
-								nombre.value = "";
+								var user = document.getElementById('User');
+								user.value = "";
+								var pass = document.getElementById('Pass');
+								pass.value = "";
 						})
 					}
 				});
