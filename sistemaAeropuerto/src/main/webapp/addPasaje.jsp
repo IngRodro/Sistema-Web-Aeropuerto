@@ -134,8 +134,8 @@ function SoloNumerosGuion(evt){
 							console.log(datos);
 							if(datos == null){
 								Swal.fire({
-									  title: 'Usuario no Econtrado',
-									  text: "¿Desea resgistrar un Usuario?",
+									  title: 'Pasajero no Econtrado',
+									  text: "¿Desea resgistrar un Pasajero?",
 									  icon: 'question',
 									  showCancelButton: true,
 									  confirmButtonColor: '#3085d6',
