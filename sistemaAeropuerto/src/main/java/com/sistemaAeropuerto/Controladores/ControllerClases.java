@@ -117,12 +117,12 @@ public class ControllerClases extends HttpServlet {
 			Gson json = new Gson();
 			int idClase = Integer.parseInt(comboID);
 			Double PorcentajeDesc = Double.parseDouble(PorcentajeTotalDescuento);
-			Double PrecioDoule = Double.parseDouble(Precio);
+			Double PrecioDouble = Double.parseDouble(Precio);
 			ClsClase clsClase = new ClsClase();
 			Clases clase = new Clases();
 			clase = clsClase.SeleccionarClase(idClase);
 			response.setCharacterEncoding("UTF8");
-			Double Total = PrecioDoule - (PrecioDoule * (PorcentajeDesc - (clase.getPorcentajeEPrecio() / 100)));
+			Double Total = PrecioDouble - (PrecioDouble * (PorcentajeDesc - (clase.getPorcentajeEPrecio() / 100)));
 			response.getWriter().append(json.toJson(Total));
 		} else {
 

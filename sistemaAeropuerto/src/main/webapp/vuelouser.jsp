@@ -7,14 +7,9 @@
 <link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <title>Vuelos - AeroLine</title>
 </head>
-<link rel="stylesheet" href="CSS/estilostablas.css">
+<link rel="stylesheet" href="CSS/estilotablasvuelo.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
 <body><script type="text/javascript">$(document).ready(function () {
 		$("#Cerrar").click(function (){
 			Swal.fire({
@@ -101,8 +96,8 @@
 									<td>${item.Descuento}%</td>
 									<td>${item.FechaInicio}</td>
 									<td>${item.FechaFinal}</td>
-									<td><a class="btn btn-success" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></td>	
-								</tr>
+									<td><button class="btntable"><a class="atable" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicioDesc}&FechaFinal=${item.FechaFinalDesc}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></button></td>	
+									</tr>
 								`
 							}else{
 									tabla.innerHTML += `
@@ -117,7 +112,7 @@
 											<td>${item.Descuento}%</td>
 											<td>${item.FechaInicio}</td>
 											<td>${item.FechaFinal}</td>
-											<td><a class="btn btn-success" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicioDesc}&FechaFinal=${item.FechaFinalDesc}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></td>	
+											<td><button class="btntable"><a class="atable" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicioDesc}&FechaFinal=${item.FechaFinalDesc}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></button></td>	
 										</tr>
 										`
 										

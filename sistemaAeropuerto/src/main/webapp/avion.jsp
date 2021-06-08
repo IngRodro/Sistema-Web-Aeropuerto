@@ -9,6 +9,7 @@
 </head>
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
@@ -88,9 +89,10 @@
 						<td>${item.idAvion}</td>
 						<td>${item.modeloAvion}</td>
 						<td>${item.capacidad}</td>
-						<td><a class="btn btn-danger" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
-						<a href="addavion.jsp?Id=${item.idAvion}&Modelo=${item.modeloAvion}&Capacidad=${item.capacidad}" class="btn btn-warning"> Actualizar</a>
-						<a class="btn btn-success" href="clases.jsp?IdAvion=${item.idAvion}">Ver Clases</a>
+						<td>
+						<button class="btntableeliminar"><a class="atableeliminar" href="ControllerAvion?IdAvion=${item.idAvion}&Eliminar=btne"><i class="far fa-trash-alt fa-2x" style="color: black;"></i></a></button>
+						<button class="btntableupdate"><a class="atableupdate" href="addavion.jsp?Id=${item.idAvion}&Modelo=${item.modeloAvion}&Capacidad=${item.capacidad}"> <i class="fas fa-edit fa-2x " style="color: black;"></i></a></button>
+						<button class="btntablever"><a class="atablever" href="clases.jsp?IdAvion=${item.idAvion}">Ver Clases</a>
 						</td>
 					</tr>
 					`

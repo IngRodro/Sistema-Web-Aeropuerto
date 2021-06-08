@@ -12,7 +12,8 @@
 </head>
 
 <body>
-	<script type="text/javascript">$(document).ready(function () {
+	<script type="text/javascript">
+	$(document).ready(function () {
 		$("#Cerrar").click(function (){
 			Swal.fire({
 				  title: 'Cierre de Sesion',
@@ -51,7 +52,7 @@
 									btncerrar
 									},
 									function (response) {
-								location.href = 'http://localhost:8080/sistemaAeropuerto/index.jsp';
+										location.href = 'http://localhost:8080/sistemaAeropuerto/index.jsp';
 									});
 							})
 						  	

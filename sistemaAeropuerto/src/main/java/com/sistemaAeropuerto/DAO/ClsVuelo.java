@@ -3,14 +3,9 @@ package com.sistemaAeropuerto.DAO;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
 
 import com.sistemaAeropuerto.Conexion.ConexionBd;
-import com.sistemaAeropuerto.Entidades.Escala;
 import com.sistemaAeropuerto.Entidades.Itinerario;
 import com.sistemaAeropuerto.Entidades.Promociones;
 import com.sistemaAeropuerto.Entidades.Vuelo;
@@ -156,41 +151,6 @@ public class ClsVuelo {
 		}
 	}
 
-	public ArrayList<InnerJoinVuelo> MostrarVuelosOrigen(int idAeropuerto) {
-		ConexionBd cn = new ConexionBd();
-		Connection conexion = cn.RetornarConexion();
-
-		ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
-		try {
-			CallableStatement Statement = conexion.prepareCall("call SP_S_VuelosOrigen(?)");
-			Statement.setInt("PidAeropuerto", idAeropuerto);
-			ResultSet resultadoDeConsulta = Statement.executeQuery();
-			while (resultadoDeConsulta.next()) {
-				InnerJoinVuelo InJoin = new InnerJoinVuelo();
-				InJoin.setVuelo(resultadoDeConsulta.getInt("Vuelo"));
-				InJoin.setCompany(resultadoDeConsulta.getString("Compania"));
-				InJoin.setAeropuertoO(resultadoDeConsulta.getString("Aeropuerto_Origen"));
-				InJoin.setAeropuertoD(resultadoDeConsulta.getString("Aeropuerto_Destino"));
-				InJoin.setModelo(resultadoDeConsulta.getString("Modelo_Avion"));
-				InJoin.setTipo(resultadoDeConsulta.getString("Tipo_de_Vuelo"));
-				InJoin.setFecha(resultadoDeConsulta.getDate("Fecha"));
-				InJoin.setHora(resultadoDeConsulta.getString("Hora"));
-				InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
-				InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
-				InJoin.setFechaFinalDesc(resultadoDeConsulta.getDate("FechaMax"));
-				InJoin.setFechaInicioDesc(resultadoDeConsulta.getDate("FechaIni"));
-				InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
-				if (InJoin.getEstado() > 0) {
-					Vuelos.add(InJoin);
-				}
-			}
-			conexion.close();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return Vuelos;
-	}
-
 	public void VueloFinalizado(Vuelo vuelo) {
 		ConexionBd cn = new ConexionBd();
 		Connection conexion = cn.RetornarConexion();
@@ -307,9 +267,10 @@ public class ClsVuelo {
 				InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
 				InJoin.setIdTipo(resultadoDeConsulta.getInt("idTipos_vuelo"));
 				InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
+				
 				InJoin.setPrecio(resultadoDeConsulta.getDouble("precio"));
 				InJoin.setDescuentoTipo(resultadoDeConsulta.getDouble("PorcentajeDesc"));
-				if(InJoin.getEstado()>0) {
+				if(resultadoDeConsulta.getInt("Estado")>0) {
 				Vuelos.add(InJoin);
 				}
 			}

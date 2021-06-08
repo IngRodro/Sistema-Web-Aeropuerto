@@ -7,14 +7,10 @@
 <link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
 <title>Vuelos - AeroLine</title>
 </head>
-<link rel="stylesheet" href="CSS/estilostablas.css">
+<link rel="stylesheet" href="CSS/estilotablasvuelo.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <body>
 	<script type="text/javascript">$(document).ready(function () {
 		$("#Cerrar").click(function (){
@@ -97,9 +93,9 @@
 									<td>${item.Descuento}%</td>
 									<td>Activo</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
-									<a class="btn btn-info" href="escala.jsp?IdVuelo=${item.Vuelo}">Ver Escalas</a>
-									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
+									<button class="btntableupdate"><a class="atableupdate" href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}"> <i class="fas fa-edit fa-lg " style="color: black;"></i></a></button>
+									<button class="btntablever"><a class="atablever" href="escala.jsp?IdVuelo=${item.Vuelo}">Ver Escalas</a>
+									<button class="btntablefin"><a class="atablefin" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`
@@ -117,9 +113,9 @@
 									<td>${item.Descuento}%</td>
 									<td>Retrasado</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
-									<a class="btn btn-info" href="escala.jsp?IdVuelo=${item.Vuelo}"> Ver Escalas </a>
-									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
+									<button class="btntableupdate"><a class="atableupdate" href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}"> <i class="fas fa-edit fa-lg " style="color: black;"></i></a></button>
+									<button class="btntablever"><a class="atablever" href="escala.jsp?IdVuelo=${item.Vuelo}">Ver Escalas</a>
+									<button class="btntablefin"><a class="atablefin" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`
@@ -137,9 +133,9 @@
 									<td>${item.Descuento}%</td>
 									<td>Suspendido</td>
 									<td>
-									<a href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}" class="btn btn-warning"> Actualizar</a>
-									<a class="btn btn-info" href="escala.jsp?IdVuelo=${item.Vuelo}"> Ver Escalas</a>
-									<a class="btn btn-success" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
+									<button class="btntableupdate"><a class="atableupdate" href="addvuelo.jsp?Vuelo=${item.Vuelo}&Hora=${item.hora}&Minutos=${item.minutos}&Fecha=${item.FechaString}&IdAeropuertoD=${item.IdAeropuertoD}&IdAeropuertO=${item.IdAeropuertO}&IdAvion=${item.IdAvion}&IdCompany=${item.IdCompany}&IdTipo=${item.IdTipo}&Modelo=${item.Modelo}&Tipo=${item.Tipo}&estado=${item.estado}&AeropuertoD=${item.AeropuertoD}&AeropuertoO=${item.AeropuertoO}&Company=${item.Company}&Descuento=${item.Descuento}&FechaI=${item.FechaInicio}&FechaF=${item.FechaFinal}"> <i class="fas fa-edit fa-lg " style="color: black;"></i></a></button>
+									<button class="btntablever"><a class="atablever" href="escala.jsp?IdVuelo=${item.Vuelo}">Ver Escalas</a>
+									<button class="btntablefin"><a class="atablefin" href="ControllerVuelo?vuelo=${item.Vuelo}&Finalizar=btnf">Finalizar Vuelo</a>
 									</td>
 								</tr>
 								`

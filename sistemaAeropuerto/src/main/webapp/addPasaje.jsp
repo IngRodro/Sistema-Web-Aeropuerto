@@ -76,7 +76,7 @@ function SoloNumerosGuion(evt){
 					location.href = 'http://localhost:8080/sistemaAeropuerto/vuelouser.jsp';
 				});
 			});
-	
+	//Funcion de Cargar Combox de las Clases
 				$(document).ready(function () {
 					var IdAvion = <%=idAvion%>
 					$.post('ControllerClases', {
@@ -95,6 +95,7 @@ function SoloNumerosGuion(evt){
 					});
 				});
 		
+	//Funcion de Cargar Precio hasta que se seleccione una clase
 				$(document).ready(function () {
 					$("#cmbclases").change(function (){
 						var Precio = <%=DoublePrecio%>
@@ -120,15 +121,47 @@ function SoloNumerosGuion(evt){
 				
 				$(document).ready(function () {
 					$("#DUI").blur(function (){
+				
 						//Recogiendo el value
 						var NumeroDUI = $("#DUI").val();
 						console.log(NumeroDUI);
-						
-						
+						$.post('ControllerPasajero', {
+							//Enviando variable al controlador.
+							NumeroDUI
+						}, function (response) {
+							
+							let datos = JSON.parse(response);
+							console.log(datos);
+							if(datos == null){
+								Swal.fire({
+									  title: 'Usuario no Econtrado',
+									  text: "¿Desea resgistrar un Usuario?",
+									  icon: 'question',
+									  showCancelButton: true,
+									  confirmButtonColor: '#3085d6',
+									  cancelButtonColor: '#d33',
+									  confirmButtonText: 'Si',
+									  cancelButtonText: 'No'
+									}).then((result) => {
+										if (result.isConfirmed) {
+											location.href = 'http://localhost:8080/sistemaAeropuerto/addPasajero.jsp?Documento=' + NumeroDUI;
+										}
+									})
+								
+							}
+							
+				})	
 						
 			});
 		});
 				
+				
+
+				
+		
+				
+				
+			////Funcion de Cargar Asientos hasta que se seleccione una clase
 				$(document).ready(function () {
 					$("#cmbclases").change(function (){
 					var Vuelo = <%=Vuelo%>
@@ -153,6 +186,9 @@ function SoloNumerosGuion(evt){
 				})
 			});
 				
+			
+			
+			
 				$(document).ready(function () {
 					$("#guardar").click(function (){
 						var NEscala = $("#nEscala").val();

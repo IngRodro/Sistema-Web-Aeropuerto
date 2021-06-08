@@ -4,8 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
-
 import com.sistemaAeropuerto.Conexion.ConexionBd;
 import com.sistemaAeropuerto.Entidades.Promociones;
 import com.sistemaAeropuerto.Entidades.Vuelo;

@@ -118,7 +118,8 @@ function SoloNumeros(evt){
 	
 		});
 	});
-	
+
+	//Verificar Descuento Funcion
 	function verificarUpdate(){ 
 	   	if (<%=Descuento%> == 0){
 			var FechaI = document.getElementById('FechaI')
@@ -132,7 +133,8 @@ function SoloNumeros(evt){
 			FechaF.disabled = false;
 	   	}
 	} 
-
+			
+			//Funcion Cargar Combobox Company
 				$(document).ready(function () {
 					$.post('ControllerCompany', {
 					}, function (response) {
@@ -149,6 +151,7 @@ function SoloNumeros(evt){
 					});
 				});
 				
+			//Funcion Cargar Combobox Avion
 				$(document).ready(function () {
 					$.post('ControllerAvion', {
 					}, function (response) {
@@ -167,6 +170,7 @@ function SoloNumeros(evt){
 					});
 				});
 				
+			//Funcion Cargar Tipo de Vuelo
 				$(document).ready(function () {
 					$.post('ControllerTipos', {
 					}, function (response) {
@@ -182,7 +186,8 @@ function SoloNumeros(evt){
 						}
 					});
 				});
-				
+			
+				//Funcion Cargar Combobox Aeropuertos
 				$(document).ready(function () {
 					$.post('ControllerAeropuertos', {
 					}, function (response) {
@@ -203,7 +208,7 @@ function SoloNumeros(evt){
 					});
 				});
 				
-				
+		//FuncionFechaMaxDependiendo de la Fecha de Vuelo
 				$(document).ready(function () {
 					$("#Fecha").change(function (){
 						//Recogiendo el value del combo
@@ -216,6 +221,7 @@ function SoloNumeros(evt){
 			});
 		});		
 				
+		//FechaMin
 				$(document).ready(function () {
 					$("#FechaI").change(function (){
 						//Recogiendo el value del combo
@@ -226,6 +232,7 @@ function SoloNumeros(evt){
 			});
 		});
 				
+		//FechaMax Dependiendo de la Fecha Final de Descuento
 				$(document).ready(function () {
 					$("#FechaF").change(function (){
 						//Recogiendo el value del combo
@@ -236,6 +243,7 @@ function SoloNumeros(evt){
 			});
 		});		
 				
+		//FuncionValidarDescuento y Activar Inputs Fecha
 				$(document).ready(function () {
 					$("#Descuento").blur(function (){
 						//Recogiendo el value del combo
@@ -273,6 +281,7 @@ function SoloNumeros(evt){
 		});	
 				
 				
+		//FuncionGuardar
 				$(document).ready(function () {
 					$("#guardar").click(function (){
 						var vuelo = $("#Vuelo").val();
@@ -350,6 +359,7 @@ function SoloNumeros(evt){
 				});
 				
 				
+		//ValidarHora
 				$(document).ready(function () {
 					$("#Hora").blur(function (){
 						//Recogiendo el value del combo
@@ -370,6 +380,8 @@ function SoloNumeros(evt){
 						
 			});
 		});	
+		
+		//ValidarMinutos
 				
 				$(document).ready(function () {
 					$("#Minutos").blur(function (){

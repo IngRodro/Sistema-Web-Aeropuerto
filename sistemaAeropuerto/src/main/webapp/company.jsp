@@ -9,11 +9,7 @@
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <script type="text/javascript">$(document).ready(function () {
@@ -87,8 +83,8 @@
 					<tr>
 						<td>${item.idCompany}</td>
 						<td>${item.nombre}</td>
-						<td><a class="btn btn-danger" href="ControllerCompany?idCompany=${item.idCompany}&Eliminar=btne">Eliminar</a>
-						<a href="addcompany.jsp?Id=${item.idCompany}&Nombre=${item.nombre}" class="btn btn-warning"> Actualizar</a>
+						<td><button class="btntableeliminar"><a class="atableeliminar" href="ControllerCompany?idCompany=${item.idCompany}&Eliminar=btne"><i class="far fa-trash-alt fa-2x" style="color: black;"></i></a></button>
+						<button class="btntableupdate"><a class="atableupdate" href="addcompany.jsp?Id=${item.idCompany}&Nombre=${item.nombre}"><i class="fas fa-edit fa-2x " style="color: black;"></i></a></button>
 						</td>
 					</tr>
 					`

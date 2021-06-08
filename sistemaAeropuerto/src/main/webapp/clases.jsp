@@ -10,13 +10,7 @@
 <link rel="stylesheet" href="CSS/estilostablas.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-
-<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">$(document).ready(function () {
 		$("#Cerrar").click(function (){
 			Swal.fire({
@@ -108,8 +102,8 @@ String IdAvion = request.getParameter("IdAvion");
 										<td>${item.nombreClase}</td>
 										<td>${item.nAsientos}</td>
 										<td>${item.porcentajeEPrecio}%</td>
-										<td><a class="btn btn-danger" href="ControllerClases?IdClase=${item.idClase}&idAvion=${item.idAvion}&Eliminar=btne">Eliminar</a>
-										<a href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>" class="btn btn-warning"> Actualizar</a>
+										<td><button class="btntableeliminar"><a class="atableeliminar" href="ControllerClases?IdClase=${item.idClase}&idAvion=${item.idAvion}&Eliminar=btne"><i class="far fa-trash-alt fa-2x" style="color: black;"></i></a></button>
+										<button class="btntableupdate"><a class="atableupdate" href="addClase.jsp?Id=${item.idClase}&nombreClase=${item.nombreClase}&nAsientos=${item.nAsientos}&Porcentaje=${item.porcentajeEPrecio}&idAvion=<%=IdAvion%>"><i class="fas fa-edit fa-2x" style="color: black;"></i></a></button>
 										</td>
 									</tr>
 									`
@@ -151,7 +145,7 @@ String IdAvion = request.getParameter("IdAvion");
 				<th>ID</th>
 				<th>Nombre Clase</th>
 				<th>N Asientos</th>
-				<th>Descuentos</th>
+				<th>Porcentaje Extra de Precio</th>
 				<th>Acciones</th>
 			</thead>
 			<tbody id="tablaClases">

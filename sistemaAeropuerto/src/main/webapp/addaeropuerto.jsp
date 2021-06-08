@@ -151,7 +151,7 @@ function SoloLetras(e){
 						if(datos == "Actualizado"){
 							Swal.fire({
 								  icon: 'success',
-								  title: 'Compañia Actualizada...',
+								  title: 'Aeropuerto Actualizado...',
 								  showConfirmButton: false,
 								  timer: 2000
 								}).then(() => {
@@ -170,7 +170,7 @@ function SoloLetras(e){
 							Swal.fire({
 								  icon: 'error',
 								  title: 'Oops...',
-								  text: 'El Aeropuerto ya esta registrada...',
+								  text: 'El Aeropuerto ya esta registrado...',
 								  confirmButtonText: 'Aceptar',
 								  confirmButtonColor: '#ff2600',
 								  showCloseButton: true
