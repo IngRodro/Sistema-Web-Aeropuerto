@@ -337,7 +337,7 @@ function SoloNumeros(evt){
 												  icon: 'success',
 												  title: 'Vuelo Registrado...',
 												  showConfirmButton: false,
-												  timer: 10000
+												  timer: 2000
 												}).then(() => {
 													location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
 												})
@@ -347,7 +347,7 @@ function SoloNumeros(evt){
 												  icon: 'success',
 												  title: 'Vuelo Actualizado...',
 												  showConfirmButton: false,
-												  timer: 1500
+												  timer: 2000
 												}).then(() => {
 													location.href = 'http://localhost:8080/sistemaAeropuerto/vuelo.jsp';
 												})
