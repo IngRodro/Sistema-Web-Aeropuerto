@@ -112,7 +112,7 @@
 											<td>${item.Descuento}%</td>
 											<td>${item.FechaInicio}</td>
 											<td>${item.FechaFinal}</td>
-											<td><button class="btntable"><a class="atable" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicioDesc}&FechaFinal=${item.FechaFinalDesc}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></button></td>	
+											<td><button class="btntable"><a class="atable" href="addPasaje.jsp?IdVuelo=${item.Vuelo}&Descuento=${item.Descuento}&FechaInicio=${item.FechaInicio}&FechaFinal=${item.FechaFinal}&NEscala=${item.NumeroEscala}&DescuentoTipo=${item.DescuentoTipo}&Precio=${item.Precio}">Nuevo Pasaje</a></button></td>	
 										</tr>
 										`
 										

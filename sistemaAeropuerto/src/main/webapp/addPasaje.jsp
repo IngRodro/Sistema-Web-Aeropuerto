@@ -1,7 +1,12 @@
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.sistemaAeropuerto.DAO.ClsVuelo"%>
 <%@page import="com.sistemaAeropuerto.Entidades.Vuelo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+
 <!DOCTYPE html>
 <html>
 <link rel="shortcut icon" type="image/png" href="IMG/airplane(1).png">
@@ -58,7 +63,27 @@ function SoloNumerosGuion(evt){
 	String NEscala = request.getParameter("NEscala");
 	String DescuentoTipo = request.getParameter("DescuentoTipo");
 	String Precio = request.getParameter("Precio");
-
+	String FechaIString = request.getParameter("FechaInicio");
+	String FechaFString = request.getParameter("FechaFinal");
+	SimpleDateFormat formatodeFecha = new SimpleDateFormat("yyyy-MM-dd");
+	Date Fecha = new Date();
+	Date FechaI = null;
+	Date FechaF = null;
+	
+	if(Descuento.equals("0")){
+	
+	}else{
+	System.out.print(FechaIString);
+	try {
+			FechaI = formatodeFecha.parse(FechaIString);
+			FechaF = formatodeFecha.parse(FechaFString);
+			
+		} catch (Exception e) {
+		}
+	if(FechaI.after(Fecha) || FechaF.before(Fecha)){
+		Descuento = "0";
+	}
+	}
 	Vuelo vuelo = new Vuelo();
 	ClsVuelo clsvuelo = new ClsVuelo();
 	vuelo = clsvuelo.SeleccionarVuelo(Integer.parseInt(Vuelo));
